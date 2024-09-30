@@ -1,14 +1,14 @@
-// import Nav from "../components/nav";
+import Nav from "../components/nav";
+import SignIn from "../components/signIn";
 
 function Login() {
 
     return (
 
-        <div>
+        <div className="login-page  " >
 
-            <h1>
-                Login page
-            </h1>
+            <Nav />
+            <SignIn/>
 
         </div>
 
