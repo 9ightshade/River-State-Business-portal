@@ -1,1 +1,1 @@
-# River-State-Business-portal
+Rivers State Business School Portal
