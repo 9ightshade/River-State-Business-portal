@@ -39,7 +39,7 @@ function Nav() {
                 </ul>
             </nav>
 
-<button className="bg-[#1e3a8a] text-[#f5f5f5] py-2 px-3 rounded cursor-pointer " >
+<button className="bg-[#1e3a8a] text-[#f5f5f5] py-2 px-3 rounded cursor-pointer" >
     Create Profile
 </button>
 

@@ -1,18 +1,39 @@
+import axios from "axios";
 import bgimage from "../assets/png/background_img.png"
-// import { useState } from "react";
+import { useState } from "react";
+
 function SignIn() {
 
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    let errorMessage;
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const formData = new FormData(e.target);
-
-        const email = formData.get("email");
-        const password = formData.get("password");
+        setEmail(formData.get("email"));
+        setPassword(formData.get("password"));
 
         console.log(`Email:${email}`);
         console.log(`password:${password}`);
+
+        try {
+            const response = await axios.post("api endpoint", {
+                email: email,
+                password: password
+            })
+            console.log(`success`);
+            console.log(response);
+
+
+        } catch (error) {
+            errorMessage = error.message;
+            console.log(errorMessage);
+
+        }
+
+
 
 
 
@@ -31,14 +52,18 @@ function SignIn() {
                 <label htmlFor="email" className="text-[#374151] cursor-pointer text-[20px]" >
                     Email
                     <div>
-                        <input type="email" name="email" id="email" placeholder="email" className="outline  py-1 px-3 rounded outline-none" />
+                        <input type="email" name="email" id="email" placeholder="email" className="outline  py-1 px-3 rounded outline-none"
+                            onChange={(e) => { setEmail(e.target.value) }}
+                        />
                     </div>
                 </label>
 
                 <label htmlFor="password" className="text-[#374151] cursor-pointer text-[20px]" >
                     Password
                     <div>
-                        <input type="password" name="password" id="password" placeholder="Password" className="  py-1 px-3 rounded outline-none" />
+                        <input type="password" name="password" id="password" placeholder="Password" className="  py-1 px-3 rounded outline-none"
+                            onChange={(e) => { setPassword(e.target.value) }}
+                        />
                     </div>
                 </label>
 
