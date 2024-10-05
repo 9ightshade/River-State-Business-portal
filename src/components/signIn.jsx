@@ -1,15 +1,15 @@
 import axios from "axios";
 import bgimage from "../assets/png/background_img.png"
-import {  useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 function SignIn() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [data, setData] = useState({
+    const data = {
         email: email,
         password: password
-    });
+    };
     const URL = "https://portal.rsubs.org/api/users/login";
 
 
@@ -43,13 +43,15 @@ function SignIn() {
                 }
             })
             console.log(response);
+            console.log("successful");
+
 
         } catch (error) {
+            console.log(error);
+
             console.log(error.message);
 
         }
-
-
     };
 
 
