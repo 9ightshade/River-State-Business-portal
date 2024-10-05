@@ -6,49 +6,75 @@ function SignIn() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [data, setData] = useState([]);
-    let errorMessage;
+    const [data, setData] = useState({
+        email:"",
+        password: ""
+    });
     const URL = "https://portal.rsubs.org/api/users/login";
-    const storeUrl = "https://fakestoreapi.com/products/1";
 
 
-
-
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const formData = new FormData(e.target);
-        setEmail(formData.get("email"));
-        setPassword(formData.get("password"));
-
-        console.log(`Email:${email}`);
-        console.log(`password:${password}`);
-
-        try {
-            const response = await axios.post("https://portal.rsubs.org/api/users/login", {
-                email: email,
-                password: password
+    useEffect(() => {
+        setData(
+            axios.post(URL, {
+                email: "owaiowai30@gmail.com",
+                password: "Good123"
+            }, {
+                crossDomain:true,
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
             })
-            console.log(`success`);
-            console.log(response);
+        )
 
 
-        } catch (error) {
-            errorMessage = error.message;
-            console.log(errorMessage);
+    }, [])
 
-        }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(data);
+
     }
 
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
 
-    //fetch endpoint
-    useEffect(() => {
-        fetch(URL)
-            .then(res => res.json())
-            .then(json => console.log(json))
+    //     const formData = new FormData(e.target);
+    //     setEmail(formData.get("email"));
+    //     setPassword(formData.get("password"));
 
-    }, []);
+    //     console.log(`Email:${email}`);
+    //     console.log(`password:${password}`);
+
+    //     try {
+    //         const data = await axios.post(URL, {
+    //             email: email,
+    //             password: password
+    //         })
+    //         console.log(`success`);
+    //         console.log(response);
+
+
+    //     } catch (error) {
+    //         errorMessage = error.message;
+    //         console.log(errorMessage);
+
+    //     }
+    // }
+
+
+    // //fetch endpoint
+    // useEffect(() => {
+    //     fetch(URL, {
+    //         crossDomain: true,
+    //         method: 'GET',
+    //         headers: { 'Content-Type': 'application/json' },
+
+    //     })
+    //         .then(res => res.json())
+    //         .then(json => console.log(json))
+
+    // }, []);
 
 
 
