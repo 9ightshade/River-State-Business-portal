@@ -11,11 +11,6 @@ function SignIn() {
     const URL = "https://portal.rsubs.org/api/users/login";
     const storeUrl = "https://fakestoreapi.com/products";
 
-    const storeFetch = async () => {
-        const response = await fetch(storeUrl);
-        setData(response);
-        console.log(data);
-    };
 
 
 
@@ -50,14 +45,14 @@ function SignIn() {
     //fetch endpoint
     useEffect(() => {
         try {
-            const response = axios.get(URL);
-            const res = setData(response.data);
-            console.log(res);
+            const response = axios.get(storeUrl);
+            setData(response.data);
+            console.log(data);
 
         } catch (error) {
             console.log("error code testing", error);
         }
-        storeFetch();
+        
     }, []);
 
 
