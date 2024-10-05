@@ -1,55 +1,55 @@
-// import axios from "axios";
+import axios from "axios";
 import bgimage from "../assets/png/background_img.png"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function SignIn() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    // let errorMessage;
-
-    const handleSubmit = (e) => {
+    const [data, setData] = useState([]);
+    let errorMessage;
+    const URL = "https://portal.rsubs.org/api/users/login";
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        fetch("https://portal.rsubs.org/api/users/login", {
-            method: "POST",
-            body: JSON.stringify({
-                email, password,
-                completed: false
-            })
-        }).then(res => res.json()).then(() => {
-            console.log("successful");
 
-        }).catch(e => {
-            console.log(e.message);
-        })
+        const formData = new FormData(e.target);
+        setEmail(formData.get("email"));
+        setPassword(formData.get("password"));
+
+        console.log(`Email:${email}`);
+        console.log(`password:${password}`);
+
+        try {
+            const response = await axios.post("https://portal.rsubs.org/api/users/login", {
+                email: email,
+                password: password
+            })
+            console.log(`success`);
+            console.log(response);
+
+
+        } catch (error) {
+            errorMessage = error.message;
+            console.log(errorMessage);
+
+        }
     }
 
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
+    //fetch endpoint
+    useEffect(() => {
+        try {
+            const response =  axios.get(URL);
+            const res = setData(response.data);
+            console.log(res);
 
-    //     const formData = new FormData(e.target);
-    //     setEmail(formData.get("email"));
-    //     setPassword(formData.get("password"));
+        } catch (error) {
+            console.log("error code testing", error);
+        }
 
-    //     console.log(`Email:${email}`);
-    //     console.log(`password:${password}`);
-
-    //     try {
-    //         const response = await axios.post("https://portal.rsubs.org/api/users/login", {
-    //             email: email,
-    //             password: password
-    //         })
-    //         console.log(`success`);
-    //         console.log(response);
+    }, [])
 
 
-    //     } catch (error) {
-    //         errorMessage = error.message;
-    //         console.log(errorMessage);
-
-    //     }
-    // }
 
     return (
 
