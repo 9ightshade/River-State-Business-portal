@@ -1,43 +1,61 @@
 import axios from "axios";
 import bgimage from "../assets/png/background_img.png"
 import { useEffect, useState } from "react";
-
+import { Link } from "react-router-dom";
 function SignUp() {
     const [fullname, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [data, setData] = useState({
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const data = {
         fullname: fullname,
         email: email,
-        password: password
-    });
+        password: password,
+        confirmPassword: confirmPassword
+    };
+
     const URL = "https://portal.rsubs.org/api/users/signup";
 
 
     useEffect(() => {
-        setData(
-            axios.post(URL, {
-                fullname: fullname,
-                email: email,
-                password: password
-            }, {
-                crossDomain: true,
-                headers: {
-                    "Content-Type": "multipart/form-data"
-                }
-            })
-        )
+        // setData(
+        //     axios.post(URL, {
+        //         fullname: fullname,
+        //         email: email,
+        //         password: password
+        //     }, {
+        //         crossDomain: true,
+        //         headers: {
+        //             "Content-Type": "multipart/form-data"
+        //         }
+        //     })
+        // )
+        // console.log(data);
 
 
     }, [])
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(data);
 
-    }
+        try {
+            const response = await axios.post(URL, data, {
+                crossDomain: true,
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            })
+            console.log(response);
 
+        } catch (error) {
+            console.log(error.message);
+
+        }
+
+
+    };
 
 
 
@@ -65,7 +83,7 @@ function SignUp() {
                     Fullname
                     <div>
                         <input type="text" name="fullname" id="fullname" placeholder="fullname" className="outline w-full py-1 px-3 rounded outline-none"
-                            onChange={(e) => { setEmail(e.target.value) }}
+                            onChange={(e) => { setFullName(e.target.value) }}
                         />
                     </div>
                 </label>
@@ -86,13 +104,13 @@ function SignUp() {
                     Password
                     <div>
                         <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password" className="  py-1 px-3 w-full rounded outline-none"
-                            onChange={(e) => { setPassword(e.target.value) }}
+                            onChange={(e) => { setConfirmPassword(e.target.value) }}
                         />
                     </div>
                 </label>
 
                 <button type="submit" className="text-white w-full py-2 rounded my-3 text-[1.4rem] bg-[#172554] hover:bg-[#111c41] mt-8" >
-                Submit
+                    Submit
                 </button>
 
 
@@ -100,9 +118,11 @@ function SignUp() {
                     <p className="hover:underline cursor-pointer" >
                         Already have an account
                     </p>
-                    <p className="hover:underline cursor-pointer" >
-                        Login
-                    </p>
+                    <Link to="/" >
+                        <p className="hover:underline cursor-pointer" >
+                            Login
+                        </p>
+                    </Link>
                 </div>
 
 

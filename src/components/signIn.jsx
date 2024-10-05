@@ -1,66 +1,56 @@
 import axios from "axios";
 import bgimage from "../assets/png/background_img.png"
-import { useEffect, useState } from "react";
-
+import {  useState } from "react";
+import { Link } from "react-router-dom";
 function SignIn() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [data, setData] = useState({
-        email:"",
-        password: ""
+        email: email,
+        password: password
     });
     const URL = "https://portal.rsubs.org/api/users/login";
 
 
-    useEffect(() => {
-        setData(
-            axios.post(URL, {
-                email: "owaiowai30@gmail.com",
-                password: "Good123"
-            }, {
-                crossDomain:true,
+    // useEffect(() => {
+    //     setData(
+    //         axios.post(URL, {
+    //             email: "owaiowai30@gmail.com",
+    //             password: "Good123"
+    //         }, {
+    //             crossDomain: true,
+    //             headers: {
+    //                 "Content-Type": "multipart/form-data"
+    //             }
+    //         })
+    //     )
+
+
+    // }, [])
+
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log(data);
+
+        try {
+            const response = await axios.post(URL, data, {
+                crossDomain: true,
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
             })
-        )
+            console.log(response);
+
+        } catch (error) {
+            console.log(error.message);
+
+        }
 
 
-    }, [])
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(data);
-
-    }
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-
-    //     const formData = new FormData(e.target);
-    //     setEmail(formData.get("email"));
-    //     setPassword(formData.get("password"));
-
-    //     console.log(`Email:${email}`);
-    //     console.log(`password:${password}`);
-
-    //     try {
-    //         const data = await axios.post(URL, {
-    //             email: email,
-    //             password: password
-    //         })
-    //         console.log(`success`);
-    //         console.log(response);
-
-
-    //     } catch (error) {
-    //         errorMessage = error.message;
-    //         console.log(errorMessage);
-
-    //     }
-    // }
+    };
 
 
 
@@ -104,9 +94,11 @@ function SignIn() {
                     <p className="hover:underline cursor-pointer" >
                         Don&apos;t  have an account
                     </p>
-                    <p className="hover:underline cursor-pointer" >
-                        Create Profile
-                    </p>
+                    <Link to="/register" >
+                        <p className="hover:underline cursor-pointer" >
+                            Create Profile
+                        </p>
+                    </Link>
                 </div>
 
 
