@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 import bgimage from "../assets/png/background_img.png"
 import { useState } from "react";
 
@@ -6,38 +6,50 @@ function SignIn() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    let errorMessage;
+    // let errorMessage;
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-
-        const formData = new FormData(e.target);
-        setEmail(formData.get("email"));
-        setPassword(formData.get("password"));
-
-        console.log(`Email:${email}`);
-        console.log(`password:${password}`);
-
-        try {
-            const response = await axios.post("api endpoint", {
-                email: email,
-                password: password
+        fetch("https://portal.rsubs.org/api/users/login", {
+            method: "POST",
+            body: JSON.stringify({
+                email, password,
+                completed: false
             })
-            console.log(`success`);
-            console.log(response);
+        }).then(res => res.json()).then(() => {
+            console.log("successful");
 
-
-        } catch (error) {
-            errorMessage = error.message;
-            console.log(errorMessage);
-
-        }
-
-
-
-
-
+        }).catch(e => {
+            console.log(e.message);
+        })
     }
+
+
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+
+    //     const formData = new FormData(e.target);
+    //     setEmail(formData.get("email"));
+    //     setPassword(formData.get("password"));
+
+    //     console.log(`Email:${email}`);
+    //     console.log(`password:${password}`);
+
+    //     try {
+    //         const response = await axios.post("https://portal.rsubs.org/api/users/login", {
+    //             email: email,
+    //             password: password
+    //         })
+    //         console.log(`success`);
+    //         console.log(response);
+
+
+    //     } catch (error) {
+    //         errorMessage = error.message;
+    //         console.log(errorMessage);
+
+    //     }
+    // }
 
     return (
 
@@ -73,12 +85,12 @@ function SignIn() {
                 </button>
 
 
-                <div className="flex justify-between text-[#172554]" >
+                <div className="flex justify-between text-[#172554] gap-5" >
                     <p className="hover:underline cursor-pointer" >
                         Don&apos;t  have an account
                     </p>
                     <p className="hover:underline cursor-pointer" >
-                        Reset Password
+                        Create Profile
                     </p>
                 </div>
 
