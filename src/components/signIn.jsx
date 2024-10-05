@@ -9,7 +9,7 @@ function SignIn() {
     const [data, setData] = useState([]);
     let errorMessage;
     const URL = "https://portal.rsubs.org/api/users/login";
-    const storeUrl = "https://fakestoreapi.com/products/categories";
+    const storeUrl = "https://fakestoreapi.com/products/1";
 
 
 
@@ -44,14 +44,9 @@ function SignIn() {
 
     //fetch endpoint
     useEffect(() => {
-        try {
-            const response = axios.get(storeUrl);
-            setData(response.data);
-            console.log(data);
-
-        } catch (error) {
-            console.log("error code testing", error);
-        }
+        fetch(URL)
+            .then(res => res.json())
+            .then(json => console.log(json))
 
     }, []);
 
