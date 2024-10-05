@@ -63,24 +63,12 @@ function SignIn() {
     // }
 
 
-    // //fetch endpoint
-    // useEffect(() => {
-    //     fetch(URL, {
-    //         crossDomain: true,
-    //         method: 'GET',
-    //         headers: { 'Content-Type': 'application/json' },
-
-    //     })
-    //         .then(res => res.json())
-    //         .then(json => console.log(json))
-
-    // }, []);
 
 
 
     return (
 
-        <div className="login-page h-[80vh] flex justify-center items-center " style={{
+        <div className="login-page h-[81.2vh] flex justify-center items-center " style={{
             backgroundImage: `url(${bgimage})`
         }} >
 
@@ -91,7 +79,7 @@ function SignIn() {
                 <label htmlFor="email" className="text-[#374151] cursor-pointer text-[20px]" >
                     Email
                     <div>
-                        <input type="email" name="email" id="email" placeholder="email" className="outline  py-1 px-3 rounded outline-none"
+                        <input type="email" name="email" id="email" placeholder="email" className="outline w-full py-1 px-3 rounded outline-none"
                             onChange={(e) => { setEmail(e.target.value) }}
                         />
                     </div>
@@ -100,7 +88,7 @@ function SignIn() {
                 <label htmlFor="password" className="text-[#374151] cursor-pointer text-[20px]" >
                     Password
                     <div>
-                        <input type="password" name="password" id="password" placeholder="Password" className="  py-1 px-3 rounded outline-none"
+                        <input type="password" name="password" id="password" placeholder="Password" className="  py-1 px-3 w-full rounded outline-none"
                             onChange={(e) => { setPassword(e.target.value) }}
                         />
                     </div>

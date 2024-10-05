@@ -1,10 +1,12 @@
+import Nav from "../components/nav";
+import SignUp from "../components/signUp";
+
 function Register (){
 
     return(
         <div>
-            <h1>
-                Register page
-            </h1>
+            <Nav/>
+            <SignUp/>
         </div>
     )
 }

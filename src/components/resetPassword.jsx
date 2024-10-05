@@ -46,7 +46,7 @@ function Reset() {
                 <label htmlFor="email" className="text-[#374151] cursor-pointer text-[20px]" >
                     Email
                     <div>
-                        <input type="email" name="email" id="email" placeholder="email" className="  py-1 px-3 rounded outline-none"
+                        <input type="email" name="email" id="email" placeholder="email" className="  py-1 px-3 rounded outline-none w-full"
                             onChange={(e) => { setEmail(e.target.value) }}
                         />
                     </div>
