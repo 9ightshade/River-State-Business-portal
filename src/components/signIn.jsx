@@ -9,7 +9,7 @@ function SignIn() {
     const [data, setData] = useState([]);
     let errorMessage;
     const URL = "https://portal.rsubs.org/api/users/login";
-    const storeUrl = "https://fakestoreapi.com/products";
+    const storeUrl = "https://fakestoreapi.com/products/categories";
 
 
 
@@ -52,7 +52,7 @@ function SignIn() {
         } catch (error) {
             console.log("error code testing", error);
         }
-        
+
     }, []);
 
 
