@@ -33,11 +33,11 @@ function SignUp() {
                 }
             })
             console.log(response);
-            navigate("/application")
+            // navigate("/application")
 
         } catch (error) {
-            console.log(error.message);
-            navigate("/error")
+            console.log(error);
+            // navigate("/error")
         }
     };
 
