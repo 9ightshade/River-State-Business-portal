@@ -6,10 +6,8 @@ function Login() {
     return (
 
         <div className="login-page  " >
-
             <Nav />
-            <SignIn/>
-
+            <SignIn />
         </div>
 
 

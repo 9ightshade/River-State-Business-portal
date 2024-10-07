@@ -24,7 +24,7 @@ const formData = [
   },
   {
     id: 2,
-    label: 'Next of Kin Information',
+    label: 'Emergency Contact',
     fields: [
       { name: 'nameOfNextOfKin', label: 'Name of Next of Kin', type: 'text' },
       { name: 'addressOfNextOfKin', label: 'Address of Next of Kin', type: 'text' },

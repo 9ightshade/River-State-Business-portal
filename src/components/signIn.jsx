@@ -1,7 +1,7 @@
 import axios from "axios";
 import bgimage from "../assets/png/background_img.png"
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function SignIn() {
 
     const [email, setEmail] = useState("");
@@ -11,23 +11,8 @@ function SignIn() {
         password: password
     };
     const URL = "https://portal.rsubs.org/api/users/login";
+    const navigate = useNavigate();
 
-
-    // useEffect(() => {
-    //     setData(
-    //         axios.post(URL, {
-    //             email: "owaiowai30@gmail.com",
-    //             password: "Good123"
-    //         }, {
-    //             crossDomain: true,
-    //             headers: {
-    //                 "Content-Type": "multipart/form-data"
-    //             }
-    //         })
-    //     )
-
-
-    // }, [])
 
 
 
@@ -44,7 +29,7 @@ function SignIn() {
             })
             console.log(response);
             console.log("successful");
-
+            navigate("/application")
 
         } catch (error) {
             console.log(error);
@@ -59,52 +44,28 @@ function SignIn() {
 
 
     return (
-
-        <div className="login-page h-[81.2vh] flex justify-center items-center " style={{
-            backgroundImage: `url(${bgimage})`
-        }} >
-
-            <form action="" method="post" className="login-form" onSubmit={handleSubmit} >
-                <h1 className="text-[#172554] text-center text-[3rem] font-bold " >
-                    Login
-                </h1>
-                <label htmlFor="email" className="text-[#374151] cursor-pointer text-[20px]" >
-                    Email
+        <div className="h-[81vh] flex justify-center py-5" style={{ backgroundImage: `url(${bgimage})` }}>
+            <div className='bg-[#F3F1F1]  p-10 shadow-md shadow-gray-500 rounded-[1em]  '>
+                <h3 className='text-center text-[36px] text-[#39447F] font-black'>Log in</h3>
+                <form className='mt-5' onSubmit={handleSubmit}>
                     <div>
-                        <input type="email" name="email" id="email" placeholder="email" className="outline w-full py-1 px-3 rounded outline-none"
-                            onChange={(e) => { setEmail(e.target.value) }}
-                        />
-                    </div>
-                </label>
+                        <div> <label className='my-2 cursor-pointer' htmlFor="email">Email </label></div>
 
-                <label htmlFor="password" className="text-[#374151] cursor-pointer text-[20px]" >
-                    Password
+                        <input className='w-full p-4 my-2 bg-white outline-none  ' id="email" type="email" placeholder='Email*' onChange={(e) => { setEmail(e.target.value) }} name='email' />
+                    </div>
+
                     <div>
-                        <input type="password" name="password" id="password" placeholder="Password" className="  py-1 px-3 w-full rounded outline-none"
-                            onChange={(e) => { setPassword(e.target.value) }}
-                        />
+                        <div><label className='my-2 cursor-pointer' htmlFor="password">Password </label></div>
+
+                        <input className='w-full p-4 my-2 bg-white outline-none' id="password" type="password" placeholder='Password' onChange={(e) => { setPassword(e.target.value) }} name='password' />
                     </div>
-                </label>
 
+                    <button className='bg-[#39447F] w-full py-2 text-center my-3 rounded text-white hover:bg-[#39449F] '>Submit</button>
+                    <p className='text-[#39447F] text-[1em] text-center hover:underline cursor-pointer hover:text-[#39449F] '>Don’t have an account?  <Link to="/register"><span className='font-bold'>Create profile</span> </Link></p>
 
-                <button type="submit" className="text-white w-full py-2 rounded my-3 text-[1.4rem] bg-[#172554] hover:bg-[#111c41] mt-8" >
-                    Log in
-                </button>
+                </form>
+            </div>
 
-
-                <div className="flex justify-between text-[#172554] gap-5" >
-                    <p className="hover:underline cursor-pointer" >
-                        Don&apos;t  have an account
-                    </p>
-                    <Link to="/register" >
-                        <p className="hover:underline cursor-pointer" >
-                            Create Profile
-                        </p>
-                    </Link>
-                </div>
-
-
-            </form>
         </div>
 
     )

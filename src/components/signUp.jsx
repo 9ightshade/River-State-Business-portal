@@ -1,6 +1,7 @@
 import axios from "axios";
 import bgimage from "../assets/png/background_img.png"
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 function SignUp() {
     const [fullname, setFullName] = useState("");
@@ -15,25 +16,7 @@ function SignUp() {
     };
 
     const URL = "https://portal.rsubs.org/api/users/signup";
-
-
-    useEffect(() => {
-        // setData(
-        //     axios.post(URL, {
-        //         fullname: fullname,
-        //         email: email,
-        //         password: password
-        //     }, {
-        //         crossDomain: true,
-        //         headers: {
-        //             "Content-Type": "multipart/form-data"
-        //         }
-        //     })
-        // )
-        // console.log(data);
-
-
-    }, [])
+    const navigate = useNavigate;
 
 
     const handleSubmit = async (e) => {
@@ -48,85 +31,50 @@ function SignUp() {
                 }
             })
             console.log(response);
+            navigate("/application")
 
         } catch (error) {
             console.log(error.message);
-
+            navigate("/error")
         }
-
-
     };
 
 
 
     return (
 
-        <div className="login-page h-[81.2vh] flex justify-center items-center " style={{
-            backgroundImage: `url(${bgimage})`
-        }} >
-
-            <form action="" method="post" className="login-form" onSubmit={handleSubmit} >
-                <h1 className="text-[#172554] text-center text-[3rem] font-bold " >
-                    Register
-                </h1>
-                <label htmlFor="email" className="text-[#374151] cursor-pointer text-[20px]" >
-                    Email
+        <div className="h-[81vh] flex justify-center py-3" style={{ backgroundImage: `url(${bgimage})` }}>
+            <div className='bg-[#F3F1F1]  p-10 shadow-md shadow-gray-500 rounded-[10px]  '>
+                <h3 className='text-center text-[36px] text-[#39447F] font-black'>Register</h3>
+                <form className='mt-5' onSubmit={handleSubmit}>
                     <div>
-                        <input type="email" name="email" id="email" placeholder="email" className="outline w-full py-1 px-3 rounded outline-none"
-                            onChange={(e) => { setEmail(e.target.value) }}
-                        />
+
+
+                        <input className='w-full p-2 outline-none my-2 bg-white' type="email" placeholder='Email*' name='email' onChange={(e) => { setEmail(e.target.value) }} />
                     </div>
-                </label>
 
-
-                <label htmlFor="email" className="text-[#374151] cursor-pointer text-[20px]" >
-                    Fullname
                     <div>
-                        <input type="text" name="fullname" id="fullname" placeholder="fullname" className="outline w-full py-1 px-3 rounded outline-none"
-                            onChange={(e) => { setFullName(e.target.value) }}
-                        />
+
+
+                        <input className='w-full p-2 outline-none my-2 bg-white' type="text" placeholder='Full Name' name='name' onChange={(e) => { setFullName(e.target.value) }} />
                     </div>
-                </label>
 
-
-
-
-                <label htmlFor="password" className="text-[#374151] cursor-pointer text-[20px]" >
-                    Password
                     <div>
-                        <input type="password" name="password" id="password" placeholder="Password" className="  py-1 px-3 w-full rounded outline-none"
-                            onChange={(e) => { setPassword(e.target.value) }}
-                        />
-                    </div>
-                </label>
 
-                <label htmlFor="confirm-password" className="text-[#374151] cursor-pointer text-[20px]" >
-                    Password
+                        <input className='w-full p-2 outline-none my-2 bg-white' type="password" placeholder='Password' name='password' onChange={(e) => { setPassword(e.target.value) }} />
+                    </div>
+
                     <div>
-                        <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password" className="  py-1 px-3 w-full rounded outline-none"
-                            onChange={(e) => { setConfirmPassword(e.target.value) }}
-                        />
+
+                        <input className='w-full p-2 outline-none my-2 bg-white' type="password" placeholder='Confirm Password' name='confirmPassword' onChange={(e) => { setConfirmPassword(e.target.value) }} />
                     </div>
-                </label>
 
-                <button type="submit" className="text-white w-full py-2 rounded my-3 text-[1.4rem] bg-[#172554] hover:bg-[#111c41] mt-8" >
-                    Submit
-                </button>
+                    <input type='submit' value="Submit" className='bg-[#39447F] w-full py-2 text-center my-2 cursor-pointer rounded text-white' />
+                    <p className='text-[#39447F] text-[1em] text-center hover:underline cursor-pointer '>Already have an account?  <Link to="/"><span className='font-bold'>Log in </span> </Link></p>
 
+                </form>
+            </div>
 
-                <div className="flex justify-between text-[#172554] gap-5" >
-                    <p className="hover:underline cursor-pointer" >
-                        Already have an account
-                    </p>
-                    <Link to="/" >
-                        <p className="hover:underline cursor-pointer" >
-                            Login
-                        </p>
-                    </Link>
-                </div>
-
-
-            </form>
         </div>
 
     )
