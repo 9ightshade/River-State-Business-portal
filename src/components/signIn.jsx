@@ -21,15 +21,10 @@ function SignIn() {
         console.log(data);
 
         try {
-            const response = await axios.post(URL, data, {
-                crossDomain: true,
-                headers: {
-                    "Content-Type": "multipart/form-data"
-                }
-            })
+            const response = await axios.post(URL, data,)
             console.log(response);
             console.log("successful");
-            navigate("/application")
+            // navigate("/application")
 
         } catch (error) {
             console.log(error);

@@ -8,7 +8,7 @@ function SignUp() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-
+    let response;
     const data = {
         name: fullname,
         email: email,
@@ -26,13 +26,8 @@ function SignUp() {
         console.log(data);
 
         try {
-            const response = await axios.post(URL, data, {
-                crossDomain: true,
-                headers: {
-                    "Content-Type": "multipart/form-data"
-                }
-            })
-            console.log(response);
+             response = await axios.post(URL, data, )
+            console.log(response.message);
             // navigate("/application")
 
         } catch (error) {
