@@ -43,8 +43,8 @@ function SignUp() {
 
     return (
 
-        <div className="h-[81vh] flex justify-center py-3" style={{ backgroundImage: `url(${bgimage})` }}>
-            <div className='bg-[#F3F1F1]  p-10 shadow-md shadow-gray-500 rounded-[10px]  '>
+        <div className="h-[81vh] flex justify-center py-3" style={{ backgroundImage: `url(${bgimage})`, backgroundRepeat:"no-repeat" }}>
+            <div className='bg-[#F3F1F1] p-10 shadow-md shadow-gray-500 rounded-[10px]  '>
                 <h3 className='text-center text-[36px] text-[#39447F] font-black'>Register</h3>
                 <form className='mt-5' onSubmit={handleSubmit}>
                     <div>

@@ -1,23 +1,35 @@
 import logo from "../assets/svg/logo.svg";
 import hamburger from "../assets/svg/hamburger-menu.svg";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 Link
 // import dropdown from "../assets/svg/Vector.svg";
 
 function Nav() {
+
+    // eslint-disable-next-line no-undef
+    const [isVisible, setIsVisible] = useState(false);
+
+    const toogleSideNav = () => {
+        setIsVisible(!isVisible)
+        console.log(isVisible);
+        
+    }
+
+
     return (
 
-        <div className="nav flex items-center justify-between py-3 px-2" >
+        <div className=" flex items-center justify-between gap-1 p-2 text-[1.2vw] " >
 
-            <div className="logo cursor-pointer w-[40%] max-w-[60%]  " >
+            <div className="logo cursor-pointer w-[20%] max-w-[30%]  " >
                 <a href="https://rsubs.org/">
                     <img src={logo} alt="River state logo" className="w-full" />
                 </a>
             </div>
 
 
-            <nav className="hidden md:block" >
-                <ul className="flex justify-between gap-8 " >
+            <nav className="hidden md:block " >
+                <ul className="flex justify-between gap-4  " >
                     <li className="hover:text-[#6b7280] cursor-pointer " >
                         Home
                     </li>
@@ -46,8 +58,8 @@ function Nav() {
                     Create Profile
                 </Link>
             </button>
-            <button className="block md:hidden" >
-                <img src={hamburger} alt="toogle navbar" />
+            <button className="block md:hidden w-[8%]  " onClick={() => { toogleSideNav() }}  >
+                <img src={hamburger} alt="toogle navbar" className="w-full" />
             </button>
 
         </div>

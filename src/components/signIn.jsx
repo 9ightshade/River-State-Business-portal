@@ -44,7 +44,7 @@ function SignIn() {
 
 
     return (
-        <div className="h-[81vh] flex justify-center py-5" style={{ backgroundImage: `url(${bgimage})` }}>
+        <div className="h-[81vh] flex justify-center py-5" style={{ backgroundImage: `url(${bgimage})`, backgroundRepeat:"no-repeat" }}>
             <div className='bg-[#F3F1F1]  p-10 shadow-md shadow-gray-500 rounded-[1em]  '>
                 <h3 className='text-center text-[36px] text-[#39447F] font-black'>Log in</h3>
                 <form className='mt-5' onSubmit={handleSubmit}>
