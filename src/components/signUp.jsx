@@ -8,11 +8,13 @@ function SignUp() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+
     const data = {
-        fullname: fullname,
+        name: fullname,
         email: email,
         password: password,
-        confirmPassword: confirmPassword
+        confirmPassword: confirmPassword,
+        role: "student"
     };
 
     const URL = "https://portal.rsubs.org/api/users/signup";
@@ -43,7 +45,7 @@ function SignUp() {
 
     return (
 
-        <div className="h-[81vh] flex justify-center py-3" style={{ backgroundImage: `url(${bgimage})`, backgroundRepeat:"no-repeat" }}>
+        <div className="h-[81vh] flex justify-center py-3" style={{ backgroundImage: `url(${bgimage})`, backgroundRepeat: "no-repeat" }}>
             <div className='bg-[#F3F1F1] p-10 shadow-md shadow-gray-500 rounded-[10px]  '>
                 <h3 className='text-center text-[36px] text-[#39447F] font-black'>Register</h3>
                 <form className='mt-5' onSubmit={handleSubmit}>
