@@ -3,6 +3,9 @@ import bgimage from "../assets/png/background_img.png"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+
+
+
 function SignUp() {
     const [fullname, setFullName] = useState("");
     const [email, setEmail] = useState("");
@@ -28,14 +31,18 @@ function SignUp() {
         try {
              response = await axios.post(URL, data, )
             console.log(response.message);
-            // navigate("/application")
+            console.log("success");
+            navigate("/application")
+           
+            
 
         } catch (error) {
             console.log(error);
             // navigate("/error")
+            console.log("error");
+            
         }
     };
-
 
 
     return (
@@ -45,37 +52,37 @@ function SignUp() {
                 <h3 className='text-center text-[36px] text-[#39447F] font-black'>Register</h3>
                 <form className='mt-5' onSubmit={handleSubmit}>
                     <div>
-
-
                         <input className='w-full p-2 outline-none my-2 bg-white' type="email" placeholder='Email*' name='email' onChange={(e) => { setEmail(e.target.value) }} />
                     </div>
 
+                    
                     <div>
-
-
                         <input className='w-full p-2 outline-none my-2 bg-white' type="text" placeholder='Full Name' name='name' onChange={(e) => { setFullName(e.target.value) }} />
                     </div>
 
+                    
                     <div>
-
                         <input className='w-full p-2 outline-none my-2 bg-white' type="password" placeholder='Password' name='password' onChange={(e) => { setPassword(e.target.value) }} />
                     </div>
 
+                    
                     <div>
-
                         <input className='w-full p-2 outline-none my-2 bg-white' type="password" placeholder='Confirm Password' name='confirmPassword' onChange={(e) => { setConfirmPassword(e.target.value) }} />
                     </div>
 
                     <input type='submit' value="Submit" className='bg-[#39447F] w-full py-2 text-center my-2 cursor-pointer rounded text-white' />
-                    <p className='text-[#39447F] text-[1em] text-center hover:underline cursor-pointer '>Already have an account?  <Link to="/"><span className='font-bold'>Log in </span> </Link></p>
-
+                    
+                    <p className='text-[#39447F] text-[1em] text-center hover:underline cursor-pointer '>
+                        <Link to="/">
+                            Already have an account?
+                            <span className='font-bold'>Log in </span></Link>
+                    </p>
                 </form>
             </div>
-
         </div>
-
     )
-
 }
+
+
 
 export default SignUp;

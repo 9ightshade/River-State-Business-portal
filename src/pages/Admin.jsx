@@ -1,18 +1,15 @@
-function Error() {
+function Admin() {
 
     return (
-
         <div>
             <h1>
-                Error page
+                Admin dashboard
             </h1>
         </div>
-
-
     )
+
+
 
 }
 
-
-
-export default Error;
+export default Admin;

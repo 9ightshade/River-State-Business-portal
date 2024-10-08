@@ -1,67 +1,72 @@
 import { useState } from "react";
 import bgimage from "../assets/png/background_img.png"
 import axios from "axios";
-
+import { Link, useNavigate } from "react-router-dom";
 function Reset() {
 
     const [email, setEmail] = useState("");
-    let errorMessage;
+    const data = {
+        email: email,
+    }
+
+    const URL = "https://portal.rsubs.org/api/users/forgot-password"
+    const navigate = useNavigate();
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const formData = new FormData(e.target);
-        setEmail(formData.get("email"));
-
-
-        console.log(`Email:${email}`);
+        console.log(data);
 
 
         try {
-            const response = await axios.post("api endpoint", {
-                email: email,
-            })
-            console.log(`success`);
+            const response = await axios.post(URL, data,)
             console.log(response);
-
+            console.log("successful");
+            navigate("/")
 
         } catch (error) {
-            errorMessage = error.message;
-            console.log(errorMessage);
+            console.log(error);
+            console.log(error.message);
+            navigate("/error")
 
         }
-
-    }
+    };
 
     return (
 
-        <div className=" h-[80vh] flex justify-center items-center " style={{
-            backgroundImage: `url(${bgimage})`
-        }} >
-
-            <form action="" method="post" className="login-form" onSubmit={handleSubmit} >
-                <h1 className="text-[#172554] text-center text-[3rem] font-bold " >
-                    Reset Password
-                </h1>
-                <label htmlFor="email" className="text-[#374151] cursor-pointer text-[20px]" >
-                    Email
+        <div className="h-[81vh] relative flex justify-center py-5" style={{ backgroundImage: `url(${bgimage})`, backgroundRepeat: "no-repeat" }}>
+            <div className='bg-[#F3F1F1]  p-10 shadow-md shadow-gray-500 rounded-[1em]  '>
+                <h3 className='text-center text-[36px] text-[#39447F] font-black'>Log in</h3>
+                <form className='mt-5' onSubmit={handleSubmit}>
                     <div>
-                        <input type="email" name="email" id="email" placeholder="email" className="  py-1 px-3 rounded outline-none w-full"
-                            onChange={(e) => { setEmail(e.target.value) }}
-                        />
+                        <div> <label className='my-2 cursor-pointer' htmlFor="email">Email </label></div>
+
+                        <input className='w-full p-4 my-2 bg-white outline-none  ' id="email" type="email" placeholder='Email*' onChange={(e) => { setEmail(e.target.value) }} name='email' />
                     </div>
-                </label>
 
 
 
+                    <button className='bg-[#39447F] w-full py-2 text-center my-3 rounded text-white hover:bg-[#39449F] '>Request Password Reset</button>
 
-                <button type="submit" className="text-white w-full py-2 rounded my-3 text-[1.4rem] bg-[#172554] hover:bg-[#111c41] mt-8" >
-                    Confirrm
-                </button>
-            </form>
+
+                    <p className='text-[#39447F] text-[1em] text-center hover:underline cursor-pointer hover:text-[#39449F] '>
+                        <Link to="/">
+                            Remember Your Password? <span className="font-bold"  >Log in</span>
+                        </Link>
+                    </p>
+
+                </form>
+            </div>
+
+
+
+            {
+                
+}
+
 
         </div>
-
 
     )
 
