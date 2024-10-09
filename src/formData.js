@@ -1,36 +1,49 @@
 const formData = [
- 
+
   {
     id: 1,
     label: 'Personal Information',
     fields: [
-      { name: 'title', label: 'Title', type: 'select', options: ['Dr', 'Mrs', 'Miss', 'Prof', 'Mr'] },
-      { name: 'lastName', label: 'Last Name', type: 'text' },
-      { name: 'firstName', label: 'First Name', type: 'text' },
-      { name: 'middleName', label: 'Middle Name', type: 'text' },
-      { name: 'courseAppliedFort', label: 'Course Applied For', type: 'text' },
-      { name: 'email', label: 'Email', type: 'email' },
-      { name: 'sex', label: 'Sex', type: 'select', options: ['male', 'female'] },
-      { name: 'telePhone', label: 'Telephone', type: 'tel' },
-      { name: 'dateOfBirth', label: 'Date of Birth', type: 'date' },
-      { name: 'placeOfBirth', label: 'Place of Birth', type: 'text' },
-      { name: 'citizenship', label: 'Citizenship', type: 'text' },
-      { name: 'maritalStatus', label: 'Marital Status', type: 'select', options: ['single', 'married'] },
-      { name: 'typeOfIdentification', label: 'Type of Identification', type: 'text' },
-      { name: 'identificationNumber', label: 'Identification Number', type: 'text' },
-   
-      { name: 'disabilities', label: 'Disabilities', type: 'text' }
+      { name: 'title', label: 'Title', required: true, type: 'select', options: ['Dr', 'Mrs', 'Miss', 'Prof', 'Mr'] },
+      { name: 'firstName', label: 'First Name', required: true, type: 'text' },
+      { name: 'middleName', label: 'Middle Name', required: true, type: 'text' },
+      { name: 'lastName', label: 'Last Name', required: true, type: 'text' },
+      { name: 'email', label: 'Email', required: true, type: 'email' },
+      { name: 'sex', label: 'Sex', required: true, type: 'select', options: ['male', 'female'] },
+      { name: 'maritalStatus', label: 'Marital Status', type: 'select', required: true, options: ['single', 'married'] },
+      { name: 'dateOfBirth', label: 'Date of Birth', required: true, type: 'date' },
+      { name: 'address', label: 'Address', required: true, type: 'text' },
+      { name: 'religion', label: 'Religion', required: true, type: 'text' },
+      { name: 'phone', label: 'Phone', required: true, type: 'tel' },
+      { name: 'physicalChallenge', label: 'Physical Challenge', required: true, type: 'text' },
+      { name: 'photo', label: 'Upload Photo', required: true, type: 'file' },
+
+
+
+      //  { name: 'listOfPrograms', label: 'List Of Program', type: 'select', options:["PGDBA","MBA", "M.Sc", "DBA"] },
+      // { name: 'listOfCourses', label: 'List Of Courses', type: 'select', options:["Accounting", "Management", "Marketing", "Finance", "ICT Management", "Supply Chain and Logistics Management", "Procurement and Contract Management", "Healthcare and Hospital Management", "Human Resource Management"] },
+
+
+      // { name: 'telePhone', label: 'Telephone', type: 'tel' },
+
+      // { name: 'placeOfBirth', label: 'Place of Birth', type: 'text' },
+      // { name: 'citizenship', label: 'Citizenship', type: 'text' },
+
+      // { name: 'typeOfIdentification', label: 'Type of Identification', type: 'text' },
+      // { name: 'identificationNumber', label: 'Identification Number', type: 'text' },
+
+      // { name: 'disabilities', label: 'Disabilities', type: 'text' }
     ]
   },
   {
     id: 2,
     label: 'Emergency Contact',
     fields: [
-      { name: 'nameOfNextOfKin', label: 'Name of Next of Kin', type: 'text' },
-      { name: 'addressOfNextOfKin', label: 'Address of Next of Kin', type: 'text' },
-      { name: 'emailOfNextOfKin', label: 'Email of Next of Kin', type: 'email' },
-      { name: 'relationshipWithNextOfKin', label: 'Relationship with Next of Kin', type: 'text' },
-      { name: 'telephoneNumberOfNextOfKin', label: 'Telephone Number of Next of Kin', type: 'tel' },
+      { name: 'nameOfNextOfKin', label: 'Name', type: 'text' },
+      { name: 'relationshipWithNextOfKin', label: 'Relationship', type: 'text' },
+      { name: 'telephoneNumberOfNextOfKin', label: 'Number', type: 'tel' },
+      { name: 'emailOfNextOfKin', label: 'Email', type: 'email' },
+      { name: 'addressOfNextOfKin', label: 'Address', type: 'text' },
     ]
   },
   {

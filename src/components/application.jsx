@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import sections from "../sections";
 import data from "../formData";
 
@@ -137,12 +137,15 @@ function ApplicationForm() {
     };
 
 
+    useEffect(() => {
+        console.log(formData);
 
+    })
 
 
 
     return (
-    
+
 
         <div className='flex sm:m-10 gap-10'>
             <div className='sm:flex sm:flex-col w-[30%] hidden '>
@@ -179,15 +182,15 @@ function ApplicationForm() {
                         </div>
                     ) : null
                 )}
-                <div className="flex justify-between mt-4">
-                    {currentStep > 1 && <button onClick={handlePrevious} className="btn">Previous</button>}
-                    {currentStep < sections.length && <button onClick={handleNext} className="btn">Next</button>}
+                <div className="flex justify-between mt-4 bg-[] ">
+                    {currentStep > 1 && <button onClick={handlePrevious} className="btn bg-[#39447F] text-white p-2 rounded border-none ">Previous</button>}
+                    {currentStep < sections.length && <button onClick={handleNext} className="btn bg-[#39447F] text-white p-2 rounded border-none">Next</button>}
                 </div>
             </div>
         </div>
 
 
-)
+    )
 
 
 }
