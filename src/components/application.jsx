@@ -10,41 +10,42 @@ function ApplicationForm() {
 
     const [currentStep, setCurrentStep] = useState(1);
     const [formData, setFormData] = useState({
+        programmeTitle: '',
+        courseTitle:'',
         title: '',
-        lastName: '',
         firstName: '',
         middleName: '',
-        courseAppliedFort: '',
-        email: '',
+        lastName: '',
+        email:'',
         sex: '',
-        telePhone: '',
-        dateOfBirth: '',
-        placeOfBirth: '',
-        citizenship: '',
         maritalStatus: '',
-        typeOfIdentification: '',
-        identificationNumber: '',
-        nameOfNextOfKin: '',
-        addressOfNextOfKin: '',
-        emailOfNextOfKin: '',
-        relationshipWithNextOfKin: '',
-        telephoneNumberOfNextOfKin: '',
-        disabilities: '',
-        nameOfSchool: '',
-        city: '',
-        country: '',
-        periodAttended: '',
-        numberOfYearsSpend: '',
-        nameOfCertificationAwarded: '',
-        secondaryInformation: '',
-        howYouLearnAboutUs: [],
-        areYouEmployed: '',
-        companyName: '',
-        position: '',
-        duration: '',
-        enrollmentInformation: [],
-        specialization: [],
-        applicationChecklist: []
+        dateOfBirth: '',
+        address:'',
+        religion:'',
+        phone: '',
+        physicalChallenge: '',
+        photo: '',
+        nationality: '',
+        countryOfResidence: '',
+        primaryLanguguae: '',
+        stateOfOrigin: '',
+        postQualificationExperienceYears: '',
+        managerialExperienceYears: '',
+        highestQualification: '',
+        classOfDegree: '',
+        factorsMotivatingMBA: '',
+        factorsHinderingMBA: '',
+        institutionName: '',
+        institutionType: '',
+        certificateAwarded: '',
+        startDate: '',
+        endDate: '',
+        fundingMethod: '',
+        degreeCertificate: '',
+        curriculumVitae: '',
+        evidenceOfAbilityToPay: [],
+        oLevelResult: [],
+        nyscExemptionLetter: []
     });
 
     const handleInputChange = (event) => {
@@ -77,7 +78,7 @@ function ApplicationForm() {
     const isSectionCompleted = (sectionId) => {
         const section = data.find(sec => sec.id === sectionId);
         if (!section) {
-            return false;
+            return true;
         }
 
         const sectionFields = section.fields || [];
@@ -138,8 +139,9 @@ function ApplicationForm() {
 
 
     useEffect(() => {
+        console.log(sections.length);
+        
         console.log(formData);
-
     })
 
 
@@ -185,11 +187,10 @@ function ApplicationForm() {
                 <div className="flex justify-between mt-4 bg-[] ">
                     {currentStep > 1 && <button onClick={handlePrevious} className="btn bg-[#39447F] text-white p-2 rounded border-none ">Previous</button>}
                     {currentStep < sections.length && <button onClick={handleNext} className="btn bg-[#39447F] text-white p-2 rounded border-none">Next</button>}
+                    
                 </div>
             </div>
         </div>
-
-
     )
 
 

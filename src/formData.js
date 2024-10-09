@@ -1,7 +1,16 @@
 const formData = [
-
   {
     id: 1,
+    label: 'Course',
+    fields: [
+      { name: 'programmeTitle', required: true, label: 'Program Title', type: 'select', options: ["Post Graduate Diploma in Business (PGDBA)", "Masters in Business Administration (MBA)", "Master of Sciences (M.Sc)", "Doctorate in Business Administration (DBA)"] },
+      { name: 'courseTitle', required: true, label: 'List Of Courses', type: 'select', options: ["Accounting", "Management", "Marketing", "Finance", "ICT Management", "Supply Chain and Logistics Management", "Procurement and Contract Management", "Healthcare and Hospital Management", "Human Resource Management"] }
+    ]
+  },
+
+  {
+
+    id: 2,
     label: 'Personal Information',
     fields: [
       { name: 'title', label: 'Title', required: true, type: 'select', options: ['Dr', 'Mrs', 'Miss', 'Prof', 'Mr'] },
@@ -17,90 +26,86 @@ const formData = [
       { name: 'phone', label: 'Phone', required: true, type: 'tel' },
       { name: 'physicalChallenge', label: 'Physical Challenge', required: true, type: 'text' },
       { name: 'photo', label: 'Upload Photo', required: true, type: 'file' },
-
-
-
-      //  { name: 'listOfPrograms', label: 'List Of Program', type: 'select', options:["PGDBA","MBA", "M.Sc", "DBA"] },
-      // { name: 'listOfCourses', label: 'List Of Courses', type: 'select', options:["Accounting", "Management", "Marketing", "Finance", "ICT Management", "Supply Chain and Logistics Management", "Procurement and Contract Management", "Healthcare and Hospital Management", "Human Resource Management"] },
-
-
-      // { name: 'telePhone', label: 'Telephone', type: 'tel' },
-
-      // { name: 'placeOfBirth', label: 'Place of Birth', type: 'text' },
-      // { name: 'citizenship', label: 'Citizenship', type: 'text' },
-
-      // { name: 'typeOfIdentification', label: 'Type of Identification', type: 'text' },
-      // { name: 'identificationNumber', label: 'Identification Number', type: 'text' },
-
-      // { name: 'disabilities', label: 'Disabilities', type: 'text' }
     ]
   },
-  {
-    id: 2,
-    label: 'Emergency Contact',
-    fields: [
-      { name: 'nameOfNextOfKin', label: 'Name', type: 'text' },
-      { name: 'relationshipWithNextOfKin', label: 'Relationship', type: 'text' },
-      { name: 'telephoneNumberOfNextOfKin', label: 'Number', type: 'tel' },
-      { name: 'emailOfNextOfKin', label: 'Email', type: 'email' },
-      { name: 'addressOfNextOfKin', label: 'Address', type: 'text' },
-    ]
-  },
+
   {
     id: 3,
-    label: 'Education Information',
+    label: 'Emergency Contact',
     fields: [
-      { name: 'nameOfSchool', label: 'Name of School', type: 'text' },
-      { name: 'city', label: 'City', type: 'text' },
-      { name: 'country', label: 'Country', type: 'select', options: ['USA', 'Canada', 'UK', 'Australia'] }, // Add more countries as needed
-      { name: 'periodAttended', label: 'Period Attended', type: 'text' },
-      { name: 'numberOfYearsSpend', label: 'Number of Years Spent', type: 'text' },
-      { name: 'nameOfCertificationAwarded', label: 'Name of Certification Awarded', type: 'text' },
-      { name: 'secondaryInformation', label: 'Secondary Information', type: 'text' }
+      { name: 'nameOfNextOfKin', required: true, label: 'Name', type: 'text' },
+      { name: 'relationshipWithNextOfKin', required: true, label: 'Relationship', type: 'text' },
+      { name: 'telephoneNumberOfNextOfKin', required: true, label: 'Number', type: 'tel' },
+      { name: 'emailOfNextOfKin', required: true, label: 'Email', type: 'email' },
+      { name: 'addressOfNextOfKin', required: true, label: 'Address', type: 'text' },
     ]
   },
+
   {
     id: 4,
-    label: 'Work Experience',
+    label: 'Citizenship',
     fields: [
-      { name: 'areYouEmployed', label: 'Are you employed?', type: 'select', options: ['Yes', 'No'] },
-      { name: 'companyName', label: 'Company Name', type: 'text' },
-      { name: 'position', label: 'Position', type: 'text' },
-      { name: 'duration', label: 'Duration', type: 'text' }
+      { name: 'nationality', required: true, label: 'Nationality', type: 'text' },
+      { name: 'countryOfResidence', required: true, label: 'Country of Residence', type: 'select', options: ['USA', 'Canada', 'UK', 'Australia', "Nigeria"] },
+      { name: 'primaryLangugae', required: true, label: 'Primary Language', type: 'text' },
+      { name: 'stateOfOrigin', required: true, label: 'State Of Origin', type: 'text', },
+
     ]
   },
+
   {
     id: 5,
-    label: 'Additional Information',
+    label: 'Work Experience',
     fields: [
-      { name: 'howYouLearnAboutUs', label: 'How did you learn about RSUBS?', type: 'checkbox', options: ['college Guide', 'Newspaper', 'TV/Radio', 'Mailing', 'RSUBS Website', 'Parent', 'Exhibition', 'Relative', 'RSUBS Student', 'RSU Faculty', 'Friends', 'School Teacher', 'RSUBS Alumni', 'RSUBS Representative', 'others (specify)'] },
-      { name: 'areYouEmployed', label: 'Are you employed?', type: 'select', options: ['Yes', 'No'] },
-      { name: 'companyName', label: 'Company Name', type: 'text' },
-      { name: 'position', label: 'Position', type: 'text' },
-      { name: 'duration', label: 'Duration', type: 'text' }
+      { name: 'postQualificationExperienceYears', required: true, label: 'Post Qualification Experience', type: 'number' },
+      { name: 'managerialExperienceYears', required: true, label: 'Managerial Experience', type: 'number' },
     ]
   },
   {
     id: 6,
-    label: 'Enrollment Information',
+    label: 'RSUBS Programme Qualification',
     fields: [
-      { name: 'enrollmentInformation', label: 'Enrollment Information', type: 'checkbox', options: ['Doctorate in Business Administration (DBA)', 'Masters in Business Administration (MBA)', 'Master of Sciences (MSC) – Short Course', 'Post Graduate Diploma (PGD)'] }
+      { name: 'highestQualification', required: true, label: 'Highest Qualification', type: 'text' },
+      { name: 'classOfDegree', required: true, label: 'Class Of Degree', type: 'text' },
+      { name: 'factorsMotivatingMBA', required: true, label: 'Factors Motivating MBA', type: 'text', },
+      { name: 'factorsHinderingMBA', required: true, label: 'Factors Hindering MBA', type: 'text', },
     ]
   },
+
+
   {
     id: 7,
-    label: 'Area of Specialization',
+    label: 'Qualifications',
     fields: [
-      { name: 'specialization', label: 'Area of Specialization', type: 'checkbox', options: ['Accounting', 'Finance', 'Healthcare and Hospital Management', 'Human Resource Management', 'Management', 'Marketing', 'Office and Information Management', 'Procurement and Contract Management', 'Project Management', 'Supply Chain and Logistics Management'] }
+      { name: 'institutionName', required: true, label: 'Institution Name', type: 'text' },
+      { name: 'institutionType', required: true, label: 'Institution Type', type: 'text' },
+      { name: 'certificateAwarded', required: true, label: 'Certificate Awarded', type: 'text', },
+      { name: 'startDate', required: true, label: 'Start Date', type: 'date', },
+      { name: 'endDate', required: true, label: 'End Date', type: 'date', },
     ]
   },
+
+
   {
     id: 8,
-    label: 'Application Checklist',
+    label: 'Program Financing',
     fields: [
-      { name: 'applicationChecklist', label: 'Application Checklist', type: 'checkbox', options: ['Non-refundable Application Fee', 'Complete and signed application form', 'An official degree transcript for each college or professional school previously attended', 'Originals and a copy of all supportive documents', 'One (1) recent passport size photograph (write your name on the reverse side)', 'Copy of National Identity Card or Birth Certificate', 'An official translation of academic records (where applicable)', 'A current financial guarantee letter', 'Applicant’s Copy of National Passport', 'Sponsor’s copy of National Passport'] }
+      { name: 'fundingMethod', required: true, label: 'Funding   Method: How Do You Intend To Pay for this Program?', type: 'text' },
     ]
-  }
+  },
+
+
+  {
+    id: 9,
+    label: 'Attachment',
+    fields: [
+      { name: 'degreeCertificate', required: true, label: 'Degree Certificate', type: 'file' },
+      { name: 'curriculumVitae', required: true, label: 'Curiculum Vitae', type: 'file' },
+      { name: 'evidenceOfAbilityToPay', required: true, label: 'Evidence of Ability To Pay', type: 'file' },
+      { name: 'oLevelResult', required: true, label: 'O level Result', type: 'file' },
+      { name: 'nyscExemptionLetter', required: true, label: 'Nysc Exemption Letter', type: 'file' },
+    ]
+  },
 ];
 
 export default formData;
