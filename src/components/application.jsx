@@ -11,17 +11,17 @@ function ApplicationForm() {
     const [currentStep, setCurrentStep] = useState(1);
     const [formData, setFormData] = useState({
         programmeTitle: '',
-        courseTitle:'',
+        courseTitle: '',
         title: '',
         firstName: '',
         middleName: '',
         lastName: '',
-        email:'',
+        email: '',
         sex: '',
         maritalStatus: '',
         dateOfBirth: '',
-        address:'',
-        religion:'',
+        address: '',
+        religion: '',
         phone: '',
         physicalChallenge: '',
         photo: '',
@@ -140,7 +140,7 @@ function ApplicationForm() {
 
     useEffect(() => {
         console.log(sections.length);
-        
+
         console.log(formData);
     })
 
@@ -187,7 +187,7 @@ function ApplicationForm() {
                 <div className="flex justify-between mt-4 bg-[] ">
                     {currentStep > 1 && <button onClick={handlePrevious} className="btn bg-[#39447F] text-white p-2 rounded border-none ">Previous</button>}
                     {currentStep < sections.length && <button onClick={handleNext} className="btn bg-[#39447F] text-white p-2 rounded border-none">Next</button>}
-                    
+
                 </div>
             </div>
         </div>

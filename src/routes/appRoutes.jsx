@@ -5,6 +5,7 @@ import ResetPassword from "../pages/ResetPassword";
 import Application from "../pages/Application";
 import Error from "../pages/Error";
 import Admin from "../pages/Admin";
+import RsbApplication from "../components/rsbApplication";
 
 function AppRouter() {
 
@@ -19,6 +20,7 @@ function AppRouter() {
                     <Route path="/application" element={<Application />} />
                     <Route path="/error" element={<Error />} />
                     <Route path="/admin" element={<Admin/>} />
+                    <Route path="/rsb" element={<RsbApplication/>}/>
                 </Routes>
             </Router>
         

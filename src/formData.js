@@ -22,7 +22,7 @@ const formData = [
       { name: 'maritalStatus', label: 'Marital Status', type: 'select', required: true, options: ['single', 'married'] },
       { name: 'dateOfBirth', label: 'Date of Birth', required: true, type: 'date' },
       { name: 'address', label: 'Address', required: true, type: 'text' },
-      { name: 'religion', label: 'Religion', required: true, type: 'text' },
+      { name: 'religion', label: 'Religion', required: true, type: 'select', options: ['Christianity', 'Muslim', 'Others'] },
       { name: 'phone', label: 'Phone', required: true, type: 'tel' },
       { name: 'physicalChallenge', label: 'Physical Challenge', required: true, type: 'text' },
       { name: 'photo', label: 'Upload Photo', required: true, type: 'file' },
@@ -45,7 +45,7 @@ const formData = [
     id: 4,
     label: 'Citizenship',
     fields: [
-      { name: 'nationality', required: true, label: 'Nationality', type: 'text' },
+      { name: 'nationality', required: true, label: 'Nationality', type: 'select', options:['Nigeria', 'Ghana', 'South Africa', 'Lybia'] },
       { name: 'countryOfResidence', required: true, label: 'Country of Residence', type: 'select', options: ['USA', 'Canada', 'UK', 'Australia', "Nigeria"] },
       { name: 'primaryLangugae', required: true, label: 'Primary Language', type: 'text' },
       { name: 'stateOfOrigin', required: true, label: 'State Of Origin', type: 'text', },
@@ -65,8 +65,8 @@ const formData = [
     id: 6,
     label: 'RSUBS Programme Qualification',
     fields: [
-      { name: 'highestQualification', required: true, label: 'Highest Qualification', type: 'text' },
-      { name: 'classOfDegree', required: true, label: 'Class Of Degree', type: 'text' },
+      { name: 'highestQualification', required: true, label: 'Highest Qualification', type: 'select', options:["Master's Degree", "Bachelor's Degree", "HND"] },
+      { name: 'classOfDegree', required: true, label: 'Class Of Degree', type: 'select', options:["First Class", "2nd Class Upper", "2nd Class Lower","3rd Class"] },
       { name: 'factorsMotivatingMBA', required: true, label: 'Factors Motivating MBA', type: 'text', },
       { name: 'factorsHinderingMBA', required: true, label: 'Factors Hindering MBA', type: 'text', },
     ]
@@ -78,7 +78,7 @@ const formData = [
     label: 'Qualifications',
     fields: [
       { name: 'institutionName', required: true, label: 'Institution Name', type: 'text' },
-      { name: 'institutionType', required: true, label: 'Institution Type', type: 'text' },
+      { name: 'institutionType', required: true, label: 'Institution Type', type: 'select', options:['University', 'College', 'Polytechnique'] },
       { name: 'certificateAwarded', required: true, label: 'Certificate Awarded', type: 'text', },
       { name: 'startDate', required: true, label: 'Start Date', type: 'date', },
       { name: 'endDate', required: true, label: 'End Date', type: 'date', },
@@ -90,7 +90,7 @@ const formData = [
     id: 8,
     label: 'Program Financing',
     fields: [
-      { name: 'fundingMethod', required: true, label: 'Funding   Method: How Do You Intend To Pay for this Program?', type: 'text' },
+      { name: 'fundingMethod', required: true, label: 'Funding   Method: How Do You Intend To Pay for this Program?', type: 'select', options:['Individual Sponsorship', 'Schoolarship', 'Guidance Sponsorship'] },
     ]
   },
 
