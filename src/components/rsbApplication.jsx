@@ -7,6 +7,10 @@ import PersonalInfo from "./forms/personalInfo";
 import EmergencyContact from "./forms/emergencyContact";
 import Citizenship from "./forms/citizenship";
 import WorkExperience from "./forms/workExp";
+import RsubsQualification from "./forms/rsubsQualification";
+import Qualifications from "./forms/qaulifications";
+import ProgramFinancing from "./forms/programFinacing";
+import Attachment from "./forms/attachement";
 function RsbApplication() {
 
     const [step, setStep] = useState(1);
@@ -81,7 +85,7 @@ function RsbApplication() {
 
     }
 
-    
+
 
     // const render =  switch (step) {
     //     case 1:
@@ -157,10 +161,30 @@ function RsbApplication() {
                                         handleChange={handleChange}
                                         values={formData}
                                     />}
+                                    {step === 6 && <RsubsQualification
+                                        nextStep={NextStep}
+                                        handleChange={handleChange}
+                                        values={formData}
+                                    />}
+                                    {step === 7 && <Qualifications
+                                        nextStep={NextStep}
+                                        handleChange={handleChange}
+                                        values={formData}
+                                    />}
+                                    {step === 8 && <ProgramFinancing
+                                        nextStep={NextStep}
+                                        handleChange={handleChange}
+                                        values={formData}
+                                    />}
+                                    {step === 9 && <Attachment
+                                        nextStep={NextStep}
+                                        handleChange={handleChange}
+                                        values={formData}
+                                    />}
                                 </div>
 
                             )
-                    
+
                         )
                     }
 
