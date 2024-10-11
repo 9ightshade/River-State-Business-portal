@@ -2,6 +2,11 @@ import Nav from "./nav";
 import sections from "../sections";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Course from "./forms/course";
+import PersonalInfo from "./forms/personalInfo";
+import EmergencyContact from "./forms/emergencyContact";
+import Citizenship from "./forms/citizenship";
+import WorkExperience from "./forms/workExp";
 function RsbApplication() {
 
     const [step, setStep] = useState(1);
@@ -62,6 +67,12 @@ function RsbApplication() {
         console.log(`current step:${step}`);
     };
 
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value })
+    };
+
+
     const handleSubmit = (e) => {
         e.preventDefault()
 
@@ -70,14 +81,16 @@ function RsbApplication() {
 
     }
 
-switch (step) {
-    case 1:
-        return (<h1></h1>)
-        break;
+    
 
-    default:
-        break;
-}
+    // const render =  switch (step) {
+    //     case 1:
+    //         return (renderItems = <Course nextStep={NextStep} handleChange={handleChange} values={formData} />)
+
+
+    //     default:
+    //         break;
+    // }
 
 
 
@@ -112,13 +125,43 @@ switch (step) {
                 <form className="form bg-[#F3F1F1] w-full px-4 py-3 " onSubmit={handleSubmit} >
                     {
                         sections.map((section) =>
-                        step === section.id && (
-                                <h2 className='text-[1.5rem] mb-[20px] text-[#39447F] font-bold'
-                                key={section.id}
-                            >
-                                {section.label}
-                            </h2>
-                        ))
+                            step === section.id && (
+                                <div key={section.id} >
+                                    <h2 className='text-[1.5rem] mb-[20px] text-[#39447F] font-bold'
+                                        key={section.id}
+                                    >
+                                        {section.label}
+                                    </h2>
+                                    {step === 1 && <Course
+                                        nextStep={NextStep}
+                                        handleChange={handleChange}
+                                        values={formData}
+                                    />}
+                                    {step === 2 && <PersonalInfo
+                                        nextStep={NextStep}
+                                        handleChange={handleChange}
+                                        values={formData}
+                                    />}
+                                    {step === 3 && <EmergencyContact
+                                        nextStep={NextStep}
+                                        handleChange={handleChange}
+                                        values={formData}
+                                    />}
+                                    {step === 4 && <Citizenship
+                                        nextStep={NextStep}
+                                        handleChange={handleChange}
+                                        values={formData}
+                                    />}
+                                    {step === 5 && <WorkExperience
+                                        nextStep={NextStep}
+                                        handleChange={handleChange}
+                                        values={formData}
+                                    />}
+                                </div>
+
+                            )
+                    
+                        )
                     }
 
 
