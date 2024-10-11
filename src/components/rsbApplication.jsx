@@ -97,7 +97,47 @@ function RsbApplication() {
     // }
 
 
+    const handleClick = (sectionId) => {
+        console.log(sectionId);
+    //     if (sectionId === 2) {
+        // setStep(2)
+        
 
+        switch (sectionId) {
+            case 1:
+                setStep(1)
+                break;
+        
+            case 2:
+                setStep(2)
+                break;
+            case 3:
+                setStep(3)
+                break;
+            case 4:
+                setStep(4)
+                break;
+            case 5:
+                setStep(5)
+                break;
+            case 6:
+                setStep(6)
+                break;
+            case 7:
+                setStep(7)
+                break;
+            case 8:
+                setStep(8)
+                break;
+            case 9:
+                setStep(9)
+                break;
+            default:
+            
+                break;
+        }}        
+
+    
 
 
     return (
@@ -116,6 +156,8 @@ function RsbApplication() {
                             <button
                                 className="bg-[#F3F1F1] py-[.7em] border-none rounded"
                                 key={section.id}
+
+                                onClick={() => { handleClick(section.id) }}
                             >
                                 {
                                     section.label
