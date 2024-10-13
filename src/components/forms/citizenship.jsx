@@ -1,4 +1,4 @@
-function Citizenship() {
+function Citizenship({handleChange, values}) {
 
 
     return (
@@ -10,7 +10,7 @@ function Citizenship() {
                     <label htmlFor="nationality">
                         Nationality
                     </label>
-                    <select name="nationality" id="nationality" className="block p-2 w-full" >
+                    <select name="nationality" value={values.nationality} onChange={handleChange} id="nationality" className="block p-2 w-full" >
                         <option value="select">--Select--</option>
                         <option value="nigeria">Nigeria</option>
                         <option value="canada">Canada</option>
@@ -23,7 +23,7 @@ function Citizenship() {
                     <label htmlFor="countryOfResidence">
                         Country Of Residence
                     </label>
-                    <select name="countryOfResidence" id="countryOfResidence" className="block p-2 w-full " >
+                    <select name="countryOfResidence" value={values.countryOfResidence} onChange={handleChange} id="countryOfResidence" className="block p-2 w-full " >
                         <option value="select">--Select--</option>
                         <option value="nigeria">Nigeria</option>
                         <option value="canada">Canada</option>
@@ -38,13 +38,13 @@ function Citizenship() {
                     <label htmlFor="primaryLanguage">
                         Primary Language
                     </label>
-                    <input type="text" name="primaryLanguage" id="primaryLanguage" className="block p-2" />
+                    <input type="text" name="primaryLanguage" value={values.primaryLanguage} onChange={handleChange} id="primaryLanguage" className="block p-2" />
                 </div>
                 <div>
                     <label htmlFor="stateOfOrigin">
                         State Of Origin
                     </label>
-                    <input type="text" name="stateOfOrigin" id="stateOfOrigin" className="block p-2" />
+                    <input type="text" value={values.stateOfOrigin} name="stateOfOrigin" onChange={handleChange} id="stateOfOrigin" className="block p-2" />
                 </div>
             </div>
 

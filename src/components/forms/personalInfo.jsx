@@ -1,4 +1,4 @@
-function PersonalInfo({ nextStep, handleChange, values }) {
+function PersonalInfo({  handleChange, values }) {
 
     return (
 
@@ -7,7 +7,7 @@ function PersonalInfo({ nextStep, handleChange, values }) {
                 <label htmlFor="title">
                     Title
                 </label>
-                <select name="title" id="title" className="block p-3 outline-none w-1/2 my-4" >
+                <select value={values.title} onChange={handleChange} name="title" id="title" className="block p-3 outline-none w-1/2 my-4" >
                     <option value="select">--Select--</option>
                     <option value="Mr">Mr</option>
                     <option value="Mrs">Mrs</option>
@@ -21,7 +21,7 @@ function PersonalInfo({ nextStep, handleChange, values }) {
                 <label htmlFor="email">
                     Email
                 </label>
-                <input type="email" name="email" id="email" className="block p-2 w-1/2" />
+                <input type="email" name="email" value={values.email} onChange={handleChange} id="email" className="block p-2 w-1/2" />
             </div>
 
 
@@ -30,19 +30,19 @@ function PersonalInfo({ nextStep, handleChange, values }) {
                     <label htmlFor="firstname">
                         First Name
                     </label>
-                    <input type="text" name="firstName" id="firstname" className="block p-2 " />
+                    <input type="text" value={values.firstName} onChange={handleChange} name="firstName" id="firstname" className="block p-2 " />
                 </div>
                 <div>
                     <label htmlFor="middlename">
                         Middle Name
                     </label>
-                    <input type="text" name="middleName" id="middlename" className="block p-2 " />
+                    <input type="text" value={values.middleName} onChange={handleChange}  name="middleName" id="middlename" className="block p-2 " />
                 </div>
                 <div>
                     <label htmlFor="lastname">
                         Last Name
                     </label>
-                    <input type="text" name="lastName" id="lastname" className="block p-2 " />
+                    <input type="text" value={values.lastName} onChange={handleChange}  name="lastName" id="lastname" className="block p-2 " />
                 </div>
             </div>
 
@@ -51,7 +51,7 @@ function PersonalInfo({ nextStep, handleChange, values }) {
                     <label htmlFor="gender">
                         Sex
                     </label>
-                    <select name="sex" id="gender" className="block p-3 outline-none my-1 w-full" >
+                    <select name="sex" value={values.sex} onChange={handleChange} id="gender" className="block p-3 outline-none my-1 w-full" >
                         <option value="select">--Select--</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
@@ -62,7 +62,7 @@ function PersonalInfo({ nextStep, handleChange, values }) {
                     <label htmlFor="marital-status">
                         Marital Status
                     </label>
-                    <select name="maritalStatus" id="marital-status" className="block p-3 outline-none my-1 w-full" >
+                    <select name="maritalStatus" onChange={handleChange} value={values.maritalStatus} id="marital-status" className="block p-3 outline-none my-1 w-full" >
                         <option value="select">--Select--</option>
                         <option value="single">Single</option>
                         <option value="married">Married</option>
@@ -75,7 +75,7 @@ function PersonalInfo({ nextStep, handleChange, values }) {
                     <label htmlFor="date-of-birth">
                         Date Of Birth
                     </label>
-                    <input type="date" name="dateOfBirth" id="date-of-birth" className="block p-2 w-full" />
+                    <input type="date" name="dateOfBirth" value={values.dateOfBirth} onChange={handleChange} id="date-of-birth" className="block p-2 w-full" />
                 </div>
 
             </div>
@@ -85,7 +85,7 @@ function PersonalInfo({ nextStep, handleChange, values }) {
                 <label htmlFor="address">
                     Address
                 </label>
-                <textarea name="address" id="address" className="w-full block" ></textarea>
+                <textarea name="address" value={values.address} onChange={handleChange} id="address" className="w-full block" ></textarea>
             </div>
 
 
@@ -94,7 +94,7 @@ function PersonalInfo({ nextStep, handleChange, values }) {
                     <label htmlFor="religion">
                         Religion
                     </label>
-                    <select name="religion" id="religion" className="block" >
+                    <select name="religion" onChange={handleChange} value={values.religion} id="religion" className="block" >
                         <option value="select">--Select--</option>
                         <option value="Christian">Christian</option>
                         <option value="Muslim">Muslim</option>
@@ -106,7 +106,7 @@ function PersonalInfo({ nextStep, handleChange, values }) {
                     <label htmlFor="phone">
                         Phone
                     </label>
-                    <input type="tel" name="phone" placeholder="Your Phone Number" id="phone" className="block" />
+                    <input type="tel" value={values.phone} onChange={handleChange} name="phone" placeholder="Your Phone Number" id="phone" className="block" />
                 </div>
 
 
@@ -115,7 +115,9 @@ function PersonalInfo({ nextStep, handleChange, values }) {
                     <label htmlFor="disabilities">
                         Disability
                     </label>
-                    <textarea name="physicalChallenge" id="disablity" className="w-full block" ></textarea>
+                    <textarea value={values.physicalChallenge}
+                    onChange={handleChange}
+                        name="physicalChallenge" id="disablity" className="w-full block" ></textarea>
                 </div>
             </div>
 
@@ -123,7 +125,7 @@ function PersonalInfo({ nextStep, handleChange, values }) {
                 <label htmlFor="photo">
                     Upload Photo
                 </label>
-                <input type="file" name="photo" id="photo" className="block" />
+                <input type="file" value={values.photo} onChange={handleChange}  name="photo" id="photo" className="block" />
             </div>
 
         </div>

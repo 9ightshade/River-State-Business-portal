@@ -1,4 +1,4 @@
-function Attachment() {
+function Attachment({ nextStep, prevStep, oLevelResult, degreeCertificate, evidenceOfAbilityToPay, curriculumVitae, handleChange, nyscExemptionLetter, values}) {
 
 
     return (
@@ -8,7 +8,7 @@ function Attachment() {
                 <label htmlFor="degreeCertificate">
                     Degree Certificate
                 </label>
-                <input type="file" name="degreeCertificate" id="degreeCertificate" className="block w-full p-3" />
+                <input type="file" value={values.degreeCertificate} name="degreeCertificate" id="degreeCertificate" className="block w-full p-3" />
             </div>
 
 
@@ -30,13 +30,15 @@ function Attachment() {
                 <label htmlFor="oLevelResult">
                     O level Result
                 </label>
-                <input type="file" name="oLevelResult" id="oLevelResult" className="block w-full p-3" />
+                <input type="file" name="oLevelResult" value={oLevelResult}  id="oLevelResult" className="block w-full p-3" />
             </div>
             
+            {/* <p className="text-center text-blue-800 text-sm">File uploaded</p>
+            <div className="h-1.5 w-full bg-green-500 rounded-full"></div> */}
 
             <div className="nyscExemptionLetter" >
                 <label htmlFor="nyscExemptionLetter">
-                    Nysc Exemption Lette
+                    Nysc Exemption Letter
                 </label>
                 <input type="file" name="nyscExemptionLetter" id="nyscExemptionLetter" className="block w-full p-3" />
             </div>

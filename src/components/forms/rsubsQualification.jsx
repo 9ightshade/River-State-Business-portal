@@ -1,4 +1,8 @@
+
 function RsubsQualification() {
+
+
+
 
     return (
         <div className="text-gray-500 text-[1.1rem] outline-none gap-4 my-8 " >

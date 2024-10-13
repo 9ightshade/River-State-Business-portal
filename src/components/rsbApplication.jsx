@@ -1,6 +1,6 @@
 import Nav from "./nav";
 import sections from "../sections";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Course from "./forms/course";
 import PersonalInfo from "./forms/personalInfo";
@@ -14,6 +14,13 @@ import Attachment from "./forms/attachement";
 function RsbApplication() {
 
     const [step, setStep] = useState(1);
+    const [isFileUploaded, setIsFileUploaded] = useState(false)
+    let photo;
+    let degreeCertificate;
+    let curriculumVitae;
+    let evidenceOfAbilityToPay;
+    let oLevelResult;
+    let nyscExemptionLetter;
 
     const [formData, setFormData] = useState({
         programmeTitle: '',
@@ -33,7 +40,7 @@ function RsbApplication() {
         photo: '',
         nationality: '',
         countryOfResidence: '',
-        primaryLanguguae: '',
+        primaryLanguage: '',
         stateOfOrigin: '',
         postQualificationExperienceYears: '',
         managerialExperienceYears: '',
@@ -47,11 +54,17 @@ function RsbApplication() {
         startDate: '',
         endDate: '',
         fundingMethod: '',
-        degreeCertificate: '',
-        curriculumVitae: '',
-        evidenceOfAbilityToPay: [],
-        oLevelResult: [],
-        nyscExemptionLetter: []
+        degreeCertificate: degreeCertificate,
+        curriculumVitae: curriculumVitae,
+        evidenceOfAbilityToPay: evidenceOfAbilityToPay,
+        oLevelResult: oLevelResult,
+        nyscExemptionLetter: nyscExemptionLetter,
+        emailOfNextOfKin: '',
+        telephoneNumberOfNextOfKin: '',
+        relationshipWithNextOfKin: '',
+        nameOfNextOfKin: '',
+        addressOfNextOfKin: ''
+
     })
 
     const startUrl = "https://portal.rsubs.org/api/application/:id/start";
@@ -60,9 +73,17 @@ function RsbApplication() {
     const submitUrl = "https://portal.rsubs.org/api/application/:id/submit";
     const navigate = useNavigate();
 
+
+    useEffect(() => {
+    
+},[])
+
+
     const NextStep = () => {
         setStep(step + 1);
         console.log(`current step:${step}`);
+        console.log(formData);
+
 
     };
 
@@ -74,6 +95,25 @@ function RsbApplication() {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value })
+        if (e.target.name === 'photo') {
+            photo = e.target.files[0]
+        }
+        else if (e.target.name === 'nyscExemptionLetter') {
+            nyscExemptionLetter = e.target.files[0]
+        }
+        else if (e.target.name === 'oLevelResult') {
+            oLevelResult = e.target.files[0]
+        }
+        else if (e.target.name === 'evidenceOfAbilityToPay') {
+            evidenceOfAbilityToPay = e.target.files[0]
+        }
+        else if (e.target.name === 'curriculumVitae') {
+            curriculumVitae = e.target.files[0]
+        }
+        else if (e.target.name === 'degreeCertificate') {
+            degreeCertificate = e.target.files[0]
+        }
+
     };
 
 
@@ -87,27 +127,15 @@ function RsbApplication() {
 
 
 
-    // const render =  switch (step) {
-    //     case 1:
-    //         return (renderItems = <Course nextStep={NextStep} handleChange={handleChange} values={formData} />)
-
-
-    //     default:
-    //         break;
-    // }
-
 
     const handleClick = (sectionId) => {
         console.log(sectionId);
-    //     if (sectionId === 2) {
-        // setStep(2)
-        
 
         switch (sectionId) {
             case 1:
                 setStep(1)
                 break;
-        
+
             case 2:
                 setStep(2)
                 break;
@@ -133,11 +161,17 @@ function RsbApplication() {
                 setStep(9)
                 break;
             default:
-            
+                setStep(1)
                 break;
-        }}        
+        }
+    }
 
-    
+
+    useEffect(() => {
+        console.log(formData);
+
+    }, [formData])
+
 
 
     return (
@@ -184,12 +218,12 @@ function RsbApplication() {
                                         values={formData}
                                     />}
                                     {step === 2 && <PersonalInfo
-                                        nextStep={NextStep}
+
                                         handleChange={handleChange}
                                         values={formData}
                                     />}
                                     {step === 3 && <EmergencyContact
-                                        nextStep={NextStep}
+
                                         handleChange={handleChange}
                                         values={formData}
                                     />}
