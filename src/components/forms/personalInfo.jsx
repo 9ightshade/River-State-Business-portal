@@ -1,4 +1,4 @@
-function PersonalInfo({  handleChange, values }) {
+function PersonalInfo({  handleFileChange, handleChange, values }) {
 
     return (
 
@@ -125,7 +125,7 @@ function PersonalInfo({  handleChange, values }) {
                 <label htmlFor="photo">
                     Upload Photo
                 </label>
-                <input type="file" value={values.photo} onChange={handleChange}  name="photo" id="photo" className="block" />
+                <input type="file" onChange={handleFileChange}   name="photo" id="photo" className="block" />
             </div>
 
         </div>

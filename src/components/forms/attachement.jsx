@@ -1,4 +1,4 @@
-function Attachment({ nextStep, prevStep, oLevelResult, degreeCertificate, evidenceOfAbilityToPay, curriculumVitae, handleChange, nyscExemptionLetter, values}) {
+function Attachment({ nextStep, prevStep, handleFileChange, values }) {
 
 
     return (
@@ -8,7 +8,7 @@ function Attachment({ nextStep, prevStep, oLevelResult, degreeCertificate, evide
                 <label htmlFor="degreeCertificate">
                     Degree Certificate
                 </label>
-                <input type="file" value={values.degreeCertificate} name="degreeCertificate" id="degreeCertificate" className="block w-full p-3" />
+                <input type="file"  onChange={handleFileChange} name="degreeCertificate" id="degreeCertificate" className="block w-full p-3" />
             </div>
 
 
@@ -16,23 +16,23 @@ function Attachment({ nextStep, prevStep, oLevelResult, degreeCertificate, evide
                 <label htmlFor="curriculumVitae">
                     Curiculum Vitae
                 </label>
-                <input type="file" name="curriculumVitae" id="curriculumVitae" className="block w-full p-3" />
+                <input type="file" name="curriculumVitae" onChange={handleFileChange} id="curriculumVitae" className="block w-full p-3" />
             </div>
 
             <div className="evidenceOfAbilityToPay" >
                 <label htmlFor="evidenceOfAbilityToPay">
                     Evidence of Ability To Pay
                 </label>
-                <input type="file" name="evidenceOfAbilityToPay" id="evidenceOfAbilityToPay" className="block w-full p-3" />
+                <input type="file" onChange={handleFileChange} name="evidenceOfAbilityToPay" id="evidenceOfAbilityToPay" className="block w-full p-3" />
             </div>
 
             <div className="oLevelResult" >
                 <label htmlFor="oLevelResult">
                     O level Result
                 </label>
-                <input type="file" name="oLevelResult" value={oLevelResult}  id="oLevelResult" className="block w-full p-3" />
+                <input type="file" name="oLevelResult" onChange={handleFileChange} id="oLevelResult" className="block w-full p-3" />
             </div>
-            
+
             {/* <p className="text-center text-blue-800 text-sm">File uploaded</p>
             <div className="h-1.5 w-full bg-green-500 rounded-full"></div> */}
 
@@ -40,7 +40,7 @@ function Attachment({ nextStep, prevStep, oLevelResult, degreeCertificate, evide
                 <label htmlFor="nyscExemptionLetter">
                     Nysc Exemption Letter
                 </label>
-                <input type="file" name="nyscExemptionLetter" id="nyscExemptionLetter" className="block w-full p-3" />
+                <input type="file" name="nyscExemptionLetter" onChange={handleFileChange} id="nyscExemptionLetter" className="block w-full p-3" />
             </div>
 
         </div>

@@ -11,16 +11,11 @@ import RsubsQualification from "./forms/rsubsQualification";
 import Qualifications from "./forms/qaulifications";
 import ProgramFinancing from "./forms/programFinacing";
 import Attachment from "./forms/attachement";
+import axios from "axios";
 function RsbApplication() {
 
     const [step, setStep] = useState(1);
     const [isFileUploaded, setIsFileUploaded] = useState(false)
-    let photo;
-    let degreeCertificate;
-    let curriculumVitae;
-    let evidenceOfAbilityToPay;
-    let oLevelResult;
-    let nyscExemptionLetter;
 
     const [formData, setFormData] = useState({
         programmeTitle: '',
@@ -37,7 +32,7 @@ function RsbApplication() {
         religion: '',
         phone: '',
         physicalChallenge: '',
-        photo: '',
+        photo: null,
         nationality: '',
         countryOfResidence: '',
         primaryLanguage: '',
@@ -54,11 +49,11 @@ function RsbApplication() {
         startDate: '',
         endDate: '',
         fundingMethod: '',
-        degreeCertificate: degreeCertificate,
-        curriculumVitae: curriculumVitae,
-        evidenceOfAbilityToPay: evidenceOfAbilityToPay,
-        oLevelResult: oLevelResult,
-        nyscExemptionLetter: nyscExemptionLetter,
+        degreeCertificate: null,
+        curriculumVitae: null,
+        evidenceOfAbilityToPay: null,
+        oLevelResult: null,
+        nyscExemptionLetter: null,
         emailOfNextOfKin: '',
         telephoneNumberOfNextOfKin: '',
         relationshipWithNextOfKin: '',
@@ -74,53 +69,73 @@ function RsbApplication() {
     const navigate = useNavigate();
 
 
-    useEffect(() => {
-    
-},[])
-
-
     const NextStep = () => {
         setStep(step + 1);
-        console.log(`current step:${step}`);
-        console.log(formData);
+        // const saveOnClick = async () => {
+        //     try {
+        //         const res = await axios.post(saveUrl, formData)
+        //         console.log(res);
+        //         console.log('success');
+        //         navigate('/studentDashboard')
+
+        //     } catch (error) {
+        //         console.log(error.message);
+        //         navigate('/error')
+
+        //     }
+
+
+        // }
+        // saveOnClick()
+        // // console.log(`current step:${step}`);
+        // // console.log(formData);
 
 
     };
 
     const PrevStep = () => {
         setStep(step - 1);
-        console.log(`current step:${step}`);
+        // const saveOnClick = async () => {
+        //     try {
+        //         const res = await axios.post(saveUrl, formData)
+        //         console.log(res);
+        //         console.log('success');
+        //         navigate('/studentDashboard')
+
+        //     } catch (error) {
+        //         console.log(error.message);
+        //         navigate('/error')
+
+        //     }
+
+
+        // }
+        // saveOnClick()
+        // console.log(`current step:${step}`);
     };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value })
-        if (e.target.name === 'photo') {
-            photo = e.target.files[0]
-        }
-        else if (e.target.name === 'nyscExemptionLetter') {
-            nyscExemptionLetter = e.target.files[0]
-        }
-        else if (e.target.name === 'oLevelResult') {
-            oLevelResult = e.target.files[0]
-        }
-        else if (e.target.name === 'evidenceOfAbilityToPay') {
-            evidenceOfAbilityToPay = e.target.files[0]
-        }
-        else if (e.target.name === 'curriculumVitae') {
-            curriculumVitae = e.target.files[0]
-        }
-        else if (e.target.name === 'degreeCertificate') {
-            degreeCertificate = e.target.files[0]
-        }
 
     };
 
+    const handleFileChange = (e) => {
+        const { name, files } = e.target;
+        setFormData({ ...formData, [name]: files[0] })
+
+        const fileUpload = async () => {
+            files ? console.log(files) : 'file absent'
+
+        }
+
+        fileUpload()
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        console.log(`step:${step} and section.lenght:${sections.length}`);
+        // console.log(`step:${step} and section.lenght:${sections.length}`);
 
 
     }
@@ -221,6 +236,7 @@ function RsbApplication() {
 
                                         handleChange={handleChange}
                                         values={formData}
+                                        handleFileChange={handleFileChange}
                                     />}
                                     {step === 3 && <EmergencyContact
 
@@ -256,6 +272,7 @@ function RsbApplication() {
                                         nextStep={NextStep}
                                         handleChange={handleChange}
                                         values={formData}
+                                        handleFileChange={handleFileChange}
                                     />}
                                 </div>
 
