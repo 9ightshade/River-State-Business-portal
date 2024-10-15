@@ -6,17 +6,10 @@ function ResetPassword() {
 
     return (
 
-        <div  >
-
+        <div>
             <Nav />
             <Reset />
-
         </div>
-
-
-
-
-
     )
 
 

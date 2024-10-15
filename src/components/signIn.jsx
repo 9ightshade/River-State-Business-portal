@@ -1,8 +1,12 @@
 import axios from "axios";
 import bgimage from "../assets/png/background_img.png"
-import { useState } from "react";
+import { useContext,  useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/userAuth";
+
 function SignIn() {
+
+    const { accessToken} = useContext(AuthContext);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -14,17 +18,20 @@ function SignIn() {
     const navigate = useNavigate();
 
 
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(data);
 
         try {
             const response = await axios.post(URL, data,)
-            console.log(response);
-            console.log("successful");
-            navigate("/application")
+            // login(response.data.token)
+            // console.log(accessToken);
+            console.log(response.data.token);
+            
+            console.log(accessToken);
+            
+            console.log(response.statusText)
+            // navigate("/application")
 
         } catch (error) {
             console.log(error);

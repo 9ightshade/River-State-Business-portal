@@ -1,10 +1,12 @@
-function StudentDashboard() {
-    
+import StudentDashboard from "../components/dashboard";
+
+function Dashboard() {
+
     return (
-        <h1>
-            Student dashboard
-    </h1>
-)
+        <div>
+            <StudentDashboard />
+        </div>
+    )
 }
 
-export default StudentDashboard;
+export default Dashboard;

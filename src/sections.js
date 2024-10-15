@@ -10,4 +10,5 @@ const sections = [
   { id: 9, label: 'Attachments', color: '#F3F1F1' },
 ];
 
-export default sections;
+
+export default  sections;
