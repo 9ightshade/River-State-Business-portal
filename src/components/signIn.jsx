@@ -4,10 +4,11 @@ import { useContext,  useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/userAuth";
 
+
 function SignIn() {
 
-    const { accessToken} = useContext(AuthContext);
-
+    const [accessToken, setAccessToken] = useState(null);
+    
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const data = {
@@ -18,6 +19,10 @@ function SignIn() {
     const navigate = useNavigate();
 
 
+
+
+
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(data);
@@ -26,9 +31,12 @@ function SignIn() {
             const response = await axios.post(URL, data,)
             // login(response.data.token)
             // console.log(accessToken);
-            console.log(response.data.token);
+            const token = response.data.token;
+            console.log(`token: ${token}`);
             
-            console.log(accessToken);
+            setAccessToken(token)
+            console.log(`access token: ${accessToken}`);
+            
             
             console.log(response.statusText)
             // navigate("/application")
@@ -37,7 +45,7 @@ function SignIn() {
             console.log(error);
 
             console.log(error.message);
-            navigate("/error")
+            // navigate("/error")
 
         }
     };
