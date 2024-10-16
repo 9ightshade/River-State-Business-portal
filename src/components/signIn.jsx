@@ -1,51 +1,55 @@
 import axios from "axios";
 import bgimage from "../assets/png/background_img.png"
-import { useContext,  useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/userAuth";
 
 
+
 function SignIn() {
 
-    const [accessToken, setAccessToken] = useState(null);
-    
+    const { accessToken, setAccessToken, users, setUsers } = useContext(AuthContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const data = {
         email: email,
         password: password
     };
-    const URL = "https://portal.rsubs.org/api/users/login";
+    const loginURL = "https://portal.rsubs.org/api/users/login";
+    const fetchUsersURL = "https://portal.rsubs.org/api/users";
     const navigate = useNavigate();
 
 
+    useEffect(() => {
+        if (accessToken) {
+            try {
+                const res = axios.get(fetchUsersURL, {
+                    headers: { Authorization: `Bearer ${accessToken}` }
+                })
+                console.log(res);
+
+            } catch (error) {
+                console.log(error.message);
+
+            }
+        }
+    }, [accessToken])
 
 
-
-    
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(data);
 
         try {
-            const response = await axios.post(URL, data,)
-            // login(response.data.token)
-            // console.log(accessToken);
-            const token = response.data.token;
-            console.log(`token: ${token}`);
-            
-            setAccessToken(token)
-            console.log(`access token: ${accessToken}`);
-            
-            
-            console.log(response.statusText)
-            // navigate("/application")
+            const res = await axios.post(loginURL, data,)
+            console.log(res.data.token);
+            setAccessToken(res.data.token)
+            console.log(`value of access token: ${accessToken}`);
+            // accessToken && navigate("/application")
 
         } catch (error) {
-            console.log(error);
-
             console.log(error.message);
-            // navigate("/error")
+            navigate("/error")
 
         }
     };
@@ -72,10 +76,10 @@ function SignIn() {
 
                     <button className='bg-[#39447F] w-full py-2 text-center my-3 rounded text-white hover:bg-[#39449F] '>Submit</button>
                     <p className='text-[#39447F] text-[1em] text-center hover:underline cursor-pointer hover:text-[#39449F] '>Don’t have an account?  <Link to="/register"><span className='font-bold'>Create profile</span> </Link></p>
-                    
+
                     <p className='text-[#39447F] text-[1em] text-center hover:underline cursor-pointer hover:text-[#39449F] '>
                         <Link to="/reset_password">
-                    Forgot Your Password?
+                            Forgot Your Password?
                         </Link>
                     </p>
 

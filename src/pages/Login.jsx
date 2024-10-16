@@ -1,5 +1,6 @@
 import Nav from "../components/nav";
 import SignIn from "../components/signIn";
+import { AuthProvider } from "../context/userAuth";
 
 function Login() {
 
@@ -7,7 +8,10 @@ function Login() {
 
         <div className="login-page  " >
             <Nav />
-            <SignIn />
+            <AuthProvider>
+                <SignIn />
+            </AuthProvider>
+
         </div>
 
 
