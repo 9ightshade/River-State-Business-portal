@@ -11,7 +11,7 @@ function SignUp() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const navigate = useNavigate;
+    const navigate = useNavigate();
     const data = {
         name: fullname,
         email: email,
@@ -32,13 +32,13 @@ function SignUp() {
             const response = await axios.post(URL, data, )
             console.log(response.data);
             console.log("success navigate to login");
-            // navigate("/")
+            navigate("/")
            
             
 
         } catch (error) {
             console.log(error.data);
-            // navigate("/error")
+            navigate("/error")
             
         }
     };
