@@ -73,13 +73,13 @@ function SignIn() {
                     <div>
                         <div> <label className='my-2 cursor-pointer' htmlFor="email">Email </label></div>
 
-                        <input className='w-full p-4 my-2 bg-white outline-none  ' id="email" type="email" placeholder='Email*' onChange={(e) => { setEmail(e.target.value) }} name='email' />
+                        <input className='w-full p-4 my-2 bg-white outline-none  ' id="email" type="email" required  placeholder='Email*' onChange={(e) => { setEmail(e.target.value) }} name='email' />
                     </div>
 
                     <div>
                         <div><label className='my-2 cursor-pointer' htmlFor="password">Password </label></div>
 
-                        <input className='w-full p-4 my-2 bg-white outline-none' id="password" type="password" placeholder='Password' onChange={(e) => { setPassword(e.target.value) }} name='password' />
+                        <input className='w-full p-4 my-2 bg-white outline-none' id="password" required type="password" placeholder='Password' onChange={(e) => { setPassword(e.target.value) }} name='password' />
                     </div>
 
                     <button type="submit" className='bg-[#39447F] w-full py-2 text-center my-3 rounded text-white hover:bg-[#39449F] '
