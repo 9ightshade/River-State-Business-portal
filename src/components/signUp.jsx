@@ -32,7 +32,7 @@ function SignUp() {
              response = await axios.post(URL, data, )
             console.log(response.message);
             console.log("success");
-            navigate("/application")
+            navigate("/")
            
             
 
