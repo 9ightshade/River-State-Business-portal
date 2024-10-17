@@ -11,7 +11,7 @@ function SignUp() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    let response;
+    const navigate = useNavigate;
     const data = {
         name: fullname,
         email: email,
@@ -21,7 +21,7 @@ function SignUp() {
     };
 
     const URL = "https://portal.rsubs.org/api/users/signup";
-    const navigate = useNavigate;
+    
 
 
     const handleSubmit = async (e) => {
@@ -29,17 +29,16 @@ function SignUp() {
         console.log(data);
 
         try {
-             response = await axios.post(URL, data, )
-            console.log(response.message);
-            console.log("success");
-            navigate("/")
+            const response = await axios.post(URL, data, )
+            console.log(response.data);
+            console.log("success navigate to login");
+            // navigate("/")
            
             
 
         } catch (error) {
-            console.log(error);
-            navigate("/error")
-            console.log("error");
+            console.log(error.data);
+            // navigate("/error")
             
         }
     };
