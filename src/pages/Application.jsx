@@ -1,12 +1,15 @@
-import ApplicationForm from "../components/application";
 import Nav from "../components/nav";
+import RsbApplication from "../components/rsbApplication";
+import { AuthProvider } from "../context/userAuth";
 function Application() {
 
     return (
 
         <div>
             <Nav />
-            <ApplicationForm />
+            <AuthProvider>
+                <RsbApplication/>
+            </AuthProvider>
         </div>
 
 

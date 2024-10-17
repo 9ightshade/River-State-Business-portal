@@ -1,6 +1,6 @@
 import axios from "axios";
 import bgimage from "../assets/png/background_img.png"
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/userAuth";
 
@@ -8,7 +8,8 @@ import { AuthContext } from "../context/userAuth";
 
 function SignIn() {
 
-    const { accessToken, setAccessToken} = useContext(AuthContext);
+    const { accessToken, setAccessToken } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const data = {
@@ -16,8 +17,10 @@ function SignIn() {
         password: password
     };
     const loginURL = "https://portal.rsubs.org/api/users/login";
+    let response;
+    // setAccessToken(response)
     // const fetchUsersURL = "https://portal.rsubs.org/api/users";
-    const navigate = useNavigate();
+
 
 
     // useEffect(() => {
@@ -34,24 +37,29 @@ function SignIn() {
     //         }
     //     }
     // }, [accessToken])
-
+  
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(data);
+        if (data.email && data.password) {
+            try {
+                response = await axios.post(loginURL, data,)
+                console.log(response);
 
-        try {
-            const res = await axios.post(loginURL, data,)
-            if (res) {
-                setAccessToken(res.data.token)
-                accessToken && navigate("/application")
+                // setAccessToken(response.data.token)
+                // console.log(accessToken);
+
+                 navigate("/application")
+
+
+            } catch (error) {
+                console.log(error.message);
+                navigate("/error")
+
             }
-
-        } catch (error) {
-            console.log(error.message);
-            navigate("/error")
-
         }
+
+
     };
 
 
@@ -74,7 +82,9 @@ function SignIn() {
                         <input className='w-full p-4 my-2 bg-white outline-none' id="password" type="password" placeholder='Password' onChange={(e) => { setPassword(e.target.value) }} name='password' />
                     </div>
 
-                    <button type="submit" className='bg-[#39447F] w-full py-2 text-center my-3 rounded text-white hover:bg-[#39449F] '>Submit</button>
+                    <button type="submit" className='bg-[#39447F] w-full py-2 text-center my-3 rounded text-white hover:bg-[#39449F] '
+
+                    >Submit</button>
                     <p className='text-[#39447F] text-[1em] text-center hover:underline cursor-pointer hover:text-[#39449F] '>Don’t have an account?  <Link to="/register"><span className='font-bold'>Create profile</span> </Link></p>
 
                     <p className='text-[#39447F] text-[1em] text-center hover:underline cursor-pointer hover:text-[#39449F] '>
