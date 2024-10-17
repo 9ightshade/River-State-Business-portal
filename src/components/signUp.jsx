@@ -51,22 +51,22 @@ function SignUp() {
                 <h3 className='text-center text-[36px] text-[#39447F] font-black'>Register</h3>
                 <form className='mt-5' onSubmit={handleSubmit}>
                     <div>
-                        <input className='w-full p-2 outline-none my-2 bg-white' type="email" placeholder='Email*' name='email' onChange={(e) => { setEmail(e.target.value) }} />
+                        <input className='w-full p-2 outline-none my-2 bg-white' type="email" placeholder='Email*' name='email' required onChange={(e) => { setEmail(e.target.value) }} />
                     </div>
 
                     
                     <div>
-                        <input className='w-full p-2 outline-none my-2 bg-white' type="text" placeholder='Full Name' name='name' onChange={(e) => { setFullName(e.target.value) }} />
+                        <input className='w-full p-2 outline-none my-2 bg-white' type="text" placeholder='Full Name' name='name' required onChange={(e) => { setFullName(e.target.value) }} />
                     </div>
 
                     
                     <div>
-                        <input className='w-full p-2 outline-none my-2 bg-white' type="password" placeholder='Password' name='password' onChange={(e) => { setPassword(e.target.value) }} />
+                        <input className='w-full p-2 outline-none my-2 bg-white' type="password" required placeholder='Password' name='password' onChange={(e) => { setPassword(e.target.value) }} />
                     </div>
 
                     
                     <div>
-                        <input className='w-full p-2 outline-none my-2 bg-white' type="password" placeholder='Confirm Password' name='confirmPassword' onChange={(e) => { setConfirmPassword(e.target.value) }} />
+                        <input className='w-full p-2 outline-none my-2 bg-white' type="password" required placeholder='Confirm Password' name='confirmPassword' onChange={(e) => { setConfirmPassword(e.target.value) }} />
                     </div>
 
                     <input type='submit' value="Submit" className='bg-[#39447F] w-full py-2 text-center my-2 cursor-pointer rounded text-white' />
