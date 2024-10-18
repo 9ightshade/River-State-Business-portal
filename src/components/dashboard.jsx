@@ -67,7 +67,7 @@ function StudentDashboard() {
                 </div>
 
 
-                <div className=" bg-[#F3F1F1] w-full px-4 py-3 h-[400px] " >
+                <div className=" bg-[#F3F1F1] w-full px-4 py-3 mb-4 " >
                     {
                         step === 1 && <Home />
                     }
