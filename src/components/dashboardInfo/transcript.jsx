@@ -2,9 +2,9 @@ function Transcript() {
 
     return (
         <form className="bg-white flex flex-col gap-3 text-gray-500 p-4" >
-            {/* <h1 className="text-center" >
+             <h1 className="" >
                 Request Transcript
-            </h1> */}
+            </h1> 
 
             <input type="text" name="fullName" id="fullName" placeholder="Fullname" required className="bg-gray-100 py-2 px-4 rounded" />
 

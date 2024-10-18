@@ -184,7 +184,9 @@ function RsbApplication() {
 
     useEffect(() => {
         console.log(formData);
-
+        const token = localStorage.getItem('token')
+        console.log(token);
+        
     }, [formData])
 
 

@@ -50,7 +50,12 @@ function StudentDashboard() {
                     {
                         dashboard.map((section) => (
                             <button
-                                className="bg-[#F3F1F1] py-[.7em] border-none rounded"
+                                className="py-[.7em] border-none rounded"
+                                style={{
+                                    backgroundColor: `${step === section.id ? '#1e3a8a' : '#F3F1F1'}`,
+                                    color: `${step === section.id ? 'white' : '#6b7280'}`
+                                }}
+                                
                                 key={section.id}
 
                                 onClick={() => { handleClick(section.id) }}

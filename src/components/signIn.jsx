@@ -8,7 +8,7 @@ import { AuthContext } from "../context/userAuth";
 
 function SignIn() {
 
-    const { accessToken, setAccessToken } = useContext(AuthContext);
+    const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -17,39 +17,22 @@ function SignIn() {
         password: password
     };
     const loginURL = "https://portal.rsubs.org/api/users/login";
+
+    
     let response;
-    // setAccessToken(response)
-    // const fetchUsersURL = "https://portal.rsubs.org/api/users";
 
-
-
-    // useEffect(() => {
-    //     if (accessToken) {
-    //         try {
-    //             const res = axios.get(fetchUsersURL, {
-    //                 headers: { Authorization: `Bearer ${accessToken}` }
-    //             })
-    //             console.log(res);
-
-    //         } catch (error) {
-    //             console.log(error.message);
-
-    //         }
-    //     }
-    // }, [accessToken])
-  
+   
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (data.email && data.password) {
             try {
                 response = await axios.post(loginURL, data,)
-                console.log(response);
+                console.log(`response: ${response.data.token}`);
 
-                // setAccessToken(response.data.token)
-                // console.log(accessToken);
+                localStorage.setItem('token', response.data.token)
 
-                 navigate("/application")
+                 response && navigate("/application")
 
 
             } catch (error) {
@@ -73,7 +56,7 @@ function SignIn() {
                     <div>
                         <div> <label className='my-2 cursor-pointer' htmlFor="email">Email </label></div>
 
-                        <input className='w-full p-4 my-2 bg-white outline-none  ' id="email" type="email" required  placeholder='Email*' onChange={(e) => { setEmail(e.target.value) }} name='email' />
+                        <input className='w-full p-4 my-2 bg-white outline-none  ' id="email" type="email" required placeholder='Email*' onChange={(e) => { setEmail(e.target.value) }} name='email' />
                     </div>
 
                     <div>
