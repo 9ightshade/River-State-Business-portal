@@ -7,8 +7,9 @@ function Login() {
     return (
 
         <div className="login-page  " >
-            <Nav />
+            
             <AuthProvider>
+                <Nav />
                 <SignIn />
             </AuthProvider>
 

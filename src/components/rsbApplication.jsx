@@ -11,7 +11,7 @@ import RsubsQualification from "./forms/rsubsQualification";
 import Qualifications from "./forms/qaulifications";
 import ProgramFinancing from "./forms/programFinacing";
 import Attachment from "./forms/attachement";
-import axios from "axios";
+
 function RsbApplication() {
 
     const [step, setStep] = useState(1);
@@ -184,9 +184,7 @@ function RsbApplication() {
 
     useEffect(() => {
         console.log(formData);
-        const token = localStorage.getItem('token')
-        console.log(token);
-        
+
     }, [formData])
 
 

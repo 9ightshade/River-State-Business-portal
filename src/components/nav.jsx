@@ -1,21 +1,28 @@
 import logo from "../assets/svg/logo.svg";
 import hamburger from "../assets/svg/hamburger-menu.svg";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-Link
+import { useEffect, useState } from "react";
+
 // import dropdown from "../assets/svg/Vector.svg";
 
 function Nav() {
 
-    // eslint-disable-next-line no-undef
     const [isVisible, setIsVisible] = useState(false);
-
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
     const toogleSideNav = () => {
         setIsVisible(!isVisible)
-        console.log(isVisible);
-        
-    }
+        // console.log(isVisible);
 
+    }
+    const token = localStorage.getItem('token')
+    useEffect(() => {
+        if (token) {
+            setIsLoggedIn(true)
+
+
+        }
+    }, [token])
+    console.log(isLoggedIn);
 
     return (
 
@@ -52,10 +59,11 @@ function Nav() {
 
                 </ul>
             </nav>
-
-            <button className="bg-[#1e3a8a] text-[#f5f5f5] hidden md:block py-2 px-3 rounded cursor-pointer" >
-                <Link to="/register" >
-                    Create Profile
+            <button className="bg-[#1e3a8a] text-[#f5f5f5] hidden md:block py-2 px-3 rounded cursor-pointer" onClick={() => {
+                localStorage.removeItem('token')
+            }} >
+                <Link to={isLoggedIn ? '/' : 'register'} >
+                    {isLoggedIn ? 'Log Out' : 'Create Profile'}
                 </Link>
             </button>
             <button className="block md:hidden w-[8%]  " onClick={() => { toogleSideNav() }}  >

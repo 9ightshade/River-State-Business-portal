@@ -1,14 +1,14 @@
 import axios from "axios";
 import bgimage from "../assets/png/background_img.png"
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/userAuth";
+
 
 
 
 function SignIn() {
 
-    const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -18,21 +18,24 @@ function SignIn() {
     };
     const loginURL = "https://portal.rsubs.org/api/users/login";
 
-    
+
     let response;
 
-   
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (data.email && data.password) {
+            localStorage.setItem('email', data.email)
+
             try {
                 response = await axios.post(loginURL, data,)
                 console.log(`response: ${response.data.token}`);
 
                 localStorage.setItem('token', response.data.token)
+                console.log(response);
 
-                 response && navigate("/application")
+                response && navigate("/application")
 
 
             } catch (error) {
