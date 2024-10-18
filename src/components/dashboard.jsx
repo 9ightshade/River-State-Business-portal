@@ -1,6 +1,10 @@
 import Nav from "./nav";
 import dashboard from "../dashboard";
 import { useState } from "react";
+import Home from "./dashboardInfo/home";
+import ApplicationDashboard from "./dashboardInfo/application";
+import Payment from "./dashboardInfo/payment";
+import Transcript from "./dashboardInfo/transcript";
 
 function StudentDashboard() {
 
@@ -52,6 +56,9 @@ function StudentDashboard() {
                                 onClick={() => { handleClick(section.id) }}
                             >
                                 {
+
+                                }
+                                {
                                     section.label
                                 }
                             </button>
@@ -61,6 +68,20 @@ function StudentDashboard() {
 
 
                 <div className=" bg-[#F3F1F1] w-full px-4 py-3 h-[400px] " >
+                    {
+                        step === 1 && <Home />
+                    }
+                    {
+                        step === 2 && <ApplicationDashboard />
+                    }
+
+                    {
+                        step === 3 && <Payment />
+                    }
+
+                    {
+                        step === 4 && <Transcript />
+                    }
 
 
                 </div>

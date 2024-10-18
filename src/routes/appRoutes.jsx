@@ -5,7 +5,7 @@ import ResetPassword from "../pages/ResetPassword";
 import Error from "../pages/Error";
 import Admin from "../pages/Admin";
 import RsbApplication from "../components/rsbApplication";
-import Dashboard from "../pages/Student";
+import Dashboard from "../pages/Dashboard";
 
 function AppRouter() {
 
