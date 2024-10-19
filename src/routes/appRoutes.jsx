@@ -18,7 +18,7 @@ function AppRouter() {
                     <Route path="/register" element={<Register />} />
                     <Route path="/reset_password" element={<ResetPassword />} />
                     <Route path="/application" element={< RsbApplication />} />
-                    <Route path="/error" element={<Error />} />
+                    <Route path="/*" element={<Error />} />
                     <Route path="/dashboard" element={<Dashboard/>} />
                     <Route path="/admin" element={<Admin />} />
                 </Routes>
