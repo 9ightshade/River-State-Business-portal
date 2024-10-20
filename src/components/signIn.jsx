@@ -35,7 +35,7 @@ function SignIn() {
                 localStorage.setItem('token', response.data.token)
                 console.log(response);
 
-                // response && navigate("/application")
+                response && navigate("/application")
 
 
             } catch (error) {

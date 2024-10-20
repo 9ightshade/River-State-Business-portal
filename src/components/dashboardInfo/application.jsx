@@ -1,6 +1,6 @@
 function ApplicationDashboard() {
     return (
-        <table className="text-gray-500" >
+        <table className="text-gray-500  " >
             <thead>
                 <tr className="bg-white" >
                     <td className="p-3">
@@ -19,8 +19,9 @@ function ApplicationDashboard() {
                         Status
                     </td>
                 </tr>
+                <hr  className="h-3" />
             </thead>
-            <hr className="h-2" />
+            
             <tbody>
                 <tr className="bg-white" >
                     <td className="p-3">

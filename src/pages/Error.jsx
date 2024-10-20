@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 function Error() {
 
     const fetchUsersURL = "https://portal.rsubs.org/api/users";
-    // const [userData, setUserData] = useState([])
+    const [userData, setUserData] = useState([])
     useEffect(() => {
-        // console.log('testing');
+
 
 
 
@@ -16,29 +16,33 @@ function Error() {
 
     const handleClick = async () => {
         console.log('clicked');
-        try {
-            const res = await axios.get(fetchUsersURL, {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-            })
-            console.log(res.data);
-            
-            console.log(localStorage.getItem('token'));
+        const token = localStorage.getItem('token')
 
-            res?.data.map((users) => {
-                users['email'] === localStorage.getItem('email') ? console.log(users['']) : 'could not find user'
+        console.log(token);
 
-            })
+        if (token) {
+            try {
+                const res = await axios.get(fetchUsersURL, {
+                    headers: { Authorization: `Bearer ${token}` }
+                })
+                console.log(res.data);
 
+                res?.data.map((users) => {
+                    users['email'] === localStorage.getItem('email') ?
+                        setUserData(users)
+                        : 'could not find user'
 
+                })
+            } catch (error) {
+                console.log(error);
 
-
-
-
-        } catch (error) {
-            console.log(error.message);
+            }
 
         }
+        else {
+            console.log('token expired');
 
+        }
     }
 
     return (
@@ -50,7 +54,13 @@ function Error() {
                 Error page
             </h1>
 
-
+            <p>
+                {userData.name}
+            </p>
+            <p>
+                {userData.email}
+            </p>
+            
 
         </div>
 
