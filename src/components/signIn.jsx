@@ -16,38 +16,50 @@ function SignIn() {
         email: email,
         password: password
     };
+
+    // Api endpoints
     const loginURL = "https://portal.rsubs.org/api/users/login";
-
-
-    let response;
-
+    const fetchUsersURL = "https://portal.rsubs.org/api/users";
 
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         if (data.email && data.password) {
             localStorage.setItem('email', data.email)
+            const loginEmail = localStorage.getItem('email')
+            console.log(localStorage.getItem('email'));
 
             try {
-                response = await axios.post(loginURL, data,)
-                console.log(`response: ${response.data.token}`);
+                const getResponse = await axios.post(loginURL, data)
+                localStorage.setItem('token', getResponse.data.token)
 
-                localStorage.setItem('token', response.data.token)
-                console.log(response);
+                const token = localStorage.getItem('token')
+                const fetchResponse = await axios.get(fetchUsersURL, {
+                    headers: { Authorization: `Bearer ${token}` }
+                })
 
-                response && navigate("/application")
+                const users = fetchResponse.data
+
+                users?.map((user) => {
+                    user['email'] === loginEmail ?
+                        localStorage.setItem('userId', user._id)
+                        : console.log('user did not match');
+                })
+
+                const userId = localStorage.getItem('userId')
+                console.log(userId);
+
+                userId && navigate('/application')
 
 
             } catch (error) {
-                console.log(error.message);
-                navigate("/error")
-
+                console.log(error);
+                navigate('/error')
             }
+
+
         }
-
-
-    };
-
+    }
 
 
 

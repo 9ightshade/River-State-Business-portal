@@ -1,6 +1,6 @@
 import Nav from "./nav";
 import sections from "../sections";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Course from "./forms/course";
 import PersonalInfo from "./forms/personalInfo";
@@ -11,6 +11,7 @@ import RsubsQualification from "./forms/rsubsQualification";
 import Qualifications from "./forms/qaulifications";
 import ProgramFinancing from "./forms/programFinacing";
 import Attachment from "./forms/attachement";
+import axios from "axios";
 
 function RsbApplication() {
 
@@ -62,35 +63,35 @@ function RsbApplication() {
 
     })
 
-    const startUrl = "https://portal.rsubs.org/api/application/:id/start";
-    const saveUrl = "https://portal.rsubs.org/api/application/:id/save";
-    const resumeUrl = "https://portal.rsubs.org/api/application/:id/resume";
-    const submitUrl = "https://portal.rsubs.org/api/application/:id/submit";
+
+    const userId = localStorage.getItem('_id')
+
+    const startUrl = `https://portal.rsubs.org/api/application/:${userId}/start`;
+    const saveUrl = `https://portal.rsubs.org/api/application/:${userId}/save`;
+    const resumeUrl = `https://portal.rsubs.org/api/application/:${userId}/resume`;
+    const submitUrl = `https://portal.rsubs.org/api/application/:${userId}/submit`
     const navigate = useNavigate();
 
 
+
+
+    const saveOnClick = async () => {
+        try {
+            const response = await axios.post(startUrl, formData)
+            console.log(response);
+            console.log('success');
+            navigate('/dashboard')
+
+        } catch (error) {
+            console.log(error);
+            navigate('/error')
+
+        }
+    }
+
     const NextStep = () => {
         setStep(step + 1);
-        // const saveOnClick = async () => {
-        //     try {
-        //         const res = await axios.post(saveUrl, formData)
-        //         console.log(res);
-        //         console.log('success');
-        //         navigate('/studentDashboard')
-
-        //     } catch (error) {
-        //         console.log(error.message);
-        //         navigate('/error')
-
-        //     }
-
-
-        // }
-        // saveOnClick()
-        // // console.log(`current step:${step}`);
-        // // console.log(formData);
-
-
+        saveOnClick()
     };
 
     const PrevStep = () => {
@@ -134,10 +135,6 @@ function RsbApplication() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
-        // console.log(`step:${step} and section.lenght:${sections.length}`);
-
-
     }
 
 
@@ -180,14 +177,6 @@ function RsbApplication() {
                 break;
         }
     }
-
-
-    useEffect(() => {
-        console.log(formData);
-
-    }, [formData])
-
-
 
     return (
         <div>

@@ -11,18 +11,29 @@ function Nav() {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const toogleSideNav = () => {
         setIsVisible(!isVisible)
-        // console.log(isVisible);
 
     }
     const token = localStorage.getItem('token')
-    useEffect(() => {
+
+    const checkToken = () => {
         if (token) {
             setIsLoggedIn(true)
-
-
+            
+        } else {
+            console.log('token not found...');
+            
         }
+
+        console.log(isLoggedIn);
+        
+    }
+
+    useEffect(() => {
+        checkToken()
     }, [token])
-    console.log(isLoggedIn);
+
+
+
 
     return (
 

@@ -1,48 +1,33 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+
 
 function Error() {
 
-    const fetchUsersURL = "https://portal.rsubs.org/api/users";
-    const [userData, setUserData] = useState([])
-    useEffect(() => {
+    const userId = localStorage.getItem('_id')
+
+    console.log(userId);
+    
+    const data = {
+        email: 'owaiowai30@gmail.com',
+        password:'Good123'
+    };
+    const fetchApplicationURL = "https://portal.rsubs.org/api/applications";
 
 
-
-
-
-    }, [])
+    const startUrl = `https://portal.rsubs.org/api/application/:${userId}/start`;
 
 
     const handleClick = async () => {
         console.log('clicked');
-        const token = localStorage.getItem('token')
-
-        console.log(token);
-
-        if (token) {
-            try {
-                const res = await axios.get(fetchUsersURL, {
-                    headers: { Authorization: `Bearer ${token}` }
-                })
-                console.log(res.data);
-
-                res?.data.map((users) => {
-                    users['email'] === localStorage.getItem('email') ?
-                        setUserData(users)
-                        : 'could not find user'
-
-                })
-            } catch (error) {
-                console.log(error);
-
-            }
-
-        }
-        else {
-            console.log('token expired');
-
-        }
+       try {
+           const response = await axios.get(startUrl)
+           
+           console.log(response.data);
+           
+       } catch (error) {
+        console.log(error);
+        
+       }
     }
 
     return (
@@ -54,14 +39,6 @@ function Error() {
                 Error page
             </h1>
 
-            <p>
-                {userData.name}
-            </p>
-            <p>
-                {userData.email}
-            </p>
-            
-
         </div>
 
 
@@ -72,3 +49,4 @@ function Error() {
 
 
 export default Error;
+

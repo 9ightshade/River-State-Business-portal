@@ -4,42 +4,7 @@ import profilePic from "../../assets/jpeg/testPassport.jpg"
 function Home() {
     const [userData, setUserData] = useState([])
     const fetchUsersURL = "https://portal.rsubs.org/api/users";
-    const token = localStorage.getItem('token')
-    const getUser = async () => {
-        console.log('Fetching User...');
-       
-
-        console.log(token);
-
-        if (token) {
-            try {
-                const res = await axios.get(fetchUsersURL, {
-                    headers: { Authorization: `Bearer ${token}` }
-                })
-                console.log(res.data);
-
-                res?.data.map((users) => {
-                    users['email'] === localStorage.getItem('email') ?
-                        setUserData(users)
-                        : 'could not find user'
-
-                })
-            } catch (error) {
-                console.log(error);
-
-            }
-
-        }
-        else {
-            console.log('token expired');
-
-        }
-    }
-
-    useEffect(() => {
-        console.log(token);
-    getUser()
-}, [token])
+    
 
 
     return (
