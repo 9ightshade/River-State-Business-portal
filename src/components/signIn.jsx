@@ -21,6 +21,12 @@ function SignIn() {
     const loginURL = "https://portal.rsubs.org/api/users/login";
     const fetchUsersURL = "https://portal.rsubs.org/api/users";
 
+    const checkUserRole = (user, loginEmail) => {
+        if (user['email'] === loginEmail) {
+            localStorage.setItem('userId', user._id)
+            localStorage.setItem('userRole', user.role)
+        }
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -41,20 +47,22 @@ function SignIn() {
                 const users = fetchResponse.data
 
                 users?.map((user) => {
-                    user['email'] === loginEmail ?
-                        localStorage.setItem('userId', user._id)
-                        : console.log('user did not match');
+                    checkUserRole(user, loginEmail)
                 })
 
                 const userId = localStorage.getItem('userId')
                 console.log(userId);
+                const userRole = localStorage.getItem('userRole');
+                console.log(userRole);
 
-                userId && navigate('/application')
+
+                userRole === 'admin' && navigate('/admin')
+                userRole === 'student' && navigate('/application')
 
 
             } catch (error) {
                 console.log(error);
-                navigate('/error')
+                // navigate('/error')
             }
 
 
