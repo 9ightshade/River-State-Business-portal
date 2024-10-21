@@ -33,7 +33,7 @@ function RsbApplication() {
         religion: '',
         phone: '',
         physicalChallenge: '',
-        photo: null,
+        photo: '',
         nationality: '',
         countryOfResidence: '',
         primaryLanguage: '',
@@ -50,11 +50,11 @@ function RsbApplication() {
         startDate: '',
         endDate: '',
         fundingMethod: '',
-        degreeCertificate: null,
-        curriculumVitae: null,
-        evidenceOfAbilityToPay: null,
-        oLevelResult: null,
-        nyscExemptionLetter: null,
+        degreeCertificate: '',
+        curriculumVitae: '',
+        evidenceOfAbilityToPay: '',
+        oLevelResult: '',
+        nyscExemptionLetter: '',
         emailOfNextOfKin: '',
         telephoneNumberOfNextOfKin: '',
         relationshipWithNextOfKin: '',
@@ -64,56 +64,48 @@ function RsbApplication() {
     })
 
 
+
     const userId = localStorage.getItem('_id')
+    const token = localStorage.getItem('token')
+
+    console.log(token, userId);
 
     const startUrl = `https://portal.rsubs.org/api/application/:${userId}/start`;
-    const saveUrl = `https://portal.rsubs.org/api/application/:${userId}/save`;
+    const saveUrl = `https://portal.rsubs.org/api/applications/${userId}/save`;
     const resumeUrl = `https://portal.rsubs.org/api/application/:${userId}/resume`;
-    const submitUrl = `https://portal.rsubs.org/api/application/:${userId}/submit`
+    const submitUrl = `https://portal.rsubs.org/api/applications/${userId}/submit`
     const navigate = useNavigate();
 
 
+    console.log(formData);
 
+    const saveForm = async () => {
+        console.log('working....');
+        console.log(userId);
 
-    const saveOnClick = async () => {
         try {
-            const response = await axios.post(startUrl, formData)
+            const response = await axios.put(saveUrl, { headers: { Authorization: `Bearer ${token}` } }, formData)
+            console.log(`success`);
             console.log(response);
-            console.log('success');
-            navigate('/dashboard')
 
         } catch (error) {
             console.log(error);
-            navigate('/error')
 
         }
+
     }
+
 
     const NextStep = () => {
         setStep(step + 1);
-        saveOnClick()
     };
 
     const PrevStep = () => {
         setStep(step - 1);
-        // const saveOnClick = async () => {
-        //     try {
-        //         const res = await axios.post(saveUrl, formData)
-        //         console.log(res);
-        //         console.log('success');
-        //         navigate('/studentDashboard')
-
-        //     } catch (error) {
-        //         console.log(error.message);
-        //         navigate('/error')
-
-        //     }
-
-
-        // }
-        // saveOnClick()
-        // console.log(`current step:${step}`);
     };
+
+
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -133,8 +125,21 @@ function RsbApplication() {
         fileUpload()
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+
+    
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log(`submit form ...`);
+        try {
+            const reponse = await axios.post(submitUrl, formData)
+
+            console.log(reponse);
+
+        } catch (error) {
+            console.log(error);
+
+        }
+
     }
 
 
@@ -185,7 +190,13 @@ function RsbApplication() {
                 Full-Time MBA Admissions
             </h1>
 
+            {/* <button className="bg-blue-700 text-white p-3 " onClick={saveForm}  >
+                test send form data
+            </button>
 
+            <button className="bg-blue-700 text-white p-3 ml-4 " onClick={submitForm}  >
+                test submit form data
+            </button> */}
             <div className="container px-7 flex justify-between gap-4  " >
 
                 <div className="sections flex gap-2 flex-col w-1/3  text-gray-500 " >
@@ -286,7 +297,10 @@ function RsbApplication() {
                         }
                         {
                             step < sections.length && <button
-                                onClick={NextStep}
+                                onClick={() => {
+                                    NextStep()
+                                    saveForm()
+                                }}
                                 className="next-btn bg-[#39447F] text-white py-2 px-5 border-none rounded "
                             >
                                 Next
@@ -294,7 +308,9 @@ function RsbApplication() {
                         }
                         {
                             step === sections.length && <button
-                                onClick={handleSubmit}
+                                onClick={() => {
+                                    handleSubmit()
+                                }}
                                 className="next-btn bg-[#39447F] text-white py-2 px-5 border-none rounded "
                             >
                                 Submit

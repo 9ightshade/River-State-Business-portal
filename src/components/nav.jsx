@@ -15,22 +15,23 @@ function Nav() {
     }
     const token = localStorage.getItem('token')
 
-    const checkToken = () => {
-        if (token) {
-            setIsLoggedIn(true)
-            
-        } else {
-            console.log('token not found...');
-            
-        }
-
-        console.log(isLoggedIn);
-        
-    }
+ 
 
     useEffect(() => {
+        const checkToken = () => {
+            if (token) {
+                setIsLoggedIn(true)
+
+            } else {
+                console.log('token not found...');
+
+            }
+
+            console.log(isLoggedIn);
+
+        }
         checkToken()
-    }, [token])
+    }, [isLoggedIn, token])
 
 
 

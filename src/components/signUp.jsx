@@ -37,7 +37,7 @@ function SignUp() {
 
 
         } catch (error) {
-            console.log(error.data);
+            console.log(error);
             navigate("/error")
 
         }

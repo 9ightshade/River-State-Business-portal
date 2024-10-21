@@ -50,3 +50,22 @@ function Error() {
 
 export default Error;
 
+
+// const axios = require('axios');
+
+// const username = 'your_username';
+// const password = 'your_password';
+
+// const encodedCredentials = Buffer.from(`${username}:${password}`).toString('base64');
+
+// axios.get('https://api.example.com/protected-resource', {
+//     headers: {
+//         Authorization: `Basic ${encodedCredentials}`
+//     }
+// })
+//     .then(response => {
+//         console.log(response.data);
+//     })
+//     .catch(error => {
+//         console.error(error);
+//     });
