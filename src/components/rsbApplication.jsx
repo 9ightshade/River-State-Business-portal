@@ -70,9 +70,9 @@ function RsbApplication() {
 
     console.log(token, userId);
 
-    const startUrl = `https://portal.rsubs.org/api/application/:${userId}/start`;
+    const startUrl = `https://portal.rsubs.org/api/application/${userId}/start`;
     const saveUrl = `https://portal.rsubs.org/api/applications/${userId}/save`;
-    const resumeUrl = `https://portal.rsubs.org/api/application/:${userId}/resume`;
+    const resumeUrl = `https://portal.rsubs.org/api/application/${userId}/resume`;
     const submitUrl = `https://portal.rsubs.org/api/applications/${userId}/submit`
     const navigate = useNavigate();
 
