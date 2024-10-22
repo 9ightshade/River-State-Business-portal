@@ -10,6 +10,7 @@ function SignIn() {
 
 
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const data = {
@@ -34,6 +35,8 @@ function SignIn() {
             localStorage.setItem('email', data.email)
             const loginEmail = localStorage.getItem('email')
             console.log(localStorage.getItem('email'));
+
+            setIsLoading(true)
 
             try {
                 const getResponse = await axios.post(loginURL, data)
@@ -62,18 +65,34 @@ function SignIn() {
 
             } catch (error) {
                 console.log(error);
-                // navigate('/error')
+                navigate('/error')
             }
 
 
         }
-    }
+    }   
 
 
 
     return (
-        <div className="h-[81vh] flex justify-center py-5" style={{ backgroundImage: `url(${bgimage})`, backgroundRepeat: "no-repeat" }}>
-            <div className='bg-[#F3F1F1]  p-10 shadow-md shadow-gray-500 rounded-[1em]  '>
+        <div className="h-full flex justify-center relative py-5" style={{ backgroundImage: `url(${bgimage})`, backgroundRepeat: "no-repeat" }}>
+
+
+
+            <div className='bg-[#F3F1F1]  p-10 shadow-md shadow-gray-500 rounded-[1em]'>
+
+
+                {
+                    isLoading && <div className="flex justify-center items-center w-20 h-20 bg-gray-200 rounded-full absolute top-[50%] left-[47%] ">
+                        <div className="flex gap-2">
+                            <div className="w-3 h-3 bg-gray-800 rounded-full animate-bounce"></div>
+                            <div className="w-3 h-3 bg-gray-800 rounded-full animate-bounce delay-100"></div>
+                            <div className="w-3 h-3 bg-gray-800 rounded-full animate-bounce delay-200"></div>
+                        </div>
+                    </div>
+                }
+
+
                 <h3 className='text-center text-[36px] text-[#39447F] font-black'>Log in</h3>
                 <form className='mt-5' onSubmit={handleSubmit}>
                     <div>

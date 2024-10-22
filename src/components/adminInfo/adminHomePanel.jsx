@@ -23,7 +23,7 @@ function AdminHomePanel() {
                 Bank Name:
             </div>
 
-            <div className="transcript-details bg-white mt-3 p-4 ">
+            <div className="application-details bg-white mt-3 p-4 ">
                 <h2>
                     Applications
                 </h2>
@@ -38,6 +38,16 @@ function AdminHomePanel() {
                 </p>
             </div>
 
+            
+            <div className="transcript-details bg-white mt-3 p-4 ">
+                <h2>
+                    Transcripts
+                </h2>
+                <p>
+                    Total Transcript Request:
+                </p>
+    
+            </div>
 
         </div>
     )
