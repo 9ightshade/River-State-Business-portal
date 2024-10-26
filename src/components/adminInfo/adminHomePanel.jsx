@@ -3,7 +3,12 @@ import axios from "axios";
 function AdminHomePanel() {
 
     const [students, setStudents] = useState();
-    const fetchUsersURL = "https://portal.rsubs.org/api/users"
+
+    const userId = localStorage.getItem('_id')
+
+    console.log(userId);
+
+    const fetchUsersURL = `https://portal.rsubs.org/api/users/${userId}`
 
 
     const fetchStudents = async () => {
@@ -12,6 +17,7 @@ function AdminHomePanel() {
             const response = await axios.get(fetchUsersURL, {
                 headers: { Authorization: `Bearer ${token}` }
             })
+            console.log(response.data);
 
             setStudents(response.data);
 
@@ -23,15 +29,14 @@ function AdminHomePanel() {
     }
 
     useEffect(() => {
-        fetchStudents()
 
     }, [])
 
 
     return (
         <div className="text-[#39447F]" >
-            <div className="student-details bg-white p-4 " >
-                <h1>Students</h1>
+            <div onClick={fetchStudents} className="student-details bg-white p-4 " >
+                <h1 >Students</h1>
 
                 <p>
                     Total No of students:

@@ -14,7 +14,7 @@ function Payment() {
                 <p className="mb-2" >
                     Upload Payment Proof
                 </p>
-                <input type="file" name="proofOfPayment" id="proofOfPayment" required />
+                <input type="file" name="proofOfPayment" id="proofOfPayment" required  className="" />
             </form>
         </div>
     )

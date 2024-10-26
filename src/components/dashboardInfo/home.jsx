@@ -3,8 +3,16 @@ import axios from "axios";
 import profilePic from "../../assets/jpeg/testPassport.jpg"
 function Home() {
     const [userData, setUserData] = useState([])
-    const fetchUserURL = "https://portal.rsubs.org/api/users";
 
+    //get user id
+    const userId = localStorage.getItem('_id');
+    console.log(userId);
+
+    //api to fetch user based on id
+    const fetchUserURL = `https://portal.rsubs.org/api/users/${userId}`;
+
+
+    //get token
     const token = localStorage.getItem('token');
     console.log(localStorage.getItem('email'));
 
@@ -77,7 +85,7 @@ function Home() {
             </div>
 
             <div className="profile bg-white p-5 flex flex-col gap-3 w-1/2 " >
-                <h2 className="font-bold text-lg"  onClick={fetchUserData} >
+                <h2 className="font-bold text-lg" onClick={fetchUserData} >
                     Profile Details
                 </h2>
                 <div className="flex flex-col items-center gap-2 "  >
@@ -87,7 +95,7 @@ function Home() {
                         </div>
                         <img src={profilePic} alt="#" className="w-full rounded-full" />
 
-                        
+
                     </div>
                     <p className="font-semibold" >
                         {userData.name}

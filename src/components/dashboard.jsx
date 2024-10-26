@@ -10,7 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 function StudentDashboard() {
 
     const [step, setStep] = useState(1);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
 
     const handleClick = (sectionId) => {
