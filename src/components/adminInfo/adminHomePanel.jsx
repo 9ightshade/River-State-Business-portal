@@ -1,4 +1,32 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
 function AdminHomePanel() {
+
+    const [students, setStudents] = useState();
+    const fetchUsersURL = "https://portal.rsubs.org/api/users"
+
+
+    const fetchStudents = async () => {
+        try {
+            const token = localStorage.getItem('token')
+            const response = await axios.get(fetchUsersURL, {
+                headers: { Authorization: `Bearer ${token}` }
+            })
+
+            setStudents(response.data);
+
+        } catch (error) {
+            console.log(error);
+
+        }
+
+    }
+
+    useEffect(() => {
+        fetchStudents()
+
+    }, [])
+
 
     return (
         <div className="text-[#39447F]" >
@@ -38,7 +66,7 @@ function AdminHomePanel() {
                 </p>
             </div>
 
-            
+
             <div className="transcript-details bg-white mt-3 p-4 ">
                 <h2>
                     Transcripts
@@ -46,7 +74,7 @@ function AdminHomePanel() {
                 <p>
                     Total Transcript Request:
                 </p>
-    
+
             </div>
 
         </div>

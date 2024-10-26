@@ -5,7 +5,7 @@ import ResetPassword from "../pages/ResetPassword";
 import Error from "../pages/Error";
 import Admin from "../pages/Admin";
 import RsbApplication from "../components/rsbApplication";
-import Dashboard from "../pages/Dashboard";
+import StudentDashboardPage from "../pages/Dashboard";
 
 function AppRouter() {
 
@@ -19,7 +19,7 @@ function AppRouter() {
                     <Route path="/reset_password" element={<ResetPassword />} />
                     <Route path="/application" element={< RsbApplication />} />
                     <Route path="/*" element={<Error />} />
-                    <Route path="/dashboard" element={<Dashboard/>} />
+                    <Route path="/student" element={<StudentDashboardPage/>} />
                     <Route path="/admin" element={<Admin />} />
                 </Routes>
             </Router>
