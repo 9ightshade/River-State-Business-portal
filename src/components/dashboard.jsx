@@ -5,7 +5,7 @@ import Home from "./dashboardInfo/home";
 import ApplicationDashboard from "./dashboardInfo/application";
 import Payment from "./dashboardInfo/payment";
 import Transcript from "./dashboardInfo/transcript";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function StudentDashboard() {
 
@@ -68,22 +68,25 @@ function StudentDashboard() {
                             </button>
                         ))
                     }
-                    <p className="program-links font-bold " >
+                    <p className="program-links font-bold" >
                         Programme Application Links
                     </p>
-                    <hr className="" />
-                    <p className="text-blue-950 font-semibold hover:underline cursor-pointer ">
-                        Full Time MBA
-                    </p>
-                    <p className="text-blue-950 font-semibold hover:underline cursor-pointer">
-                        Modular MBA
-                    </p>
-                    <p className="text-blue-950 font-semibold hover:underline cursor-pointer">
-                        Modular Executive MBA
-                    </p>
-                    <p className="text-blue-950 font-semibold hover:underline cursor-pointer" >
-                        Executive MBA
-                    </p>
+                    <hr className="mb-[2em]" />
+                    <Link to={'/application'} >
+                        <p className="text-blue-950 font-semibold hover:underline cursor-pointer mb-2">
+
+                            Full Time MBA
+                        </p>
+                        <p className="text-blue-950 font-semibold hover:underline cursor-pointer mb-2">
+                            Modular MBA
+                        </p>
+                        <p className="text-blue-950 font-semibold hover:underline cursor-pointer mb-2">
+                            Modular Executive MBA
+                        </p>
+                        <p className="text-blue-950 font-semibold hover:underline cursor-pointer mb-2" >
+                            Executive MBA
+                        </p>
+                    </Link>
                 </div>
 
 

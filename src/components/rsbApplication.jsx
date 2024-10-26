@@ -66,9 +66,11 @@ function RsbApplication() {
 
 
     const userId = localStorage.getItem('_id')
-    const token = localStorage.getItem('token')
+    // console.log('working...');
+    
+    // const token = localStorage.getItem('token')
 
-    console.log(token, userId);
+    // console.log( userId);
 
     const startUrl = `https://portal.rsubs.org/api/application/${userId}/start`;
     const saveUrl = `https://portal.rsubs.org/api/applications/${userId}/save`;
