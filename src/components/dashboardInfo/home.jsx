@@ -3,37 +3,111 @@ import axios from "axios";
 import profilePic from "../../assets/jpeg/testPassport.jpg"
 function Home() {
     const [userData, setUserData] = useState([])
-    const fetchUsersURL = "https://portal.rsubs.org/api/users";
-    
+    const fetchUserURL = "https://portal.rsubs.org/api/users";
+
+    const token = localStorage.getItem('token');
+    console.log(localStorage.getItem('email'));
+
+
+    const fetchUserData = async () => {
+        try {
+            const fetchResponse = await axios.get(fetchUserURL, { headers: { Authorization: `Bearer ${token}` } })
+            const message = fetchResponse.data.message
+            console.log(message);
+        } catch (error) {
+            console.log(error);
+
+        }
+    }
+
+
+
 
 
     return (
         <div className="flex justify-between p-3 text-gray-500 gap-4" >
             <div className="upcoming-class bg-white p-5 w-1/2" >
-                <h2>
-                    Upcoming Classes/Events
+                <h2 className="font-bold text-lg" >
+                    Upcoming Events
                 </h2>
+
+                <div className="events-list  rounded  flex flex-col gap-2 " >
+                    <div className="event border-2 border-l-blue-400  bg-blue-100 p-2" >
+                        <h2 className="event-day font-bold " >
+                            Saturday
+                        </h2>
+                        <p className="event-description" >
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+
+                        </p>
+                        <p className="justify-self-end font-semibold" >
+                            9 April 2024
+                        </p>
+                    </div>
+
+                    <div className="p-2 event bg-blue-100  border-2 border-l-blue-400  " >
+                        <h2 className="event-day font-bold " >
+                            Saturday
+                        </h2>
+                        <p className="event-description" >
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+
+                        </p>
+                        <p className="justify-self-end font-semibold" >
+                            9 April 2024
+                        </p>
+                    </div>
+
+                    <div className=" p-2 event bg-blue-100  border-2 border-l-blue-400 " >
+                        <h2 className="event-day font-bold " >
+                            Saturday
+                        </h2>
+                        <p className="event-description" >
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+
+                        </p>
+                        <p className="justify-self-end font-semibold" >
+                            9 April 2024
+                        </p>
+                    </div>
+                </div>
+
+
+
             </div>
 
             <div className="profile bg-white p-5 flex flex-col gap-3 w-1/2 " >
-                <h2>
+                <h2 className="font-bold text-lg"  onClick={fetchUserData} >
                     Profile Details
                 </h2>
-                <div className="flex items-center gap-2 "  >
-                    <div className="profile-pic w-[50px]  " >
+                <div className="flex flex-col items-center gap-2 "  >
+                    <div className="profile-pic w-[50px] relative " >
+
+                        <div className="w-2 h-2 bg-green-400 absolute rounded-full left-10 top-2 " >
+                        </div>
                         <img src={profilePic} alt="#" className="w-full rounded-full" />
+
+                        
                     </div>
-                    <p>
-                    {userData.name}
+                    <p className="font-semibold" >
+                        {userData.name}
+                        Emem Etim
                     </p>
                 </div>
 
-                <p className="email" >
-                {userData.email}
+                <p className="email text-center  " >
+                    {userData.email}
+                    ememetim@gmail.com
                 </p>
-                <p className="phone-number" >
-                    0802389911
-                </p>
+                <div className="about-me flex justify-between" >
+                    <p className="phone-number" >
+                        Contact info: 0802389911
+                    </p>
+
+                    <p>
+                        Gender: Male
+                    </p>
+                </div>
             </div>
         </div>
     )

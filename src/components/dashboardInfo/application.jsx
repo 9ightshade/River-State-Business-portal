@@ -2,7 +2,7 @@ function ApplicationDashboard() {
     return (
         <table className="text-gray-500  " >
             <thead>
-                <tr className="bg-white" >
+                <tr className="bg-white font-bold " >
                     <td className="p-3">
                         ApplicationID
                     </td>
