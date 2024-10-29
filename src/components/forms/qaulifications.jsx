@@ -13,7 +13,7 @@ function Qualifications() {
                 <label htmlFor="institutionType">
                     Institution Type
                 </label>
-                <select name="institutionType" id="institutionType" className="block p-4 w-full" >
+                <select name="institutionType" id="institutionType" className="block p-4 w-full" required >
                     <option value="select">--Select--</option>
                     <option value="highschool">High school</option>
                     <option value="tertiary">Tertiary</option>
@@ -24,7 +24,7 @@ function Qualifications() {
                 <label htmlFor="certificateAwarded">
                     Certificate Awarded
                 </label>
-                <input type="text" name="certificateAwarded" id="certificateAwarded" placeholder="E.g B.sc Business Adminstration" className="block w-full p-3" />
+                <input type="text" name="certificateAwarded" required id="certificateAwarded" placeholder="E.g B.sc Business Adminstration" className="block w-full p-3" />
             </div>
 
 
@@ -33,14 +33,14 @@ function Qualifications() {
                     <label htmlFor="startDate">
                         Start Date
                     </label>
-                    <input type="date" name="startDate" id="startDate" className="block w-full p-3" />
+                    <input type="date" required name="startDate" id="startDate" className="block w-full p-3" />
                 </div>
 
                 <div className="endDate" >
                     <label htmlFor="endDate">
                         End Date
                     </label>
-                    <input type="date" name="endDate" id="endDate" className="block w-full p-3" />
+                    <input type="date" name="endDate" id="endDate" className="block w-full p-3" required />
                 </div>
 
            </div>

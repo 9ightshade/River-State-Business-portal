@@ -1,5 +1,6 @@
 
 
+// eslint-disable-next-line react/prop-types
 function Course({ handleChange, values }) {
 
 
@@ -11,7 +12,7 @@ function Course({ handleChange, values }) {
                 <label htmlFor="Program-title">
                     Program Title
                 </label>
-                <select name="programmeTitle" onChange={handleChange} value={values.programmeTitle} id="Program-title" className="p-2 outline-none block">
+                <select name="programmeTitle" onChange={handleChange} value={values.programmeTitle} id="Program-title" className="p-2 outline-none block" required >
                     <option value="select">--Select--</option>
                     <option value="Post Graduate Diploma in Business (PGDBA)">Post Graduate Diploma in Business (PGDBA)</option>
                     <option value="Masters in Business Administration (MBA)">Masters in Business Administration (MBA)</option>

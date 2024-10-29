@@ -86,7 +86,7 @@ function RsbApplication() {
         console.log(userId);
 
         try {
-            const response = await axios.put(saveUrl, { headers: { Authorization: `Bearer ${token}` } }, formData)
+            const response = await axios.put(saveUrl,formData, { headers: { Authorization: `Bearer ${token}` } })
             console.log(`success`);
             console.log(response);
 
