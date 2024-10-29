@@ -130,10 +130,10 @@ function RsbApplication() {
 
     
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        // e.preventDefault()
         console.log(`submit form ...`);
         try {
-            const reponse = await axios.post(submitUrl, formData)
+            const reponse = await axios.post(submitUrl, formData, { headers: { Authorization: `Bearer ${token}` } })
 
             console.log(reponse);
 
@@ -223,7 +223,9 @@ function RsbApplication() {
                 </div>
 
 
-                <form className="form bg-[#F3F1F1] w-full px-4 py-3 " onSubmit={handleSubmit} >
+                <form className="form bg-[#F3F1F1] w-full px-4 py-3 " onSubmit={(e) => {
+                    e.preventDefault()
+                }} >
                     {
                         sections.map((section) =>
                             step === section.id && (
@@ -301,7 +303,7 @@ function RsbApplication() {
                             step < sections.length && <button
                                 onClick={() => {
                                     NextStep()
-                                    saveForm()
+                                    // saveForm()
                                 }}
                                 className="next-btn bg-[#39447F] text-white py-2 px-5 border-none rounded "
                             >
@@ -329,7 +331,6 @@ function RsbApplication() {
 
 
             </div>
-
 
         </div>
 
