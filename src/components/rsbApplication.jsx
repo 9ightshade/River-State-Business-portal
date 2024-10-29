@@ -1,7 +1,7 @@
 import Nav from "./nav";
 import sections from "../sections";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Course from "./forms/course";
 import PersonalInfo from "./forms/personalInfo";
 import EmergencyContact from "./forms/emergencyContact";
@@ -68,7 +68,7 @@ function RsbApplication() {
     const userId = localStorage.getItem('_id')
     // console.log('working...');
     
-    // const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token')
 
     // console.log( userId);
 
@@ -82,7 +82,7 @@ function RsbApplication() {
     console.log(formData);
 
     const saveForm = async () => {
-        console.log('working....');
+        console.log('save working....');
         console.log(userId);
 
         try {
@@ -315,7 +315,9 @@ function RsbApplication() {
                                 }}
                                 className="next-btn bg-[#39447F] text-white py-2 px-5 border-none rounded "
                             >
-                                Submit
+                                <Link to={'/student'} >
+                                    Submit
+                                </Link>
                             </button>
                         }
                     </div>

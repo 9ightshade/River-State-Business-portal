@@ -1,8 +1,13 @@
+import { Link, useNavigate } from "react-router-dom";
+
 function ApplicationDashboard() {
+
+    const navigate = useNavigate();
+
     return (
-        <table className="text-gray-500  " >
-            <thead>
-                <tr className="bg-white font-bold " >
+        <table className="text-gray-500 border " >
+            <thead className="" >
+                <tr className="bg-white border-2 font-bold " >
                     <td className="p-3">
                         ApplicationID
                     </td>
@@ -19,11 +24,11 @@ function ApplicationDashboard() {
                         Status
                     </td>
                 </tr>
-                <hr  className="h-3" />
-            </thead>
+                {/* <hr  className="h-3" /> */}
+            </thead  >
             
             <tbody>
-                <tr className="bg-white" >
+                <tr className="bg-white border-2 " >
                     <td className="p-3">
                         App/000008
                     </td>
@@ -39,7 +44,11 @@ function ApplicationDashboard() {
                     <td className="p-3 flex">
                         Not submited  <button
                         className="bg-blue-900 text-[.9vw] text-white py-2 px-3 rounded"
-                        >Continue Application</button>
+                        >
+                            <Link to={'/application'} >
+                                Continue Application
+                            </Link>
+                        </button>
                     </td>
                 </tr>
             </tbody>

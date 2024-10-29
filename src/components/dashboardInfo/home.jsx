@@ -14,7 +14,10 @@ function Home() {
 
     //get token
     const token = localStorage.getItem('token');
-    console.log(localStorage.getItem('email'));
+    console.log(token);
+
+    const email = localStorage.getItem('email');
+    console.log(email);
 
 
     const fetchUserData = async () => {

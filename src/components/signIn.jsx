@@ -91,11 +91,6 @@ const handleSubmit = async (e) => {
 
 
 
-
-
-
-
-
 return (
     <div className="h-full flex justify-center relative py-5" style={{ backgroundImage: `url(${bgimage})`, backgroundRepeat: "no-repeat" }}>
 
