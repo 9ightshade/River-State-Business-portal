@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import axios from "axios";
 import profilePic from "../../assets/jpeg/testPassport.jpg"
 function Home() {
@@ -25,6 +25,7 @@ function Home() {
             const fetchResponse = await axios.get(fetchUserURL, { headers: { Authorization: `Bearer ${token}` } })
             const message = fetchResponse.data.message
             console.log(message);
+            setUserData(message)
         } catch (error) {
             console.log(error);
 
@@ -101,14 +102,14 @@ function Home() {
 
                     </div>
                     <p className="font-semibold" >
-                        {userData.name}
-                        Emem Etim
+                        {userData.name ? userData.name :'Emem Etim'}
+                        
                     </p>
                 </div>
 
                 <p className="email text-center  " >
-                    {userData.email}
-                    ememetim@gmail.com
+                    {userData.email ? userData.email :'    ememetim@gmail.com'}
+                
                 </p>
                 <div className="about-me flex justify-between" >
                     <p className="phone-number" >
@@ -116,7 +117,7 @@ function Home() {
                     </p>
 
                     <p>
-                        Gender: Male
+                        Gender: {userData.gender?userData.gender:'n/a'}
                     </p>
                 </div>
             </div>

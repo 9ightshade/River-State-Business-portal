@@ -2,6 +2,7 @@ import axios from "axios";
 import bgimage from "../assets/png/background_img.png"
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 
 
@@ -21,9 +22,10 @@ function SignIn() {
     // Api endpoints
     const loginURL = "https://portal.rsubs.org/api/users/login";
     // const fetchUsersURL = "https://portal.rsubs.org/api/users";
-    const adminUrl = "https://portal.rsubs.org/api/users/admin";
-    const studentUrl = "https://portal.rsubs.org/api/users/student";
-
+    // const adminUrl = "https://portal.rsubs.org/api/users/admin";
+    // const studentUrl = "https://portal.rsubs.org/api/users/student";
+    // const fetchUserURL = `https://portal.rsubs.org/api/users/${userId}`;
+    // const fetchAllUsers = 'https://portal.rsubs.org/api/users';
     // const checkUserRole = (user, loginEmail) => {
     //     if (user['email'] === loginEmail) {
     //         localStorage.setItem('userId', user._id)
@@ -31,116 +33,104 @@ function SignIn() {
     //     }
     // }
 
+    const decodeToken = async (token) => {
+        const reponse = await jwtDecode(token)
 
-    const adminUser = async (token) => {
-        const fetchResponse = await axios.get(adminUrl, {
-            headers: { Authorization: `Bearer ${token}` }
-        })
-        const message = fetchResponse.data.message
-        console.log(message);
+        localStorage.setItem('user_id', reponse.userId)
 
-        message === 'Admin route accessed' && navigate('/admin')
+        localStorage.setItem('role', reponse.role);
 
     }
 
 
+    //on form submit get token 
 
-const studentUser = async (token) => {
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        if (data.email && data.password) {
+            localStorage.setItem('email', data.email)
+            const loginEmail = localStorage.getItem('email')
+            console.log(`email login:${loginEmail}`);
 
-    const fetchResponse = await axios.get(studentUrl, {
-        headers: { Authorization: `Bearer ${token}` }
-    })
+            setIsLoading(true)
 
-    const message = fetchResponse.data.message
-    console.log(message);
+            try {
+                const getResponse = await axios.post(loginURL, data)
+                //set token
+                localStorage.setItem('token', getResponse.data.token)
 
-    message === 'Student route accessed' && navigate('/student')
-}
+                // post request to return a token and get token
+                const token = localStorage.getItem('token')
+                console.log(`login token:${token}`);
+               
+                decodeToken(token)
+                setIsLoading(false)
+                localStorage.getItem('role') === 'student' && navigate('/student')
+                localStorage.getItem('role') === 'admin' && navigate('/admin')
 
-//on form submit get token 
-
-const handleSubmit = async (e) => {
-    e.preventDefault()
-    if (data.email && data.password) {
-        localStorage.setItem('email', data.email)
-        const loginEmail = localStorage.getItem('email')
-        console.log(loginEmail);
-
-        setIsLoading(true)
-
-        try {
-            const getResponse = await axios.post(loginURL, data)
-            //set token
-            localStorage.setItem('token', getResponse.data.token)
-
-            // post request to return a token and get token
-            const token = localStorage.getItem('token')
-            console.log(token);
-            adminUser(token)
-            studentUser(token)
-
-        } catch (error) {
-            console.log(error.message);
-            // navigate('/error')
-        }
-
-
-    }
-}
-
-
-
-
-return (
-    <div className="h-full flex justify-center relative py-5" style={{ backgroundImage: `url(${bgimage})`, backgroundRepeat: "no-repeat" }}>
-
-
-
-        <div className='bg-[#F3F1F1]  p-10 shadow-md shadow-gray-500 rounded-[1em]'>
-
-
-            {
-                isLoading && <div className="flex justify-center items-center w-20 h-20 bg-gray-200 rounded-full absolute top-[50%] left-[47%] ">
-                    <div className="flex gap-2">
-                        <div className="w-3 h-3 bg-gray-800 rounded-full animate-bounce"></div>
-                        <div className="w-3 h-3 bg-gray-800 rounded-full animate-bounce delay-100"></div>
-                        <div className="w-3 h-3 bg-gray-800 rounded-full animate-bounce delay-200"></div>
-                    </div>
-                </div>
+            } catch (error) {
+                console.log(error.message);
+                setIsLoading(false)
+                navigate('/error')
             }
 
 
-            <h3 className='text-center text-[36px] text-[#39447F] font-black'>Log in</h3>
-            <form className='mt-5' onSubmit={handleSubmit}>
-                <div>
-                    <div> <label className='my-2 cursor-pointer' htmlFor="email">Email </label></div>
+        }
+    }
 
-                    <input className='w-full p-4 my-2 bg-white outline-none  ' id="email" type="email" required placeholder='Email*' onChange={(e) => { setEmail(e.target.value) }} name='email' />
-                </div>
 
-                <div>
-                    <div><label className='my-2 cursor-pointer' htmlFor="password">Password </label></div>
 
-                    <input className='w-full p-4 my-2 bg-white outline-none' id="password" required type="password" placeholder='Password' onChange={(e) => { setPassword(e.target.value) }} name='password' />
-                </div>
 
-                <button type="submit" className='bg-[#39447F] w-full py-2 text-center my-3 rounded text-white hover:bg-[#39449F] '
+    return (
+        <div className="h-full flex justify-center relative py-5" style={{ backgroundImage: `url(${bgimage})`, backgroundRepeat: "no-repeat" }}>
 
-                >Submit</button>
-                <p className='text-[#39447F] text-[1em] text-center hover:underline cursor-pointer hover:text-[#39449F] '>Don’t have an account?  <Link to="/register"><span className='font-bold'>Create profile</span> </Link></p>
 
-                <p className='text-[#39447F] text-[1em] text-center hover:underline cursor-pointer hover:text-[#39449F] '>
-                    <Link to="/reset_password">
-                        Forgot Your Password?
-                    </Link>
-                </p>
 
-            </form>
+            <div className='bg-[#F3F1F1]  p-10 shadow-md shadow-gray-500 rounded-[1em]'>
+
+
+                {
+                    isLoading && <div className="flex justify-center items-center w-20 h-20 bg-gray-200 rounded-full absolute top-[50%] left-[47%] ">
+                        <div className="flex gap-2">
+                            <div className="w-3 h-3 bg-gray-800 rounded-full animate-bounce"></div>
+                            <div className="w-3 h-3 bg-gray-800 rounded-full animate-bounce delay-100"></div>
+                            <div className="w-3 h-3 bg-gray-800 rounded-full animate-bounce delay-200"></div>
+                        </div>
+                    </div>
+                }
+
+
+                <h3 className='text-center text-[36px] text-[#39447F] font-black'>Log in</h3>
+                <form className='mt-5' onSubmit={handleSubmit}>
+                    <div>
+                        <div> <label className='my-2 cursor-pointer' htmlFor="email">Email </label></div>
+
+                        <input className='w-full p-4 my-2 bg-white outline-none  ' id="email" type="email" required placeholder='Email*' onChange={(e) => { setEmail(e.target.value) }} name='email' />
+                    </div>
+
+                    <div>
+                        <div><label className='my-2 cursor-pointer' htmlFor="password">Password </label></div>
+
+                        <input className='w-full p-4 my-2 bg-white outline-none' id="password" required type="password" placeholder='Password' onChange={(e) => { setPassword(e.target.value) }} name='password' />
+                    </div>
+
+                    <button type="submit" className='bg-[#39447F] w-full py-2 text-center my-3 rounded text-white hover:bg-[#39449F] '
+
+                    >Submit</button>
+                    <p className='text-[#39447F] text-[1em] text-center hover:underline cursor-pointer hover:text-[#39449F] '>Don’t have an account?  <Link to="/register"><span className='font-bold'>Create profile</span> </Link></p>
+
+                    <p className='text-[#39447F] text-[1em] text-center hover:underline cursor-pointer hover:text-[#39449F] '>
+                        <Link to="/reset_password">
+                            Forgot Your Password?
+                        </Link>
+                    </p>
+
+                </form>
+            </div>
+
         </div>
 
-    </div>
-
-)
+    )
 
 }
 
