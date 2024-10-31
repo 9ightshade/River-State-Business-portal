@@ -33,14 +33,22 @@ function SignIn() {
     //     }
     // }
 
-    const decodeToken = async (token) => {
-        const reponse = await jwtDecode(token)
+//decode token to get user role and id and navigate to dashboard
+    const decodeToken = (token) => {
+        const reponse = jwtDecode(token)
 
-        localStorage.setItem('user_id', reponse.userId)
+        localStorage.setItem('_id', reponse.userId)
 
         localStorage.setItem('role', reponse.role);
+        
+        const role = localStorage.getItem('role');
+        
+        role === 'student' && navigate('/student')
 
-    }
+        role === 'admin' && navigate('/admin')
+
+
+    };
 
 
     //on form submit get token 
@@ -56,22 +64,21 @@ function SignIn() {
 
             try {
                 const getResponse = await axios.post(loginURL, data)
+
                 //set token
                 localStorage.setItem('token', getResponse.data.token)
 
                 // post request to return a token and get token
                 const token = localStorage.getItem('token')
                 console.log(`login token:${token}`);
-               
-                decodeToken(token)
-                setIsLoading(false)
-                localStorage.getItem('role') === 'student' && navigate('/student')
-                localStorage.getItem('role') === 'admin' && navigate('/admin')
+
+                // decodeToken(token);
+                setIsLoading(false);
 
             } catch (error) {
-                console.log(error.message);
-                setIsLoading(false)
-                navigate('/error')
+                console.log(error);
+                // setIsLoading(false)
+                // navigate('/error')
             }
 
 

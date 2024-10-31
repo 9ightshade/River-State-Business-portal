@@ -1,8 +1,9 @@
-import {  useState } from "react";
+import {  useEffect, useState } from "react";
 import axios from "axios";
 import profilePic from "../../assets/jpeg/testPassport.jpg"
 function Home() {
     const [userData, setUserData] = useState([])
+    let user;
 
     //get user id
     const userId = localStorage.getItem('_id');
@@ -23,15 +24,18 @@ function Home() {
     const fetchUserData = async () => {
         try {
             const fetchResponse = await axios.get(fetchUserURL, { headers: { Authorization: `Bearer ${token}` } })
-            const message = fetchResponse.data.message
-            console.log(message);
-            setUserData(message)
+            const message = fetchResponse.data
+            user = message;
+            console.log(user);
+            
         } catch (error) {
             console.log(error);
 
         }
     }
 
+    
+    fetchUserData()
 
 
 
@@ -89,7 +93,7 @@ function Home() {
             </div>
 
             <div className="profile bg-white p-5 flex flex-col gap-3 w-1/2 " >
-                <h2 className="font-bold text-lg" onClick={fetchUserData} >
+                <h2 className="font-bold text-lg">
                     Profile Details
                 </h2>
                 <div className="flex flex-col items-center gap-2 "  >
@@ -102,13 +106,13 @@ function Home() {
 
                     </div>
                     <p className="font-semibold" >
-                        {userData.name ? userData.name :'Emem Etim'}
+                        {user['name']?'yes':'no'}
                         
                     </p>
                 </div>
 
                 <p className="email text-center  " >
-                    {userData.email ? userData.email :'    ememetim@gmail.com'}
+                    {' ememetim@gmail.com'}
                 
                 </p>
                 <div className="about-me flex justify-between" >
@@ -117,7 +121,7 @@ function Home() {
                     </p>
 
                     <p>
-                        Gender: {userData.gender?userData.gender:'n/a'}
+                        Gender: {'n/a'}
                     </p>
                 </div>
             </div>
