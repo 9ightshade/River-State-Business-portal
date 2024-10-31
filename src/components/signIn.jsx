@@ -26,12 +26,6 @@ function SignIn() {
     // const studentUrl = "https://portal.rsubs.org/api/users/student";
     // const fetchUserURL = `https://portal.rsubs.org/api/users/${userId}`;
     // const fetchAllUsers = 'https://portal.rsubs.org/api/users';
-    // const checkUserRole = (user, loginEmail) => {
-    //     if (user['email'] === loginEmail) {
-    //         localStorage.setItem('userId', user._id)
-    //         localStorage.setItem('userRole', user.role)
-    //     }
-    // }
 
 //decode token to get user role and id and navigate to dashboard
     const decodeToken = (token) => {
@@ -57,6 +51,7 @@ function SignIn() {
         e.preventDefault()
         if (data.email && data.password) {
             localStorage.setItem('email', data.email)
+
             const loginEmail = localStorage.getItem('email')
             console.log(`email login:${loginEmail}`);
 
@@ -72,13 +67,14 @@ function SignIn() {
                 const token = localStorage.getItem('token')
                 console.log(`login token:${token}`);
 
-                // decodeToken(token);
+
+                decodeToken(token);
                 setIsLoading(false);
 
             } catch (error) {
                 console.log(error);
-                // setIsLoading(false)
-                // navigate('/error')
+                setIsLoading(false)
+                navigate('/error')
             }
 
 

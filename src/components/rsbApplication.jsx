@@ -130,13 +130,14 @@ function RsbApplication() {
 
     
     const handleSubmit = async (e) => {
-        // e.preventDefault()
+        e.preventDefault()
         console.log(`submit form ...`);
         try {
             const reponse = await axios.post(submitUrl, formData, { headers: { Authorization: `Bearer ${token}` } })
 
             console.log(reponse);
 
+         navigate('/student')
         } catch (error) {
             console.log(error);
 
@@ -317,9 +318,9 @@ function RsbApplication() {
                                 }}
                                 className="next-btn bg-[#39447F] text-white py-2 px-5 border-none rounded "
                             >
-                                <Link to={'/student'} >
+                                
                                     Submit
-                                </Link>
+                            
                             </button>
                         }
                     </div>

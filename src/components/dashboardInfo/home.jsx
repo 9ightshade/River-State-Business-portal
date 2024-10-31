@@ -1,13 +1,14 @@
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import profilePic from "../../assets/jpeg/testPassport.jpg"
 function Home() {
-    const [userData, setUserData] = useState([])
+    const [userData, setUserData] = useState(null)
+
     let user;
 
     //get user id
     const userId = localStorage.getItem('_id');
-    console.log(userId);
+    // console.log(userId);
 
     //api to fetch user based on id
     const fetchUserURL = `https://portal.rsubs.org/api/users/${userId}`;
@@ -15,7 +16,7 @@ function Home() {
 
     //get token
     const token = localStorage.getItem('token');
-    console.log(token);
+    // console.log(token);
 
     const email = localStorage.getItem('email');
     console.log(email);
@@ -24,18 +25,26 @@ function Home() {
     const fetchUserData = async () => {
         try {
             const fetchResponse = await axios.get(fetchUserURL, { headers: { Authorization: `Bearer ${token}` } })
-            const message = fetchResponse.data
-            user = message;
-            console.log(user);
-            
+             setUserData( fetchResponse.data)
+            console.log(userData);
+
+
+
         } catch (error) {
             console.log(error);
 
         }
+
+
+
     }
 
-    
-    fetchUserData()
+
+    useEffect(() => {
+        fetchUserData()
+    }, [])
+
+
 
 
 
@@ -106,23 +115,23 @@ function Home() {
 
                     </div>
                     <p className="font-semibold" >
-                        {user['name']?'yes':'no'}
-                        
+                        {userData?userData.name:''}
+
                     </p>
                 </div>
 
                 <p className="email text-center  " >
-                    {' ememetim@gmail.com'}
-                
+                    {userData?userData.email:''}
+
                 </p>
-                <div className="about-me flex justify-between" >
-                    <p className="phone-number" >
+                <div className="about-me" >
+                    <p className="phone-number text-center " >
                         Contact info: 0802389911
                     </p>
 
-                    <p>
-                        Gender: {'n/a'}
-                    </p>
+                    {/* <p>
+                        Gender: {userData?userData.gender:'n/a'}
+                    </p> */}
                 </div>
             </div>
         </div>

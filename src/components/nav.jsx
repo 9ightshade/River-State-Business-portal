@@ -18,7 +18,7 @@ function Nav() {
  
 
     useEffect(() => {
-        const checkToken = () => {
+        const checkToken = (token) => {
             if (token) {
                 setIsLoggedIn(true)
 
@@ -27,10 +27,8 @@ function Nav() {
 
             }
 
-            console.log(isLoggedIn);
-
         }
-        checkToken()
+        checkToken(token)
     }, [isLoggedIn, token])
 
 
