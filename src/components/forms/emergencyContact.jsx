@@ -41,7 +41,7 @@ function EmergencyContact({ values, handleChange }) {
                     <input type="tel"
                         onChange={handleChange}
                         value={values.telephoneNumberOfNextOfKin}
-                        name="telephoneNumberOfNextOfKin" id="phone" className="block p-2" required />
+                        name="telephoneNumberOfNextOfKin" id="phone" className="block p-2" />
                 </div>
             </div>
 
@@ -52,7 +52,7 @@ function EmergencyContact({ values, handleChange }) {
                 </label>
                 <textarea
                     value={values.addressOfNextOfKin}
-                    onChange={handleChange} required
+                    onChange={handleChange} 
                     name="addressOfNextOfKin" id="address"
                     className=" block w-full my-5 " ></textarea>
             </div>

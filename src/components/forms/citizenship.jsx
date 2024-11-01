@@ -38,13 +38,13 @@ function Citizenship({handleChange, values}) {
                     <label htmlFor="primaryLanguage">
                         Primary Language
                     </label>
-                    <input type="text" name="primaryLanguage" value={values.primaryLanguage} onChange={handleChange} id="primaryLanguage" className="block p-2" required />
+                    <input type="text" name="primaryLanguage" value={values.primaryLanguage} onChange={handleChange} id="primaryLanguage" className="block p-2"  />
                 </div>
                 <div>
                     <label htmlFor="stateOfOrigin">
                         State Of Origin
                     </label>
-                    <input type="text" value={values.stateOfOrigin} name="stateOfOrigin" onChange={handleChange} id="stateOfOrigin" className="block p-2" required />
+                    <input type="text" value={values.stateOfOrigin} name="stateOfOrigin" onChange={handleChange} id="stateOfOrigin" className="block p-2"  />
                 </div>
             </div>
 

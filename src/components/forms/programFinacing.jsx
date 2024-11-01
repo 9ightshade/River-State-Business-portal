@@ -5,7 +5,7 @@ function ProgramFinancing() {
                 <label htmlFor="fundingMethod">
                     Funding Method: How Do You Intend To Pay for this Program?
                 </label>
-                <select name="fundingMethod" id="fundingMethod" className="block p-4 w-full" required >
+                <select name="fundingMethod" id="fundingMethod" className="block p-4 w-full"  >
                     <option value="select">--Select--</option>
                     <option value="self Sponsorship">Self Sponsored</option>
                     <option value="self Sponsorship">Guardian/Parent Sponsored</option>

@@ -67,7 +67,7 @@ function RsbApplication() {
 
     const userId = localStorage.getItem('_id')
     // console.log('working...');
-    
+
     const token = localStorage.getItem('token')
 
     // console.log( userId);
@@ -81,12 +81,32 @@ function RsbApplication() {
 
     console.log(formData);
 
+    const startForm = async () => {
+        console.log('start....');
+        console.log(userId);
+
+        try {
+            const response = await axios.post(startUrl, formData, { headers: { Authorization: `Bearer ${token}` } })
+            console.log(`success`);
+            console.log(response);
+
+        } catch (error) {
+            console.log(error);
+
+        }
+
+    }
+
+    startForm();
+
+
+
     const saveForm = async () => {
         console.log('save working....');
         console.log(userId);
 
         try {
-            const response = await axios.put(saveUrl,formData, { headers: { Authorization: `Bearer ${token}` } })
+            const response = await axios.put(saveUrl, formData, { headers: { Authorization: `Bearer ${token}` } })
             console.log(`success`);
             console.log(response);
 
@@ -128,7 +148,7 @@ function RsbApplication() {
     }
 
 
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(`submit form ...`);
@@ -137,7 +157,7 @@ function RsbApplication() {
 
             console.log(reponse);
 
-         navigate('/student')
+            navigate('/student')
         } catch (error) {
             console.log(error);
 
@@ -224,9 +244,7 @@ function RsbApplication() {
                 </div>
 
 
-                <form className="form bg-[#F3F1F1] w-full px-4 py-3 " onSubmit={(e) => {
-                    e.preventDefault()
-                }} >
+                <form className="form bg-[#F3F1F1] w-full px-4 py-3 " onSubmit={handleSubmit} >
                     {
                         sections.map((section) =>
                             step === section.id && (
@@ -293,15 +311,15 @@ function RsbApplication() {
 
                     <div className="navigation-btn flex justify-between " >
                         {
-                            step > 1 && <button
+                            step > 1 && <div
                                 onClick={PrevStep}
                                 className="prev-btn bg-[#39447F] text-white p-3 border-none rounded "
                             >
                                 Previous
-                            </button>
+                            </div>
                         }
                         {
-                            step < sections.length && <button
+                            step < sections.length && <div
                                 onClick={() => {
                                     NextStep()
                                     // saveForm()
@@ -309,18 +327,18 @@ function RsbApplication() {
                                 className="next-btn bg-[#39447F] text-white py-2 px-5 border-none rounded "
                             >
                                 Next
-                            </button>
+                            </div>
                         }
                         {
                             step === sections.length && <button
-                                onClick={() => {
+                                type="submit" onClick={() => {
                                     handleSubmit()
                                 }}
                                 className="next-btn bg-[#39447F] text-white py-2 px-5 border-none rounded "
                             >
-                                
-                                    Submit
-                            
+
+                                Submit
+
                             </button>
                         }
                     </div>

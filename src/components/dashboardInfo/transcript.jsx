@@ -34,13 +34,13 @@ function Transcript() {
         e.preventDefault()
 
         try {
-            // const token = localStorage.getItem('token')
+            const token = localStorage.getItem('token')
 
             console.log(data);
-            
+
             const response = await axios.post(transcriptURL, data
-                // {
-                //      headers: { Authorization: `Bearer ${token}` }
+                // , {
+                    // headers: { Authorization: `Bearer ${token}` }
                 // }
             )
             console.log(response.data);

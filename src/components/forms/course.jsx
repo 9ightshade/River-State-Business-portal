@@ -12,7 +12,7 @@ function Course({ handleChange, values }) {
                 <label htmlFor="Program-title">
                     Program Title
                 </label>
-                <select name="programmeTitle" onChange={handleChange} value={values.programmeTitle} id="Program-title" className="p-2 outline-none block" required >
+                <select name="programmeTitle" onChange={handleChange} value={values.programmeTitle} id="Program-title" className="p-2 outline-none block"  >
                     <option value="select">--Select--</option>
                     <option value="Post Graduate Diploma in Business (PGDBA)">Post Graduate Diploma in Business (PGDBA)</option>
                     <option value="Masters in Business Administration (MBA)">Masters in Business Administration (MBA)</option>
@@ -26,7 +26,7 @@ function Course({ handleChange, values }) {
                 <label htmlFor="course-title">
                     Course Title
                 </label>
-                <select name="courseTitle" value={values.courseTitle} onChange={handleChange} id="course-title" className="p-2 outline-none block"   required>
+                <select name="courseTitle" value={values.courseTitle} onChange={handleChange} id="course-title" className="p-2 outline-none block"   >
                     <option value="select">--Select--</option>
                     <option value="Accounting">Accounting</option>
                     <option value="Management">Management</option>
