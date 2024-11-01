@@ -3,12 +3,38 @@ import axios from "axios";
 function AdminHomePanel() {
 
     const [students, setStudents] = useState();
-
+    const [applicationsArray, setApplicationsArray] = useState();
     const userId = localStorage.getItem('_id')
-
+    // const totalApplications= (applicationsArray.length);
     console.log(userId);
 
     const fetchUsersURL = `https://portal.rsubs.org/api/users/${userId}`
+
+
+    const fetchApplicationAllURL = "https://portal.rsubs.org/api/applications";
+
+
+    const fetchApplications = async () => {
+        try {
+            const token = localStorage.getItem('token')
+            const response = await axios.get(fetchApplicationAllURL, {
+                headers: { Authorization: `Bearer ${token}` }
+            })
+
+            console.log(response.data.applications);
+
+            setApplicationsArray(response.data.applications);
+
+
+        } catch (error) {
+            console.log(error);
+
+        }
+
+    }
+
+
+
 
 
     const fetchStudents = async () => {
@@ -29,8 +55,10 @@ function AdminHomePanel() {
     }
 
     useEffect(() => {
-
+        fetchApplications()
     }, [])
+
+
 
 
     return (
@@ -57,11 +85,13 @@ function AdminHomePanel() {
             </div>
 
             <div className="application-details bg-white mt-3 p-4 ">
-                <h2>
+                <h2 >
                     Applications
                 </h2>
                 <p>
-                    Total No of Applications:
+                    Total No of Applications:{
+                        // totalApplications
+                    }
                 </p>
                 <p>
                     Pending Applications:
