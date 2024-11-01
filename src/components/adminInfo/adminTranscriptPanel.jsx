@@ -1,19 +1,19 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import axios from "axios"
+import { useState, useEffect } from "react"
 
-function AdminStudentPanel() {
+function AdminTranscriptPanel() {
 
-    const [students, setStudents] = useState();
+    const [data, setData] = useState();
     const [page, setPage] = useState(1);
-    const fetchUsersURL = "https://portal.rsubs.org/api/users"
-    let studentArray = null;
+    const transcriptURL = "https://portal.rsubs.org/api/transcript-requests"
+    let transcriptArray;
 
     const nextPage = () => {
-        console.log(studentArray);
+        console.log(transcriptArray);
         setPage(page + 1)
-
-
     }
+
+
 
     const prevPage = () => {
         setPage(page - 1)
@@ -23,19 +23,20 @@ function AdminStudentPanel() {
 
         const startIndex = (page - 1) * 8
         const endIndex = startIndex + 8
-        studentArray = students?.slice(startIndex, endIndex);
-        console.log(students);
-        console.log(studentArray);
+        transcriptArray = data?.slice(startIndex, endIndex);
+        console.log(transcriptArray);
     }
 
-    const fetchStudents = async () => {
+    const fetchTranscript = async () => {
         try {
             const token = localStorage.getItem('token')
-            const response = await axios.get(fetchUsersURL, {
+            const response = await axios.get(transcriptURL, {
                 headers: { Authorization: `Bearer ${token}` }
-            })
+            }
+            )
 
-            setStudents(response.data);
+            setData(response.data.data);
+
 
         } catch (error) {
             console.log(error);
@@ -45,38 +46,50 @@ function AdminStudentPanel() {
     }
 
     useEffect(() => {
-        fetchStudents()
-        
-            
+        fetchTranscript()
     }, [])
 
-    console.log(students);
+    console.log(data);
     pagination()
 
 
     return (
         <div>
-            <table className=" relative text-[#39447F]" >
+            <table className=" relative text-[#39447F] " >
 
 
-                <thead>
+                <thead className=" border-b border-b-4 border-b-white " >
                     <tr>
+                    
                         <td className="p-2" >
-                            Student ID
+                            Reg No
                         </td>
                         <td className="p-2" >
-                            Name
+                            Full Name
                         </td>
                         <td className="p-2" >
                             Email
                         </td>
+                        <td className="p-2" >
+                            Receiver Email
+                        </td>
+                        <td className="p-2" >
+                            Phone Number
+                        </td>
+                        <td className="p-2" >
+                            Admission Year
+                        </td>
+                        <td className="p-2" >
+                            Graduation Year
+                        </td>
+                        <td className="p-2" >
+                            Course
+                        </td>
 
                         <td className="p-2" >
-                            Role
+                            Organisation Name
                         </td>
-                        <td className="p-2" >
-                            Verified
-                        </td>
+
                     </tr>
                 </thead>
 
@@ -86,7 +99,7 @@ function AdminStudentPanel() {
 
 
                     {
-                        !students && <div className="flex justify-center items-center w-20 h-20 bg-gray-200 rounded-full absolute top-1/2 left-1/2 ">
+                        !data && <div className="flex justify-center items-center w-20 h-20 bg-gray-200 rounded-full absolute top-1/2 left-1/2 ">
                             <div className="flex gap-2">
                                 <div className="w-3 h-3 bg-gray-800 rounded-full animate-bounce"></div>
                                 <div className="w-3 h-3 bg-gray-800 rounded-full animate-bounce delay-100"></div>
@@ -95,38 +108,59 @@ function AdminStudentPanel() {
                         </div>
 
                     }
-
-                    {
-                        studentArray?.map((student) => (
-                            <tr key={student._id} className="hover:bg-white cursor-pointer"  >
+                    { 
+                    
+                        transcriptArray?.map((transcript) => (
+                            <tr key={transcript._id} className="hover:bg-white cursor-pointer "  >
 
                                 <td className="p-2" >
                                     {
-                                        student._id
+                                        transcript.registrationNumber
                                     }
                                 </td>
 
                                 <td className="p-2" >
                                     {
-                                        student.name
+                                        transcript.fullName
                                     }
                                 </td>
 
                                 <td className="p-2" >
                                     {
-                                        student.email
+                                        transcript.emailAddress
                                     }
                                 </td>
 
                                 <td className="p-2" >
                                     {
-                                        student.role
+                                        transcript.receiverEmail
                                     }
                                 </td>
                                 <td className="p-2" >
                                     {
-                                        student.isVerified === true ? <div className="bg-green-500 h-2 w-2 mx-auto rounded-full " ></div> :
-                                            <div className="bg-red-500 w-2 mx-auto h-2 rounded-full" ></div>
+                                        transcript.phoneNumber
+                                    }
+                                </td>
+
+                                <td className="p-2" >
+                                    {
+                                        transcript.admissionYear
+                                    }
+                                </td>
+
+                                <td className="p-2" >
+                                    {
+                                        transcript.graduationYear
+                                    }
+                                </td>
+                                <td className="p-2" >
+                                    {
+                                        transcript.courseOfStudy
+                                    }
+                                </td>
+                                <td className="p-2" >
+                                    {
+                                        transcript.organisationName
                                     }
                                 </td>
                             </tr>
@@ -145,13 +179,13 @@ function AdminStudentPanel() {
                 </button>
             }
             <span className=" text-[#39447F] bg-white border-gray-500 p-3" >
-             { page}
+                {page}
             </span>
             {
-                page < students?.length && <button
+                page < data?.length && <button
                     onClick={() => {
-                        pagination()
-                        nextPage()
+                    pagination()
+                    nextPage()
                     }}
                     className="next-btn bg-[#39447F] text-white p-3 border-none rounded "
                 >
@@ -161,6 +195,8 @@ function AdminStudentPanel() {
         </div>
 
     )
+
+
 }
 
-export default AdminStudentPanel;
+export default AdminTranscriptPanel;

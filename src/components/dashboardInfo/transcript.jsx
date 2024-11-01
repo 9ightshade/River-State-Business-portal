@@ -4,8 +4,6 @@ import { useRef, useState } from "react";
 function Transcript() {
 
 
-    const [admitYear, setAdmitYear] = useState(0);
-    const [gradYear, setGradYear] = useState(0);
     const formRef = useRef(null)
     const [data, setData] = useState({
         fullName: '',
@@ -20,17 +18,17 @@ function Transcript() {
     })
 
 
-    const sample = {
-        fullName: 'Miles Morales',
-        registrationNumber: 'REG123123',
-        emailAddress: '9igtshade@gmail.com',
-        phoneNumber: '0801221267',
-        courseOfStudy: 'blockchain',
-        admissionYear: 2018,
-        graduationYear: 2022,
-        receiverEmail: 'recipient@gmail.com',
-        organisationName: 'xyz conport'
-    }
+    // const sample = {
+    //     fullName: 'Miles Morales',
+    //     registrationNumber: 'REG123123',
+    //     emailAddress: '9igtshade@gmail.com',
+    //     phoneNumber: '0801221267',
+    //     courseOfStudy: 'blockchain',
+    //     admissionYear: 2018,
+    //     graduationYear: 2022,
+    //     receiverEmail: 'recipient@gmail.com',
+    //     organisationName: 'xyz conport'
+    // }
 
     const transcriptURL = "https://portal.rsubs.org/api/transcript-requests"
 
@@ -41,24 +39,15 @@ function Transcript() {
             ...data,
             [name]: value,
         });
-
-        console.log(data);
-
+        // console.log(data);
     }
 
 
     const submitTranscript = async (e) => {
         e.preventDefault()
-
-        console.log(data);
-        console.log(sample);
-
-
-
+        // console.log(data);
         try {
             const token = localStorage.getItem('token')
-
-            console.log(data);
 
             const response = await axios.post(transcriptURL, data
                 , {
@@ -66,11 +55,9 @@ function Transcript() {
                 }
             )
             console.log('sucess...');
-
             console.log(response.data);
             formRef.current.reset();
-
-
+            
         } catch (error) {
             console.log(error);
 

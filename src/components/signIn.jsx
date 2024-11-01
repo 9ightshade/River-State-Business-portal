@@ -18,7 +18,8 @@ function SignIn() {
         email: email,
         password: password
     };
-
+    const expirationTimeInHours = 2;
+    const expirationTime = Date.now() + expirationTimeInHours * 60 * 60 * 1000;
     // Api endpoints
     const loginURL = "https://portal.rsubs.org/api/users/login";
     // const fetchUsersURL = "https://portal.rsubs.org/api/users";
@@ -27,16 +28,16 @@ function SignIn() {
     // const fetchUserURL = `https://portal.rsubs.org/api/users/${userId}`;
     // const fetchAllUsers = 'https://portal.rsubs.org/api/users';
 
-//decode token to get user role and id and navigate to dashboard
+    //decode token to get user role and id and navigate to dashboard
     const decodeToken = (token) => {
         const reponse = jwtDecode(token)
 
         localStorage.setItem('_id', reponse.userId)
 
         localStorage.setItem('role', reponse.role);
-        
+
         const role = localStorage.getItem('role');
-        
+
         role === 'student' && navigate('/student')
 
         role === 'admin' && navigate('/admin')
@@ -50,8 +51,10 @@ function SignIn() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (data.email && data.password) {
-            localStorage.setItem('email', data.email)
 
+
+            localStorage.setItem('email', data.email)
+            localStorage.setItem('tokenExpirationTime',expirationTime)
             const loginEmail = localStorage.getItem('email')
             console.log(`email login:${loginEmail}`);
 

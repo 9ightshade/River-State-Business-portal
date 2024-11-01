@@ -3,6 +3,7 @@ import adminData from "../admin";
 import StudentInfo from "./adminInfo/adminHomePanel";
 import AdminHomePanel from "./adminInfo/adminHomePanel";
 import AdminStudentPanel from "./adminInfo/adminStudentPanel";
+import AdminTranscriptPanel from "./adminInfo/adminTranscriptPanel";
 
 function AdminDashboard() {
     const [step, setStep] = useState(1)
@@ -87,6 +88,9 @@ function AdminDashboard() {
                 }
                 {
                     step === 2 && <AdminStudentPanel />
+                }
+                {
+                    step === 3 && <AdminTranscriptPanel/>
                 }
             </div>
 
