@@ -1,7 +1,7 @@
 import Nav from "./nav";
 import sections from "../sections";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Course from "./forms/course";
 import PersonalInfo from "./forms/personalInfo";
 import EmergencyContact from "./forms/emergencyContact";
@@ -73,9 +73,9 @@ function RsbApplication() {
     // console.log( userId);
 
     const startUrl = `https://portal.rsubs.org/api/application/${userId}/start`;
-    const saveUrl = `https://portal.rsubs.org/api/applications/${userId}/save`;
-    const resumeUrl = `https://portal.rsubs.org/api/application/${userId}/resume`;
-    const submitUrl = `https://portal.rsubs.org/api/applications/${userId}/submit`
+    // const saveUrl = `https://portal.rsubs.org/api/applications/${userId}/save`;
+    // const resumeUrl = `https://portal.rsubs.org/api/application/${userId}/resume`;
+    // const submitUrl = `https://portal.rsubs.org/api/applications/${userId}/submit`
     const navigate = useNavigate();
 
 
@@ -97,7 +97,6 @@ function RsbApplication() {
 
     }
 
-    startForm();
 
 
 
@@ -332,11 +331,13 @@ function RsbApplication() {
                         {
                             step === sections.length && <button
                                 type="submit" onClick={() => {
-                                    handleSubmit()
+                                    startForm()
                                 }}
                                 className="next-btn bg-[#39447F] text-white py-2 px-5 border-none rounded "
                             >
-                                Submit
+                                <Link to={'/student'} >
+                                    Submit
+                                </Link>
 
                             </button>
                         }

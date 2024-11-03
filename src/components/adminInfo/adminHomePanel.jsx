@@ -56,9 +56,11 @@ function AdminHomePanel() {
 
     useEffect(() => {
         fetchApplications()
+        
+        
     }, [])
 
-
+    // console.log(applicationsArray);
 
 
     return (
@@ -112,6 +114,7 @@ function AdminHomePanel() {
 
             </div>
 
+            
         </div>
     )
 }
