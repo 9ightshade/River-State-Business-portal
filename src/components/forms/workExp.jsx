@@ -5,13 +5,13 @@ function WorkExperience() {
                 <label htmlFor="postQualificationExperienceYears">
                     Post Qualification Experience <span className="block" >Years</span>
                 </label>
-                <input type="number" name="postQualificationExperienceYears" id="postQualificationExperienceYears" className="block p-2"  />
+                <input type="number" name="postQualificationExperienceYears" id="postQualificationExperienceYears" className="block p-2" required  />
             </div>
             <div>
                 <label htmlFor="managerialExperienceYears">
                     Managerial Experience<span className="block" >Years</span>
                 </label>
-                <input type="number" name="managerialExperienceYears" id="managerialExperienceYears" className="block p-2"  />
+                <input type="number" name="managerialExperienceYears" id="managerialExperienceYears" required className="block p-2"  />
             </div>
         </div>
     )

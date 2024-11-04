@@ -32,6 +32,9 @@ function AdminHomePanel() {
         }
 
     }
+    // 6710ee2c64769a1870a3b854
+
+    const applicationIds = ["6724deed947e348216ca6415", "6724db9f947e348216ca6407","6700f1ea42fa1f03bd0466c2", "6700ece642fa1f03bd0466bc", "6700eba142fa1f03bd0466b7"]
 
 
 
@@ -56,8 +59,8 @@ function AdminHomePanel() {
 
     useEffect(() => {
         fetchApplications()
-        
-        
+
+
     }, [])
 
     // console.log(applicationsArray);
@@ -114,7 +117,7 @@ function AdminHomePanel() {
 
             </div>
 
-            
+
         </div>
     )
 }

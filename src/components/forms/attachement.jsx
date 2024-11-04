@@ -9,7 +9,7 @@ function Attachment({ nextStep, prevStep, handleFileChange, values }) {
                     Degree Certificate
                 </label>
                 <input type="file" onChange={handleFileChange} name="degreeCertificate" id="degreeCertificate" className="block w-full p-3"
-                    // required
+                    required
                 />
             </div>
 
@@ -19,7 +19,7 @@ function Attachment({ nextStep, prevStep, handleFileChange, values }) {
                     Curiculum Vitae
                 </label>
                 <input type="file" name="curriculumVitae" onChange={handleFileChange}
-                    // required
+                    required
                     id="curriculumVitae" className="block w-full p-3" />
             </div>
 
@@ -28,7 +28,7 @@ function Attachment({ nextStep, prevStep, handleFileChange, values }) {
                     Evidence of Ability To Pay
                 </label>
                 <input type="file" onChange={handleFileChange}
-                    // required
+                    required
                     name="evidenceOfAbilityToPay" id="evidenceOfAbilityToPay" className="block w-full p-3" />
             </div>
 
@@ -37,7 +37,7 @@ function Attachment({ nextStep, prevStep, handleFileChange, values }) {
                     O level Result
                 </label>
                 <input type="file" name="oLevelResult"
-                    // required
+                    required
                     onChange={handleFileChange} id="oLevelResult" className="block w-full p-3" />
             </div>
 
@@ -48,7 +48,7 @@ function Attachment({ nextStep, prevStep, handleFileChange, values }) {
                 <label htmlFor="nyscExemptionLetter">
                     Nysc Exemption Letter
                 </label>
-                <input type="file" name="nyscExemptionLetter" onChange={handleFileChange} id="nyscExemptionLetter" className="block w-full p-3" />
+                <input required type="file" name="nyscExemptionLetter" onChange={handleFileChange} id="nyscExemptionLetter" className="block w-full p-3" />
             </div>
 
         </div>
