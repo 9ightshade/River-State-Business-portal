@@ -1,5 +1,7 @@
 function PersonalInfo({ handleFileChange, handleChange, values }) {
 
+let email = localStorage.getItem("email")
+
     return (
 
         <div className="text-gray-500 text-[1.1rem] outline-none" >
@@ -21,7 +23,7 @@ function PersonalInfo({ handleFileChange, handleChange, values }) {
                 <label htmlFor="email">
                     Email
                 </label>
-                <input type="email" name="email" value={values.email} onChange={handleChange} id="email" className="block p-2 w-1/2" />
+                <input type="email" name="email" value={email} onChange={handleChange} id="email" className="block p-2 w-1/2" />
             </div>
 
 
