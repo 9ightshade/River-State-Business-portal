@@ -114,7 +114,7 @@ function RsbApplication() {
     //     fileUpload()
     // }
 
-
+    const testURL = ' https://httpbin.org/post';
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -122,7 +122,9 @@ function RsbApplication() {
         console.log('final form:', formData);
 
         try {
-            const reponse = await axios.post(startUrl, formData, { headers: { Authorization: `Bearer ${token}` } })
+            const reponse = await axios.post(startUrl, formData,
+                // { headers: { Authorization: `Bearer ${token}` } }
+            )
 
             console.log(reponse);
             // navigate('/student')

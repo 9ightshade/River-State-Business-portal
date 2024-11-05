@@ -1,5 +1,4 @@
-function Attachment({ nextStep, prevStep, handleFileChange, values }) {
-
+function Attachment({ data, onChange}) {
 
     return (
 
@@ -8,7 +7,9 @@ function Attachment({ nextStep, prevStep, handleFileChange, values }) {
                 <label htmlFor="degreeCertificate">
                     Degree Certificate
                 </label>
-                <input type="file" onChange={handleFileChange} name="degreeCertificate" id="degreeCertificate" className="block w-full p-3"
+                <input type="file" onChange={(e) => {
+                    onChange('degreeCertificate', e.target.value) 
+                }} value={data.degreeCertificate} name="degreeCertificate" id="degreeCertificate" className="block w-full p-3"
                     required
                 />
             </div>
@@ -18,7 +19,10 @@ function Attachment({ nextStep, prevStep, handleFileChange, values }) {
                 <label htmlFor="curriculumVitae">
                     Curiculum Vitae
                 </label>
-                <input type="file" name="curriculumVitae" onChange={handleFileChange}
+                <input type="file" name="curriculumVitae" onChange={(e) => {
+                    onChange('curriculumVitae', e.target.value)
+                }}
+                    value={data.curriculumVitae}
                     required
                     id="curriculumVitae" className="block w-full p-3" />
             </div>
@@ -27,7 +31,10 @@ function Attachment({ nextStep, prevStep, handleFileChange, values }) {
                 <label htmlFor="evidenceOfAbilityToPay">
                     Evidence of Ability To Pay
                 </label>
-                <input type="file" onChange={handleFileChange}
+                <input type="file" onChange={(e) => {
+                    onChange('evidenceOfAbilityToPay', e.target.value) 
+                }}
+                    value={data.evidenceOfAbilityToPay}
                     required
                     name="evidenceOfAbilityToPay" id="evidenceOfAbilityToPay" className="block w-full p-3" />
             </div>
@@ -38,7 +45,9 @@ function Attachment({ nextStep, prevStep, handleFileChange, values }) {
                 </label>
                 <input type="file" name="oLevelResult"
                     required
-                    onChange={handleFileChange} id="oLevelResult" className="block w-full p-3" />
+                    onChange={(e) => {
+                        onChange('oLevelResult', e.target.value)
+                    }} value={data.oLevelResult} id="oLevelResult" className="block w-full p-3" />
             </div>
 
             {/* <p className="text-center text-blue-800 text-sm">File uploaded</p>
@@ -48,7 +57,9 @@ function Attachment({ nextStep, prevStep, handleFileChange, values }) {
                 <label htmlFor="nyscExemptionLetter">
                     Nysc Exemption Letter
                 </label>
-                <input required type="file" name="nyscExemptionLetter" onChange={handleFileChange} id="nyscExemptionLetter" className="block w-full p-3" />
+                <input required type="file" name="nyscExemptionLetter" onChange={(e) => {
+                    onChange('nyscExemptionLetter', e.target.value)
+                }} value={data.nyscExemptionLetter} id="nyscExemptionLetter" className="block w-full p-3" />
             </div>
 
         </div>
