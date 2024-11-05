@@ -1,7 +1,7 @@
 import Nav from "./nav";
 import sections from "../sections";
 import { useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Course from "./forms/course";
 import PersonalInfo from "./forms/personalInfo";
 import EmergencyContact from "./forms/emergencyContact";
@@ -72,7 +72,7 @@ function RsbApplication() {
 
     // console.log( userId);
 
-    const startUrl = `https://portal.rsubs.org/api/application/${userId}/start`;
+    const startUrl = `https://portal.rsubs.org/api/application/start`;
     // const saveUrl = `https://portal.rsubs.org/api/applications/${userId}/save`;
     // const resumeUrl = `https://portal.rsubs.org/api/application/${userId}/resume`;
     // const submitUrl = `https://portal.rsubs.org/api/applications/${userId}/submit`
@@ -335,9 +335,9 @@ function RsbApplication() {
                                 }}
                                 className="next-btn bg-[#39447F] text-white py-2 px-5 border-none rounded "
                             >
-                                <Link to={'/student'} >
+                                
                                     Submit
-                                </Link>
+                            
 
                             </button>
                         }

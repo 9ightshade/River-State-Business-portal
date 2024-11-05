@@ -11,7 +11,9 @@ function SignUp() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const navigate = useNavigate();
+    const [toast, setToast] = useState('');
+
+    // const navigate = useNavigate();
     const data = {
         name: fullname,
         email: email,
@@ -22,7 +24,6 @@ function SignUp() {
 
     const URL = "https://portal.rsubs.org/api/users/signup";
 
-    let message;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -30,15 +31,20 @@ function SignUp() {
 
         try {
             const response = await axios.post(URL, data,)
-            message = response.data
+
+            console.log(
+                response.data.message
+            );
+
+            setToast(response.data.message)
             console.log("success navigate to login");
-            navigate("/")
+            
 
 
 
         } catch (error) {
-            console.log(error);
-            navigate("/error")
+            console.log(error.response.data.message);
+            setToast(error.response.data.message)
 
         }
     };
@@ -46,18 +52,24 @@ function SignUp() {
 
     return (
 
-        <div className="h-[81vh] flex justify-center py-3 relative" style={{ backgroundImage: `url(${bgimage})`, backgroundRepeat: "no-repeat" }}>
+        <div className=" flex justify-center py-3 relative" style={{ backgroundImage: `url(${bgimage})`, backgroundRepeat: "no-repeat" }}>
             {
-                message ? <div className="absolute w-[100%] h-[100%] bg-blue-900 blur-[80px] z-0" >
+                toast ? <div className="absolute w-[100%] h-[100%] bg-blue-900 blur-[80px] z-0" >
 
                 </div> : null
             }
 
-            {message ?
 
-                <p className='text-center text-[30px] text-white font-black absolute top-[40%] ' >
-                    {message}
-                </p> : null}
+
+            {
+                toast ? <p className='text-center text-[30px] text-white bg-blue-900 p-3 rounded-md font-black absolute top-[40%] ' >
+                    {toast}
+
+                    <Link to={'/'} className="block underline cursor-pointer" >
+                        Return to Login
+                    </Link>
+                </p> : null
+            }
 
             <div className='bg-[#F3F1F1] p-10 shadow-md shadow-gray-500 rounded-[10px]  '>
                 <h3 className='text-center text-[36px] text-[#39447F] font-black'>Register</h3>

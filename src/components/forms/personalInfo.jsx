@@ -23,7 +23,7 @@ let email = localStorage.getItem("email")
                 <label htmlFor="email">
                     Email
                 </label>
-                <input type="email" required name="email" value={email} onChange={handleChange} id="email" className="block p-2 w-1/2" />
+                <input type="email" required name="email" value={email} disabled onChange={handleChange} id="email" className="block p-2 w-1/2" />
             </div>
 
 
