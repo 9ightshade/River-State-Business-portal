@@ -1,13 +1,29 @@
-
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { useAppState } from "../../context/appState";
+// import { Button, Field, Form, Input } from "../Forms";
 
 // eslint-disable-next-line react/prop-types
 function Course({ handleChange, values }) {
 
+    const [state, setState] = useAppState();
+    const {
+        handleSubmit,
+        register,
+        watch,
+        formState: { errors },
+        
+    } = useForm({ defaultValues: state, mode: 'onSubmit' });
+    const watchPassword = watch('password')
+    const navigate = useNavigate();
 
-   
+    const saveData = (data) => {
+        setState({ ...state, ...data });
+        // navigate('/')
+    }
 
     return (
-        <div className="flex gap-3 text-gray-500 text-[1.1rem] mb-[250px]">
+        <form className="flex gap-3 text-gray-500 text-[1.1rem] mb-[250px]" onSubmit={handleSubmit(saveData)} >
             <div>
                 <label htmlFor="Program-title">
                     Program Title
@@ -39,7 +55,7 @@ function Course({ handleChange, values }) {
                     <option value="Human Resource Management">Human Resource Management</option>
                 </select>
             </div>
-        </div>
+        </form>
     )
 }
 

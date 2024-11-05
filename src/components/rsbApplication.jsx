@@ -99,24 +99,6 @@ function RsbApplication() {
 
 
 
-
-    const saveForm = async () => {
-        console.log('save working....');
-        console.log(userId);
-
-        try {
-            const response = await axios.put(saveUrl, formData, { headers: { Authorization: `Bearer ${token}` } })
-            console.log(`success`);
-            console.log(response);
-
-        } catch (error) {
-            console.log(error);
-
-        }
-
-    }
-
-
     const NextStep = () => {
         setStep(step + 1);
     };
@@ -127,7 +109,7 @@ function RsbApplication() {
 
 
 
-
+//updates form data based on user input
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value })

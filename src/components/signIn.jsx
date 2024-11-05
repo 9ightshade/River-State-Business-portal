@@ -14,6 +14,7 @@ function SignIn() {
     const [isLoading, setIsLoading] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [toast, setToast] = useState('');
     const data = {
         email: email,
         password: password
@@ -54,11 +55,11 @@ function SignIn() {
 
 
             localStorage.setItem('email', data.email)
-            localStorage.setItem('tokenExpirationTime',expirationTime)
+            localStorage.setItem('tokenExpirationTime', expirationTime)
             const loginEmail = localStorage.getItem('email')
             console.log(`email login:${loginEmail}`);
 
-            setIsLoading(true)
+            // setIsLoading(true)
 
             try {
                 const getResponse = await axios.post(loginURL, data)
@@ -70,14 +71,15 @@ function SignIn() {
                 const token = localStorage.getItem('token')
                 console.log(`login token:${token}`);
 
-
-                decodeToken(token);
                 setIsLoading(false);
+                decodeToken(token);
+                
 
             } catch (error) {
                 console.log(error);
+                setToast(error.reponse.data.message)
                 setIsLoading(false)
-                navigate('/error')
+                // navigate('/error')
             }
 
 
@@ -104,6 +106,18 @@ function SignIn() {
                         </div>
                     </div>
                 }
+
+                {
+                    toast && <div className="flex justify-center items-center w-20 h-20 bg-gray-200 rounded-full absolute top-[50%] left-[47%] ">
+
+                        <p>
+                            {toast}
+                        </p>
+
+
+                    </div>
+                }
+
 
 
                 <h3 className='text-center text-[36px] text-[#39447F] font-black'>Log in</h3>
