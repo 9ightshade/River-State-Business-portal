@@ -17,51 +17,49 @@ function RsbApplication() {
 
     const [step, setStep] = useState(1);
     const [isFileUploaded, setIsFileUploaded] = useState(false)
-
+    const email = localStorage.getItem('email');
     const [formData, setFormData] = useState({
-        programmeTitle: '',
-        courseTitle: '',
-        title: '',
-        firstName: '',
-        middleName: '',
-        lastName: '',
-        email: '',
-        sex: '',
-        maritalStatus: '',
-        dateOfBirth: '',
-        address: '',
-        religion: '',
-        phone: '',
-        physicalChallenge: '',
-        photo: '',
-        nationality: '',
-        countryOfResidence: '',
-        primaryLanguage: '',
-        stateOfOrigin: '',
-        postQualificationExperienceYears: '',
-        managerialExperienceYears: '',
-        highestQualification: '',
-        classOfDegree: '',
-        factorsMotivatingMBA: '',
-        factorsHinderingMBA: '',
-        institutionName: '',
-        institutionType: '',
-        certificateAwarded: '',
-        startDate: '',
-        endDate: '',
-        fundingMethod: '',
-        degreeCertificate: '',
-        curriculumVitae: '',
-        evidenceOfAbilityToPay: '',
-        oLevelResult: '',
-        nyscExemptionLetter: '',
-        emailOfNextOfKin: '',
-        telephoneNumberOfNextOfKin: '',
-        relationshipWithNextOfKin: '',
-        nameOfNextOfKin: '',
-        addressOfNextOfKin: ''
+
+        course: { programmeTitle: '', courseTitle: '' },
+        personalInformation: { title: '', first_name: '', middle_name: '', last_name: '', email: email, gender: '', maritalStatus: '', dateOfBirth: '', address: '', religion: '', phone: '', physical_challenge: '', photo: '' },
+        emergencyContact: { name: '', relationship: '', phone: '', email: '' },
+        citizenship: { nationality: '', countryOfResidency: '', primaryLanguage: '', stateOfOrigin: '' },
+        workExperience: { postQualificationExperienceYears: 0, managerialExperienceYears: 0 },
+        lbsProgrammeQualification: { highestQualification: '', classOfDegree: '', factorsMotivatingMBA: '', factorsHinderingMBA: '' },
+        qualifications: [{ institutionName: '', institutionType: '', certificateAwarded: '', startDate: '', endDate: '' }],
+        programmeFinancing: { fundingMethod: '' },
+        attachments: { degreeCertificate: '', curriculumVitae: '', evidenceOfAbilityToPay: '', oLevelResult: '', nyscExemptionLetter: '' },
+        lastSavedStep: 'Started',
+
 
     })
+
+
+    const NextStep = () => {
+        setStep(step + 1);
+    };
+
+    const PrevStep = () => {
+        setStep(step - 1);
+    };
+
+
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setFormData({ ...formData, [name]: value })
+
+    // };
+
+
+    const handleChange = (section, key, value) => {
+        setFormData((prev) => ({
+            ...prev,
+            [section]: {
+                ...prev[section],
+                [key]: value,
+            },
+        }));
+    };
 
 
 
@@ -79,71 +77,59 @@ function RsbApplication() {
     const navigate = useNavigate();
 
 
-    console.log(formData);
+    // console.log(formData);
 
-    const startForm = async () => {
-        console.log('start....');
-        console.log(userId);
+    // const startForm = async () => {
+    //     console.log('start....');
+    //     console.log(userId);
 
-        try {
-            const response = await axios.post(startUrl, formData, { headers: { Authorization: `Bearer ${token}` } })
-            console.log(`success`);
-            console.log(response);
+    //     try {
+    //         const response = await axios.post(startUrl, formData, { headers: { Authorization: `Bearer ${token}` } })
+    //         console.log(`success`);
+    //         console.log(response);
 
-        } catch (error) {
-            console.log(error);
+    //     } catch (error) {
+    //         console.log(error);
 
-        }
+    //     }
 
-    }
-
-
-
-    const NextStep = () => {
-        setStep(step + 1);
-    };
-
-    const PrevStep = () => {
-        setStep(step - 1);
-    };
+    // }
 
 
 
-//updates form data based on user input
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value })
 
-    };
 
-    const handleFileChange = (e) => {
-        const { name, files } = e.target;
-        setFormData({ ...formData, [name]: files[0] })
+    //updates form data based on user input
 
-        const fileUpload = async () => {
-            files ? console.log(files) : 'file absent'
 
-        }
+    // const handleFileChange = (e) => {
+    //     const { name, files } = e.target;
+    //     setFormData({ ...formData, [name]: files[0] })
 
-        fileUpload()
-    }
+    //     const fileUpload = async () => {
+    //         files ? console.log(files) : 'file absent'
+
+    //     }
+
+    //     fileUpload()
+    // }
 
 
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(`submit form ...`);
+        console.log('final form:', formData);
+
         try {
             const reponse = await axios.post(startUrl, formData, { headers: { Authorization: `Bearer ${token}` } })
 
             console.log(reponse);
-
             // navigate('/student')
         } catch (error) {
             console.log(error);
 
         }
-
     }
 
 
@@ -190,17 +176,13 @@ function RsbApplication() {
     return (
         <div>
             <Nav />
-            <h1 className="text-center text-gray-500 text-[1.3rem]" >
+            <h1 className="text-center text-gray-500 text-[1.3rem]" onClick={() => {
+                console.log(formData);
+
+            }} >
                 Full-Time MBA Admissions
             </h1>
 
-            {/* <button className="bg-blue-700 text-white p-3 " onClick={saveForm}  >
-                test send form data
-            </button>
-
-            <button className="bg-blue-700 text-white p-3 ml-4 " onClick={submitForm}  >
-                test submit form data
-            </button> */}
             <div className="container px-7 flex justify-between gap-4  " >
 
                 <div className="sections flex gap-2 flex-col w-1/3  text-gray-500 " >
@@ -236,51 +218,37 @@ function RsbApplication() {
                                         {section.label}
                                     </h2>
                                     {step === 1 && <Course
-                                        nextStep={NextStep}
-                                        handleChange={handleChange}
-                                        values={formData}
+                                        data={formData.course}
+                                        onChange={(key, value) => handleChange('course', key, value)}
                                     />}
                                     {step === 2 && <PersonalInfo
-
-                                        handleChange={handleChange}
-                                        values={formData}
-                                        handleFileChange={handleFileChange}
+                                        data={formData.personalInformation}
+                                        onChange={(key, value) => handleChange('personalInformation', key, value)}
                                     />}
                                     {step === 3 && <EmergencyContact
-
-                                        handleChange={handleChange}
-                                        values={formData}
+                                        data={formData.emergencyContact} onChange={(key, value) => handleChange('emergencyContact', key, value)}
                                     />}
                                     {step === 4 && <Citizenship
-                                        nextStep={NextStep}
-                                        handleChange={handleChange}
-                                        values={formData}
+                                        data={formData.citizenship} onChange={(key, value) => handleChange('citizenship', key, value)}
                                     />}
                                     {step === 5 && <WorkExperience
-                                        nextStep={NextStep}
-                                        handleChange={handleChange}
-                                        values={formData}
+                                        data={formData.workExperience} onChange={(key, value) => handleChange('workExperience', key, value)}
                                     />}
                                     {step === 6 && <RsubsQualification
-                                        nextStep={NextStep}
-                                        handleChange={handleChange}
-                                        values={formData}
+                                        data={formData.lbsProgrammeQualification} onChange={(key, value) => handleChange('lbsProgrammeQualification', key, value)}
                                     />}
                                     {step === 7 && <Qualifications
-                                        nextStep={NextStep}
-                                        handleChange={handleChange}
-                                        values={formData}
+                                        data={formData.qualifications} onChange={(index, key, value) => {
+                                            const newQualifications = [...formData.qualifications];
+                                            newQualifications[index][key] = value;
+                                            setFormData({ ...formData, qualifications: newQualifications });
+                                        }}
                                     />}
                                     {step === 8 && <ProgramFinancing
-                                        nextStep={NextStep}
-                                        handleChange={handleChange}
-                                        values={formData}
+                                        data={formData.programmeFinancing} onChange={(key, value) => handleChange('programmeFinancing', key, value)}
                                     />}
                                     {step === 9 && <Attachment
-                                        nextStep={NextStep}
-                                        handleChange={handleChange}
-                                        values={formData}
-                                        handleFileChange={handleFileChange}
+                                        data={formData.attachments} onChange={(key, value) => handleChange('attachments', key, value)}
                                     />}
                                 </div>
 
@@ -288,7 +256,6 @@ function RsbApplication() {
 
                         )
                     }
-
 
                     <div className="navigation-btn flex justify-between " >
                         {
@@ -301,10 +268,7 @@ function RsbApplication() {
                         }
                         {
                             step < sections.length && <div
-                                onClick={() => {
-                                    NextStep()
-                                    // saveForm()
-                                }}
+                                onClick={NextStep}
                                 className="next-btn bg-[#39447F] text-white py-2 px-5 border-none rounded "
                             >
                                 Next
@@ -312,21 +276,17 @@ function RsbApplication() {
                         }
                         {
                             step === sections.length && <button
-                                type="submit" onClick={() => {
-                                    startForm()
-                                }}
+                                type="submit" onClick={handleSubmit}
                                 className="next-btn bg-[#39447F] text-white py-2 px-5 border-none rounded "
                             >
-                                
-                                    Submit
-                            
-
+                                Submit
                             </button>
                         }
                     </div>
 
-                </form>
 
+
+                </form>
 
 
 

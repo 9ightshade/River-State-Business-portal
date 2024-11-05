@@ -1,4 +1,4 @@
-function Citizenship({handleChange, values}) {
+function Citizenship({ data, onChange }) {
 
 
     return (
@@ -10,7 +10,9 @@ function Citizenship({handleChange, values}) {
                     <label htmlFor="nationality">
                         Nationality
                     </label>
-                    <select name="nationality" value={values.nationality} onChange={handleChange} id="nationality" className="block p-2 w-full" required >
+                    <select name="nationality" value={data.nationality} onChange={(e) => {
+                        onChange('nationality', e.target.value)
+                    }} id="nationality" className="block p-2 w-full" required >
                         <option value="select">--Select--</option>
                         <option value="nigeria">Nigeria</option>
                         <option value="canada">Canada</option>
@@ -23,7 +25,9 @@ function Citizenship({handleChange, values}) {
                     <label htmlFor="countryOfResidence">
                         Country Of Residence
                     </label>
-                    <select name="countryOfResidence" value={values.countryOfResidence} onChange={handleChange} id="countryOfResidence" className="block p-2 w-full " required >
+                    <select name="countryOfResidence" value={data.countryOfResidency} onChange={(e) => {
+                        onChange('countryOfResidency', e.target.value)
+                    }} id="countryOfResidence" className="block p-2 w-full " required >
                         <option value="select">--Select--</option>
                         <option value="nigeria">Nigeria</option>
                         <option value="canada">Canada</option>
@@ -32,19 +36,23 @@ function Citizenship({handleChange, values}) {
                 </div>
             </div>
 
-           
+
             <div className="flex gap-4 my-8 " >
                 <div>
                     <label htmlFor="primaryLanguage">
                         Primary Language
                     </label>
-                    <input type="text" required name="primaryLanguage" value={values.primaryLanguage} onChange={handleChange} id="primaryLanguage" className="block p-2"  />
+                    <input type="text" required name="primaryLanguage" value={data.primaryLanguage} onChange={(e) => {
+                        onChange('primaryLanguage', e.target.value)
+                    }} id="primaryLanguage" className="block p-2" />
                 </div>
                 <div>
                     <label htmlFor="stateOfOrigin">
                         State Of Origin
                     </label>
-                    <input type="text" required value={values.stateOfOrigin} name="stateOfOrigin" onChange={handleChange} id="stateOfOrigin" className="block p-2"  />
+                    <input type="text" required value={data.stateOfOrigin} name="stateOfOrigin" onChange={(e) => {
+                        onChange('stateOfOrigin', e.target.value)
+                    }} id="stateOfOrigin" className="block p-2" />
                 </div>
             </div>
 
