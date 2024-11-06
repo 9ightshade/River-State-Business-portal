@@ -216,18 +216,22 @@ function AdminStudentPanel() {
                 console.log(activeStudent);
 
             }} >
-                <h2 className="font-bold text-[1rem]" >
-                    Student details
-                </h2>
-                <div className="student-profile-pic" >
-                    <img src="" alt="" />
-                </div>
-                <p className="student-name" >
-                    Name: {activeStudent?.name}
-                </p>
-                <p>
-                    Email: {activeStudent?.email}
-                </p>
+                {
+                    activeStudentApplication && <div>
+                        <h2 className="font-bold text-[1rem]" >
+                            Student details
+                        </h2>
+                        <div className="student-profile-pic" >
+                            <img src="" alt="" />
+                        </div>
+                        <p className="student-name" >
+                            Name: {activeStudent?.name}
+                        </p>
+                        <p>
+                            Email: {activeStudent?.email}
+                        </p>
+                    </div>
+                }
 
                 {
                     activeStudentApplication && <div>
