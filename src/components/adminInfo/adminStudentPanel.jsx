@@ -70,7 +70,7 @@ function AdminStudentPanel() {
 
     const activeStudentAppl = (email) => {
 
-        // console.log(applicationsArray);
+        console.log(applicationsArray);
         // console.log(email);
         applicationsArray.find((app) => {
             app.personalInformation.email === email ? setActiveStudentApplication(app) : setActiveStudentApplication('no matching application found')
@@ -105,7 +105,7 @@ function AdminStudentPanel() {
 
 
                     <thead>
-                        <tr>
+                        <tr className="font-bold"  >
                             <td className="p-2" >
                                 Student ID
                             </td>
@@ -212,11 +212,13 @@ function AdminStudentPanel() {
 
             </div>
 
-            <div className="student-details p-3 text-[#39447F] " onClick={() => {
+            <div className="student-details p-3 text-[#39447F] w-[300px] " onClick={() => {
                 console.log(activeStudent);
 
             }} >
-                Student details
+                <h2 className="font-bold text-[1rem]" >
+                    Student details
+                </h2>
                 <div className="student-profile-pic" >
                     <img src="" alt="" />
                 </div>
@@ -227,13 +229,128 @@ function AdminStudentPanel() {
                     Email: {activeStudent?.email}
                 </p>
 
+                {
+                    activeStudentApplication && <div>
+
+                        <p>
+                            Application Status: {
+                                activeStudentApplication?.status ? activeStudentApplication.status : 'no application submitted'
+                            }
+                        </p>
+                        <p>
+                            certificate awarded: {activeStudentApplication?.qualifications?.[0].certificateAwarded
+                            }
+                        </p>
 
 
-                <p>
-                    Application Status: {
-                        activeStudentApplication?.status ? activeStudentApplication.status : 'no application submitted'
-                    }
-                </p>
+
+                        <p>
+                            Start Date:{
+                                activeStudentApplication?.qualifications?.[0].startDate
+                            }
+                        </p>
+                        <p>
+                            End Date:{activeStudentApplication?.qualifications?.[0].endDate
+                            }
+                        </p>
+                        <p>
+                            institutionName:{
+                                activeStudentApplication?.qualifications?.[0].
+                                    institutionName
+
+                            }
+                        </p>
+
+                        <p>
+                            Program Finacing:{
+                                activeStudentApplication?.programmeFinancing?.fundingMethod
+                            }
+                        </p>
+
+                        <p>
+                            class of degree:{
+                                activeStudentApplication?.lbsProgrammeQualification?.classOfDegree
+
+                            }
+                        </p>
+                        <p>factors Hindering MBA
+                            :{
+                                activeStudentApplication?.lbsProgrammeQualification?.
+                                    factorsHinderingMBA
+                            }
+                        </p>
+
+                        <p>factors Motivating MBA
+                            :{
+                                activeStudentApplication?.lbsProgrammeQualification?.
+                                    factorsMotivatingMBA
+
+                            }
+                        </p>
+                        <p>Highest Qualification
+                            :{
+                                activeStudentApplication?.lbsProgrammeQualification?.
+                                    highestQualification
+                            }
+                        </p>
+
+                        <p>
+                            Managerial Experience:{
+                                activeStudentApplication?.workExperience?.managerialExperienceYears
+                            }
+                        </p>
+
+
+                        <p>
+                            Post Qualification Experience:{
+                                activeStudentApplication?.workExperience?.postQualificationExperienceYears
+
+                            }
+                        </p>
+
+                        <p>
+                            curriculumVitae:{
+                                activeStudentApplication?.attachments?.curriculumVitae
+                            }
+                        </p>
+                        <p>
+
+                            Degree Certificate:{
+                                activeStudentApplication?.attachments?.
+                                    degreeCertificate
+                            }
+                        </p>
+                        <p>
+
+                            evidenceOfAbilityToPay
+                            :{
+                                activeStudentApplication?.attachments?.
+                                    evidenceOfAbilityToPay
+
+                            }
+                        </p>
+
+                        <p>
+
+                            NYSC Exemption Letter
+
+                            :{
+                                activeStudentApplication?.attachments?.
+                                    nyscExemptionLetter
+
+
+                            }
+                        </p>
+
+                        <p>
+                            OLevel Result
+                            :{
+                                activeStudentApplication?.attachments?.
+                                    oLevelResult
+                            }
+                        </p>
+                    </div>
+                }
 
             </div>
         </div>
