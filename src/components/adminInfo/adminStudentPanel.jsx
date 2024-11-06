@@ -212,7 +212,7 @@ function AdminStudentPanel() {
 
             </div>
 
-            <div className="student-details text-[#39447F] " onClick={() => {
+            <div className="student-details p-3 text-[#39447F] " onClick={() => {
                 console.log(activeStudent);
 
             }} >
@@ -221,25 +221,20 @@ function AdminStudentPanel() {
                     <img src="" alt="" />
                 </div>
                 <p className="student-name" >
-                    {activeStudent?.name}
+                    Name: {activeStudent?.name}
                 </p>
                 <p>
-                    {activeStudent?.email}
+                    Email: {activeStudent?.email}
                 </p>
+
 
 
                 <p>
-                    Student Application Status
+                    Application Status: {
+                        activeStudentApplication?.status ? activeStudentApplication.status : 'no application submitted'
+                    }
                 </p>
-                <p>
-                    {/* {activeStudent?.email &&
-                        applicationsArray?.map((app) => {
-                            app.personalInfo.email === activeStudent?.email ? console.log(app) : 'not found...'
 
-
-                        })
-                    } */}
-                </p>
             </div>
         </div>
 
