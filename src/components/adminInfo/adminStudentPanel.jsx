@@ -6,7 +6,11 @@ function AdminStudentPanel() {
     const [students, setStudents] = useState();
     const [page, setPage] = useState(1);
     const [activeStudent, setActiveStudent] = useState();
+    const [activeStudentApplication, setActiveStudentApplication] = useState();
+    const [applicationsArray, setApplicationsArray] = useState();
     const fetchUsersURL = "https://portal.rsubs.org/api/users"
+
+    const fetchApplicationAllURL = "https://portal.rsubs.org/api/applications";
     let studentArray = null;
     const nextPage = () => {
         console.log(studentArray);
@@ -24,8 +28,8 @@ function AdminStudentPanel() {
         const startIndex = (page - 1) * 8
         const endIndex = startIndex + 8
         studentArray = students?.slice(startIndex, endIndex);
-        console.log(students);
-        console.log(studentArray);
+        // console.log(students);
+        // console.log(studentArray);
     }
 
     const fetchStudents = async () => {
@@ -44,13 +48,53 @@ function AdminStudentPanel() {
 
     }
 
+
+    const fetchApplications = async () => {
+        try {
+            const token = localStorage.getItem('token')
+            const response = await axios.get(fetchApplicationAllURL, {
+                headers: { Authorization: `Bearer ${token}` }
+            })
+
+            // console.log(response.data.applications);
+
+            setApplicationsArray(response.data.applications);
+
+
+        } catch (error) {
+            console.log(error);
+
+        }
+
+    }
+
+    const activeStudentAppl = (email) => {
+
+        // console.log(applicationsArray);
+        // console.log(email);
+        applicationsArray.find((app) => {
+            app.personalInformation.email === email ? setActiveStudentApplication(app) : setActiveStudentApplication('no matching application found')
+        })
+
+        console.log(activeStudentApplication);
+
+
+        // applicationsArray?.find((app) => {
+        //     app.personalInfo.email === email ? console.log(app):null
+        // }    
+        // )
+
+
+    }
+
+
     useEffect(() => {
         fetchStudents()
-
+        fetchApplications()
 
     }, [])
 
-    console.log(students);
+    // console.log(students);
     pagination()
 
 
@@ -101,6 +145,7 @@ function AdminStudentPanel() {
                             studentArray?.map((student) => (
                                 <tr key={student._id} className="hover:bg-white cursor-pointer" onClick={() => {
                                     setActiveStudent(student)
+                                    activeStudentAppl(student.email)
                                 }} >
 
                                     <td className="p-2" >
@@ -167,21 +212,34 @@ function AdminStudentPanel() {
 
             </div>
 
-            <div className="student-details text-[#39447F] " onClick={() => { 
+            <div className="student-details text-[#39447F] " onClick={() => {
                 console.log(activeStudent);
-                
+
             }} >
                 Student details
                 <div className="student-profile-pic" >
                     <img src="" alt="" />
                 </div>
                 <p className="student-name" >
-                {activeStudent?.name}
+                    {activeStudent?.name}
                 </p>
                 <p>
                     {activeStudent?.email}
                 </p>
 
+
+                <p>
+                    Student Application Status
+                </p>
+                <p>
+                    {/* {activeStudent?.email &&
+                        applicationsArray?.map((app) => {
+                            app.personalInfo.email === activeStudent?.email ? console.log(app) : 'not found...'
+
+
+                        })
+                    } */}
+                </p>
             </div>
         </div>
 

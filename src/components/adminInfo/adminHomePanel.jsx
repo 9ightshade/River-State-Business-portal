@@ -6,7 +6,7 @@ function AdminHomePanel() {
     const [applicationsArray, setApplicationsArray] = useState();
     const userId = localStorage.getItem('_id')
     // const totalApplications= (applicationsArray.length);
-    console.log(userId);
+    // console.log(userId);
 
     const fetchUsersURL = `https://portal.rsubs.org/api/users/${userId}`
 
@@ -21,7 +21,7 @@ function AdminHomePanel() {
                 headers: { Authorization: `Bearer ${token}` }
             })
 
-            console.log(response.data.applications);
+            // console.log(response.data.applications);
 
             setApplicationsArray(response.data.applications);
 
@@ -32,12 +32,6 @@ function AdminHomePanel() {
         }
 
     }
-    // 6710ee2c64769a1870a3b854
-
-    const applicationIds = ["6724deed947e348216ca6415", "6724db9f947e348216ca6407","6700f1ea42fa1f03bd0466c2", "6700ece642fa1f03bd0466bc", "6700eba142fa1f03bd0466b7"]
-
-
-
 
 
     const fetchStudents = async () => {
@@ -46,7 +40,7 @@ function AdminHomePanel() {
             const response = await axios.get(fetchUsersURL, {
                 headers: { Authorization: `Bearer ${token}` }
             })
-            console.log(response.data);
+            // console.log(response.data);
 
             setStudents(response.data);
 
@@ -60,10 +54,14 @@ function AdminHomePanel() {
     useEffect(() => {
         fetchApplications()
 
+        // console.log(applicationsArray);
 
     }, [])
 
-    // console.log(applicationsArray);
+    // applicationsArray?.map((app) => {
+    //     console.log(app.personalInformation.email);
+
+    // })
 
 
     return (
@@ -96,6 +94,7 @@ function AdminHomePanel() {
                 <p>
                     Total No of Applications:{
                         // totalApplications
+
                     }
                 </p>
                 <p>

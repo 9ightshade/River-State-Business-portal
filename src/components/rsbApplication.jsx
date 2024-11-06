@@ -70,7 +70,7 @@ function RsbApplication() {
 
     // console.log( userId);
 
-    const startUrl = `https://portal.rsubs.org/api/application/start`;
+    const startUrl = `https://portal.rsubs.org/api/applications/start`;
     // const saveUrl = `https://portal.rsubs.org/api/applications/${userId}/save`;
     // const resumeUrl = `https://portal.rsubs.org/api/application/${userId}/resume`;
     // const submitUrl = `https://portal.rsubs.org/api/applications/${userId}/submit`
@@ -123,7 +123,7 @@ function RsbApplication() {
 
         try {
             const reponse = await axios.post(startUrl, formData,
-                // { headers: { Authorization: `Bearer ${token}` } }
+                { headers: { Authorization: `Bearer ${token}` } }
             )
 
             console.log(reponse);
