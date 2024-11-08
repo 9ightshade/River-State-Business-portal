@@ -16,8 +16,12 @@ import axios from "axios";
 function RsbApplication() {
 
     const [step, setStep] = useState(1);
-    const [isFileUploaded, setIsFileUploaded] = useState(false)
+    const [file, setFile] = useState(null)
     const email = localStorage.getItem('email');
+    const userId = localStorage.getItem('_id')
+    const startUrl = `https://portal.rsubs.org/api/applications/start`;
+    const navigate = useNavigate();
+    const token = localStorage.getItem('token')
     const [formData, setFormData] = useState({
 
         course: { programmeTitle: '', courseTitle: '' },
@@ -38,17 +42,11 @@ function RsbApplication() {
     const NextStep = () => {
         setStep(step + 1);
     };
-
     const PrevStep = () => {
         setStep(step - 1);
     };
 
 
-    // const handleChange = (e) => {
-    //     const { name, value } = e.target;
-    //     setFormData({ ...formData, [name]: value })
-
-    // };
 
 
     const handleChange = (section, key, value) => {
@@ -61,75 +59,55 @@ function RsbApplication() {
         }));
     };
 
+    const handleFileChange = (section, key, file) => {
 
-
-    const userId = localStorage.getItem('_id')
-    // console.log('working...');
-
-    const token = localStorage.getItem('token')
-
-    // console.log( userId);
-
-    const startUrl = `https://portal.rsubs.org/api/applications/start`;
-    // const saveUrl = `https://portal.rsubs.org/api/applications/${userId}/save`;
-    // const resumeUrl = `https://portal.rsubs.org/api/application/${userId}/resume`;
-    // const submitUrl = `https://portal.rsubs.org/api/applications/${userId}/submit`
-    const navigate = useNavigate();
-
-
-    // console.log(formData);
-
-    // const startForm = async () => {
-    //     console.log('start....');
-    //     console.log(userId);
-
-    //     try {
-    //         const response = await axios.post(startUrl, formData, { headers: { Authorization: `Bearer ${token}` } })
-    //         console.log(`success`);
-    //         console.log(response);
-
-    //     } catch (error) {
-    //         console.log(error);
-
-    //     }
-
-    // }
+        setFormData((prev) => ({
+            ...prev,
+            [section]: {
+                ...prev[section],
+                [key]: file,
+            },
+        }));
+    };
 
 
 
-
-
-    //updates form data based on user input
-
-
-    // const handleFileChange = (e) => {
-    //     const { name, files } = e.target;
-    //     setFormData({ ...formData, [name]: files[0] })
-
-    //     const fileUpload = async () => {
-    //         files ? console.log(files) : 'file absent'
-
-    //     }
-
-    //     fileUpload()
-    // }
-
-    const testURL = ' https://httpbin.org/post';
+    // const testURL = ' https://httpbin.org/post';
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(`submit form ...`);
         console.log('final form:', formData);
 
+        const dataToSend = new FormData();
+
+        // Append non-file fields
+        Object.keys(formData).forEach((sectionKey) => {
+            if (typeof formData[sectionKey] === "object" && !Array.isArray(formData[sectionKey])) {
+                Object.entries(formData[sectionKey]).forEach(([key, value]) => {
+                    if (value instanceof File) {
+                        dataToSend.append(`${sectionKey}.${key}`, value);
+                    } else {
+                        dataToSend.append(`${sectionKey}.${key}`, value);
+                    }
+                });
+            }
+        });
+
         try {
-            const reponse = await axios.post(startUrl, formData,
-                { headers: { Authorization: `Bearer ${token}` } }
+            const response = await axios.post(startUrl, formData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        // "Content-Type": "multipart/form-data"
+                    }
+                }
             )
 
-            console.log(reponse);
+            console.log("Response:", response.data);
             // navigate('/student')
         } catch (error) {
-            console.log(error);
+            console.error("Error submitting form:", error);
 
         }
     }
@@ -250,7 +228,7 @@ function RsbApplication() {
                                         data={formData.programmeFinancing} onChange={(key, value) => handleChange('programmeFinancing', key, value)}
                                     />}
                                     {step === 9 && <Attachment
-                                        data={formData.attachments} onChange={(key, value) => handleChange('attachments', key, value)}
+                                        data={formData.attachments} onChange={(key, file) => handleFileChange('attachments', key, file)}
                                     />}
                                 </div>
 
@@ -289,9 +267,6 @@ function RsbApplication() {
 
 
                 </form>
-
-
-
 
             </div>
 

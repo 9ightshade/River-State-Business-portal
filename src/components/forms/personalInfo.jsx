@@ -156,8 +156,8 @@ function PersonalInfo({ data, onChange }) {
                     Upload Photo
                 </label>
                 <input type="file" required onChange={(e) => {
-                    onChange('photo', e.target.value)
-                }} value={data.photo} name="photo" id="photo" className="block" />
+                    onChange('photo', e.target.files[0])
+                }} name="photo" id="photo" className="block" />
             </div>
         </div>
 
